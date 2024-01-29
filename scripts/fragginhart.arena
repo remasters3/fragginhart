@@ -1,7 +1,7 @@
 {
 	map "fragginhart"
 	longname "^^1Frag^bginhart Cany^1on ^7v^22"
-	type "wolfmp wolfsw wolflms"
+	type "wolfmp wolfsw"
 	timelimit 30
 	axisRespawnTime 30
 	alliedRespawnTime 20
