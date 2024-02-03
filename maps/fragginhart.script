@@ -56,7 +56,7 @@ game_manager
 		alertentity gen_sound
 
 		wait 1000
-		trigger main_gate_keycard disable_obj
+		// trigger main_gate_keycard disable_obj //this will disable the generator keycard objective. 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
 		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
