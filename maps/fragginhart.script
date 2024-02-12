@@ -54,19 +54,19 @@ game_manager
 		setstate block_hidenroom default
 		
 		//////////keycard obj removed /////////
-		//setstate genlightsoff default
-		//setstate genlightson invisible
-		//alertentity gen_sound
-		setstate keycard_blue_sign invisible
-		setstate keycard_red_sign invisible
-		setstate keycard_yellow_sign invisible
- 	    setstate generator_blue_sign default
- 		setstate generator_red_sign invisible
- 		setstate generator_yellow_sign invisible
-		setstate main_door_tunnels invisible
-		setstate cov_door_Main_Gate invisible
-		setstate axis_spawn_door_docs invisible
-		trigger main_gate open
+		setstate genlightsoff default
+		setstate genlightson invisible
+		alertentity gen_sound
+		// setstate keycard_blue_sign invisible
+		// setstate keycard_red_sign invisible
+		// setstate keycard_yellow_sign invisible
+ 	    // setstate generator_blue_sign default
+ 		// setstate generator_red_sign invisible
+ 		// setstate generator_yellow_sign invisible
+		// setstate main_door_tunnels invisible
+		// setstate cov_door_Main_Gate invisible
+		// setstate axis_spawn_door_docs invisible
+		// trigger main_gate open
 		////////////////////////////////////////
 		
 		wait 1000
@@ -450,192 +450,203 @@ depot_gate_controls
 	}
 }
 
-// // ==== Keycard ==== //
-// main_gate_keycard
-// {
-// 	spawn
-// 	{
-// 		wait 200
-// 
-// 		setstate main_gate_keycard_CMM default
-// 		setstate Maingate_cmm default
-// 		setstate main_gate_dropzone invisible
-// 		setstate genlightsoff default
-// 		setstate genlightson invisible
-// 		trigger self keycard_yellow
-// 		trigger self gen_red
-// 	}
-// 
-// 	trigger stolen
-// 	{
-// 		setstate main_gate_keycard_CMM invisible
-// 		setstate main_gate_dropzone default
-// 		trigger self keycard_blue
-// 		trigger self gen_yellow
-// 	}
-// 
-// 	trigger dropped
-// 	{
-// 		wm_announce_icon 5 "Allies have dropped the Main Gate Keycard!"
-// 
-// 		// *----------------------------------- vo ------------------------------------------*
-// 		wm_teamvoiceannounce 1 "allies_hq_objective_lost"
-// 		// *---------------------------------------------------------------------------------*
-// 		// setstate main_gate_dropzone invisible
-// 	}
-// 
-// 	trigger returned
-// 	{
-// 		setstate main_gate_keycard_CMM default
-// 		setstate main_gate_dropzone invisible
-// 		trigger self keycard_yellow
-// 		trigger self gen_red		
-// 	}
-// 
-// 	trigger captured
-// 	{
-// 		// trigger move_Main_Gate alive_action_Main_Gate
-// 		// setstate Maingate_cmm invisible
-// 		alertentity gen_sound
-// 		// setstate main_gate_dropzone invisible
-// 		trigger self gen_blue
-// 		trigger self keycard_blue
-// 		trigger depot_gate_controls yellow
-// 		trigger the_dropzone show
-// 		setautospawn "Forward bunker" 0
-// 
-// 		wm_objective_status 1 1 1
-// 		wm_objective_status 1 0 2
-// 
-// 		wm_announce "Allies have delivered the Keycard!"
-// 		wm_announce "Generator powering up in 10 seconds!"
-// 
-// 		// *----------------------------------- vo ------------------------------------------*
-// 		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
-// 		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
-// 
-// 		wm_removeteamvoiceannounce 0 "fragginhart_axis_generator_defend"
-// 		// *---------------------------------------------------------------------------------*
-// 
-// 		wait 10000
-// 
-// 		wm_announce "Generator powered up!"
-// 		wm_announce "Main Gate Controls enabled!"
-// 		setstate genlightsoff invisible
-// 		setstate genlightson default
-// 
-// 		trigger move_Main_Gate alive_action_Main_Gate
-// 		trigger main_gate_keycard_capmodel generator_sound				// Add sound to the Generator
-// 
-// 		setstate Maingate_cmm invisible
-// 		setstate main_gate_dropzone invisible
-// 		setstate axis_spawn_door_docs invisible
-// 		trigger move_Main_Gate open_action_Main_Gate
-// 	}
-// 	
-// 	trigger gen_red
-// 	{
-// 	    setstate generator_blue_sign invisible
-// 		setstate generator_red_sign default
-// 		setstate generator_yellow_sign invisible
-// 	}
-// 	
-// 	trigger gen_blue
-// 	{
-// 	    setstate generator_blue_sign default
-// 		setstate generator_red_sign invisible
-// 		setstate generator_yellow_sign invisible
-// 	}
-// 	
-// 	trigger gen_yellow
-// 	{
-// 	    setstate generator_blue_sign invisible
-// 		setstate generator_red_sign invisible
-// 		setstate generator_yellow_sign default
-// 	}
-// 	
-// 	trigger keycard_red
-// 	{
-// 	    setstate keycard_blue_sign invisible
-// 		setstate keycard_red_sign default
-// 		setstate keycard_yellow_sign invisible
-// 	}
-// 	
-// 	trigger keycard_blue
-// 	{
-// 	    setstate keycard_blue_sign default
-// 		setstate keycard_red_sign invisible
-// 		setstate keycard_yellow_sign invisible
-// 	}
-// 	
-// 	trigger keycard_yellow
-// 	{
-// 	    setstate keycard_blue_sign invisible
-// 		setstate keycard_red_sign invisible
-// 		setstate keycard_yellow_sign default
-// 	}
-// }
-// 
+ // ==== Keycard ==== //
+ main_gate_keycard
+ {
+ 	spawn
+ 	{
+ 		wait 200
+ 
+ 		setstate main_gate_keycard_CMM default
+ 		setstate Maingate_cmm default
+ 		setstate main_gate_dropzone invisible
+ 		setstate genlightsoff default
+ 		setstate genlightson invisible
+ 		trigger self keycard_yellow
+ 		trigger self gen_red
+		trigger self show
+ 	}
+ 
+ 	trigger stolen
+ 	{
+ 		setstate main_gate_keycard_CMM invisible
+ 		setstate main_gate_dropzone default
+ 		trigger self keycard_blue
+ 		trigger self gen_yellow
+ 	}
+ 
+ 	trigger dropped
+ 	{
+ 		wm_announce_icon 5 "Allies have dropped the Main Gate Keycard!"
+ 
+ 		// *----------------------------------- vo ------------------------------------------*
+ 		wm_teamvoiceannounce 1 "allies_hq_objective_lost"
+ 		// *---------------------------------------------------------------------------------*
+ 		// setstate main_gate_dropzone invisible
+ 	}
+ 
+ 	trigger returned
+ 	{
+ 		setstate main_gate_keycard_CMM default
+ 		setstate main_gate_dropzone invisible
+ 		trigger self keycard_yellow
+ 		trigger self gen_red		
+ 	}
+ 
+ 	trigger captured
+ 	{
+ 		// trigger move_Main_Gate alive_action_Main_Gate
+ 		// setstate Maingate_cmm invisible
+ 		alertentity gen_sound
+ 		// setstate main_gate_dropzone invisible
+ 		trigger self gen_blue
+ 		trigger self keycard_blue
+ 		trigger depot_gate_controls yellow
+ 		trigger the_dropzone show
+ 		setautospawn "Forward bunker" 0
+ 
+ 		wm_objective_status 1 1 1
+ 		wm_objective_status 1 0 2
+ 
+ 		wm_announce "Allies have delivered the Keycard!"
+ 		wm_announce "Generator powering up in 10 seconds!"
+ 
+ 		// *----------------------------------- vo ------------------------------------------*
+ 		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
+ 		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
+ 
+ 		wm_removeteamvoiceannounce 0 "fragginhart_axis_generator_defend"
+ 		// *---------------------------------------------------------------------------------*
+ 
+ 		wait 10000
+ 
+ 		wm_announce "Generator powered up!"
+ 		wm_announce "Main Gate Controls enabled!"
+ 		setstate genlightsoff invisible
+ 		setstate genlightson default
+ 
+ 		trigger move_Main_Gate alive_action_Main_Gate
+ 		trigger main_gate_keycard_capmodel generator_sound				// Add sound to the Generator
+ 
+ 		setstate Maingate_cmm invisible
+ 		setstate main_gate_dropzone invisible
+ 		setstate axis_spawn_door_docs invisible
+ 		trigger move_Main_Gate open_action_Main_Gate
+ 	}
+	
+	trigger show
+	{
+		setstate main_gate_keycard default
+	}
+
+	trigger hide
+	{
+		setstate main_gate_keycard invisible
+	}
+ 	
+ 	trigger gen_red
+ 	{
+ 	    setstate generator_blue_sign invisible
+ 		setstate generator_red_sign default
+ 		setstate generator_yellow_sign invisible
+ 	}
+ 	
+ 	trigger gen_blue
+ 	{
+ 	    setstate generator_blue_sign default
+ 		setstate generator_red_sign invisible
+ 		setstate generator_yellow_sign invisible
+ 	}
+ 	
+ 	trigger gen_yellow
+ 	{
+ 	    setstate generator_blue_sign invisible
+ 		setstate generator_red_sign invisible
+ 		setstate generator_yellow_sign default
+ 	}
+ 	
+ 	trigger keycard_red
+ 	{
+ 	    setstate keycard_blue_sign invisible
+ 		setstate keycard_red_sign default
+ 		setstate keycard_yellow_sign invisible
+ 	}
+ 	
+ 	trigger keycard_blue
+ 	{
+ 	    setstate keycard_blue_sign default
+ 		setstate keycard_red_sign invisible
+ 		setstate keycard_yellow_sign invisible
+ 	}
+ 	
+ 	trigger keycard_yellow
+ 	{
+ 	    setstate keycard_blue_sign invisible
+ 		setstate keycard_red_sign invisible
+ 		setstate keycard_yellow_sign default
+ 	}
+	
+ }
 // ==== Main Gate ==== //
 
-// main_gate_dropzone
-// {
-// 	spawn
-// 	{
-// 		trigger main_gate_keycard_capmodel_red hide
-// 		trigger main_gate_keycard_capmodel show
-// 		trigger move_Main_Gate dead_action_Main_Gate
-// 	}
-// 
-// 	death
-// 	{
-// 		trigger main_gate_keycard_capmodel_red hide
-// 		trigger main_gate_keycard_capmodel show
-// 	}
-// }
+main_gate_dropzone
+{
+	spawn
+	{
+		trigger main_gate_keycard_capmodel_red hide
+		trigger main_gate_keycard_capmodel show
+		trigger move_Main_Gate dead_action_Main_Gate
+	}
+
+	death
+	{
+		trigger main_gate_keycard_capmodel_red hide
+		trigger main_gate_keycard_capmodel show
+	}
+}
 
 
-// main_gate_keycard_capmodel_red
-// {
-// 	spawn
-// 	{
-// 		wait 100
-// 		trigger self show
-// 	}
-// 
-// 	trigger show
-// 	{
-// 		setstate main_gate_keycard_capmodel_red default
-// 	}
-// 
-// 	trigger hide
-// 	{
-// 		setstate main_gate_keycard_capmodel_red invisible
-// 	}
-// }
-// 
-// main_gate_keycard_capmodel
-// {
-// 	spawn
-// 	{
-// 		wait 100
-// 		trigger self hide
-// 	}
-// 
-// 	trigger show
-// 	{
-// 		setstate main_gate_keycard_capmodel default
-// 	}
-// 
-// 	trigger hide
-// 	{
-// 		setstate main_gate_keycard_capmodel invisible
-// 	}
-// 	trigger generator_sound
-// 	{
-// 		playsound sound/world/transformer.wav looping volume 255
-// 	}
-// }
+main_gate_keycard_capmodel_red
+{
+	spawn
+	{
+		wait 100
+		trigger self show
+	}
+
+	trigger show
+	{
+		setstate main_gate_keycard_capmodel_red default
+	}
+
+	trigger hide
+	{
+		setstate main_gate_keycard_capmodel_red invisible
+	}
+}
+
+main_gate_keycard_capmodel
+{
+	spawn
+	{
+		wait 100
+		trigger self hide
+	}
+
+	trigger show
+	{
+		setstate main_gate_keycard_capmodel default
+	}
+
+	trigger hide
+	{
+		setstate main_gate_keycard_capmodel invisible
+	}
+	trigger generator_sound
+	{
+		playsound sound/world/transformer.wav looping volume 255
+	}
+}
 
 move_Main_Gate
 {
