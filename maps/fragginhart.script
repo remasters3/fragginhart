@@ -53,10 +53,11 @@ game_manager
 
 		setstate block_hidenroom default
 		
-		//////////keycard obj removed /////////
+		////////// keycard /////////
 		setstate genlightsoff default
 		setstate genlightson invisible
 		alertentity gen_sound
+		// trigger  main_gate_keycard captured
 		// setstate keycard_blue_sign invisible
 		// setstate keycard_red_sign invisible
 		// setstate keycard_yellow_sign invisible
@@ -508,25 +509,38 @@ depot_gate_controls
  		wm_objective_status 1 1 1
  		wm_objective_status 1 0 2
  
- 		wm_announce "Allies have delivered the Keycard!"
- 		wm_announce "Generator powering up in 10 seconds!"
- 
  		// *----------------------------------- vo ------------------------------------------*
  		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
  		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
  
  		wm_removeteamvoiceannounce 0 "fragginhart_axis_generator_defend"
  		// *---------------------------------------------------------------------------------*
- 
- 		wait 10000
- 
- 		wm_announce "Generator powered up!"
+  		wm_announce "Allies have delivered the Keycard!"
+ 		wm_announce "^7Generator powering up in ^110 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^19 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^18 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^17 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^16 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^15 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^14 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^13 ^7seconds!"
+		wait 1000
+		wm_announce "^7Generator powering up in ^12 ^7seconds!"
+		wait 1000
+		 trigger main_gate_keycard_capmodel generator_sound				// Add sound to the Generator
+		wm_announce "^7Generator powered ^1up^7!"
  		wm_announce "Main Gate Controls enabled!"
  		setstate genlightsoff invisible
  		setstate genlightson default
- 
  		trigger move_Main_Gate alive_action_Main_Gate
- 		trigger main_gate_keycard_capmodel generator_sound				// Add sound to the Generator
+
  
  		setstate Maingate_cmm invisible
  		setstate main_gate_dropzone invisible
@@ -834,7 +848,7 @@ documents
 	spawn
 	{
 		wait 20
-		// trigger the_dropzone hide
+		trigger the_dropzone hide
 		trigger self red
 		trigger self tred
 		accum 5 set 0 //red 0 blue 1 yellow 2
