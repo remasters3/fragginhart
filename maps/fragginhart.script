@@ -47,10 +47,11 @@ game_manager
 
 		wait 50
 
-		//setautospawn "Axis Spawn" 0
-		setautospawn "Forward bunker" 0
+		setautospawn "Axis Spawn" 0
+		//setautospawn "Forward bunker" 0
 		setautospawn "Allied Spawn" 1
-
+		
+		
 		setstate block_hidenroom default
 		
 		////////// keycard /////////
