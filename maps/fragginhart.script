@@ -1043,9 +1043,25 @@ allied_cp_open
 		constructible_class 2											// Dyno+Satchel
 
 		trigger self disable_cp_features								// Default charge bar times
-
+		trigger self cp_spawn_disable
 		setstate allied_cp_damaged invisible							// Hide damaged CP clipbrush+model
 		setstate allied_cp_damaged_model invisible
+	}
+	
+	trigger cp_spawn_enable
+	{
+		// alertentity cpspawn_wobj
+		setstate allies_cp_spawn default
+		setstate cpspawn_wobj default
+		wm_announce "^7Allied Command Post spawn ^1Enabled^7!"
+	}
+	
+	trigger cp_spawn_disable
+	{
+		// alertentity cpspawn_wobj
+		setstate allies_cp_spawn invisible
+		setstate cpspawn_wobj invisible
+		wm_announce "^7Allied Command Post spawn ^1Disabled^7!"
 	}
 
 	trigger disable_cp_features
@@ -1093,7 +1109,8 @@ allied_cp_open
 
 		wm_objective_status 8 1 1
 		wm_objective_status 8 0 2
-
+		
+		trigger self cp_spawn_enable
 		wm_announce "Allied Command Post constructed. Charge speed increased!"
 
 		// *----------------------------------- vo ------------------------------------------*
@@ -1118,9 +1135,11 @@ allied_cp_open
 	{
 		trigger self show_damaged_cabinet								// Show damaged CP model
 		trigger self disable_cp_features								// Default charge bar times
-
+		trigger self cp_spawn_disable
+		
 		wm_objective_status 8 1 0
 		wm_objective_status 8 0 0
+		
 
 		wm_announce "Axis team has destroyed the Allied Command Post!"
 
