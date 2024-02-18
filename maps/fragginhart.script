@@ -57,22 +57,13 @@ game_manager
 		////////// keycard /////////
 		setstate genlightsoff default
 		setstate genlightson invisible
-		// alertentity gen_sound
-		// trigger  main_gate_keycard captured
-		// setstate keycard_blue_sign invisible
-		// setstate keycard_red_sign invisible
-		// setstate keycard_yellow_sign invisible
- 	    // setstate generator_blue_sign default
- 		// setstate generator_red_sign invisible
- 		// setstate generator_yellow_sign invisible
-		// setstate main_door_tunnels invisible
-		// setstate cov_door_Main_Gate invisible
-		// setstate axis_spawn_door_docs invisible
-		// trigger main_gate open
 		////////////////////////////////////////
 		
+		///// axis spawn floor openings /////
+		// trigger self axis_spawn_hatches_hide
+		trigger self axis_spawn_hatches_show
+		
 		wait 1000
-
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
 		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
@@ -120,6 +111,63 @@ game_manager
 		// *---------------------------------------------------------------------------------*
 
 		wm_endround
+	}
+	
+	trigger axis_spawn_hatches_show
+	{
+	    trigger axis_spawn_hatch_north show
+	    trigger axis_spawn_hatch_east show
+	    trigger axis_spawn_hatch_south show
+	}
+	trigger axis_spawn_hatches_hide
+	{
+	    trigger axis_spawn_hatch_north hide
+	    trigger axis_spawn_hatch_east hide
+	    trigger axis_spawn_hatch_south hide
+	}
+}
+axis_spawn_hatch_north
+{
+    spawn
+	{
+	}
+	trigger show
+	{
+	    setstate axis_spawn_hatch_north default
+	}
+	trigger hide
+	{
+	    setstate axis_spawn_hatch_north invisible
+	}
+}
+
+axis_spawn_hatch_east
+{
+    spawn
+	{
+	}
+	trigger show
+	{
+	setstate axis_spawn_hatch_east default
+	}
+	trigger hide
+	{
+	setstate axis_spawn_hatch_east invisible
+	}
+}
+
+axis_spawn_hatch_south
+{
+    spawn
+	{
+	}
+	trigger show
+	{
+	setstate axis_spawn_hatch_south default
+	}
+	trigger hide
+	{
+	setstate axis_spawn_hatch_south invisible
 	}
 }
 
@@ -276,6 +324,22 @@ Sidewall
 		setstate sidewall_blue invisible
 	}
 }
+
+/////// depo gate upper cov door
+depo_upper_door //old cov op door
+{
+    spawn
+	{
+	}
+	
+	trigger depo_upper_door_toggle
+	{
+	    alertentity cov_door_Depot_Gate
+		// playsound sound/movers/switches/switch_02.wav volume 100
+	}
+}
+
+
 // ==== Depot Gate ==== //
 
 move_Depot_Gate
@@ -663,6 +727,19 @@ main_gate_keycard_capmodel
 	trigger generator_sound
 	{
 		playsound sound/world/transformer.wav looping volume 255
+	}
+}
+
+main_upper_door //old cov op door
+{
+    spawn
+	{
+	}
+	
+	trigger main_upper_door_toggle
+	{
+	    alertentity cov_door_Main_Gate
+		// playsound sound/movers/switches/switch_02.wav volume 100
 	}
 }
 
