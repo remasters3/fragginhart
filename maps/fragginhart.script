@@ -104,10 +104,10 @@ game_manager
 		wait 1500
 
 		// *----------------------------------- vo ------------------------------------------*
-		wm_teamvoiceannounce 0 "fragginhart_axis_dannyboy"
-		wm_teamvoiceannounce 1 "fragginhart_allies_dannyboy"
-		wm_teamvoiceannounce 0 "fragginhart_axis_dannyboy"
-		wm_teamvoiceannounce 1 "fragginhart_allies_dannyboy"
+		// wm_teamvoiceannounce 0 "fragginhart_axis_dannyboy"
+		// wm_teamvoiceannounce 1 "fragginhart_allies_dannyboy"
+		// wm_teamvoiceannounce 0 "fragginhart_axis_dannyboy"
+		// wm_teamvoiceannounce 1 "fragginhart_allies_dannyboy"
 		// *---------------------------------------------------------------------------------*
 
 		wm_endround
@@ -337,6 +337,14 @@ depo_upper_door //old cov op door
 	    alertentity cov_door_Depot_Gate
 		// playsound sound/movers/switches/switch_02.wav volume 100
 	}
+	
+		trigger disable
+	{
+	    alertentity cov_door_Depot_Gate
+		wait 500
+		setstate cov_door_Depot_Gate invisible
+		// playsound sound/movers/switches/switch_02.wav volume 100
+	}
 }
 
 
@@ -425,7 +433,6 @@ Depot_Gate
 
 		wait 80
 
-		setstate cov_door_Depot_Gate invisible
 	}
 
 	trigger open
@@ -487,10 +494,17 @@ depot_gate_controls
 		wm_announce "Allies have damaged the Depot Gate Controls and secured the Forward Bunker!"
 		wm_announce "^7Depot Gate is ^2opening^7!"
 		setstate Depot_Gate_deadplate default
-		setstate SecondCovDoor_axisconstruct_n invisible
-		trigger move_Depot_Gate dead_action_Depot_Gate
 		trigger self blue
 		trigger documents yellow
+		trigger self open_all
+	}
+	
+	trigger open_all
+	{
+		setstate SecondCovDoor_axisconstruct_n invisible
+		trigger depo_upper_door disable
+		alertentity depo_fb_door
+		trigger move_Depot_Gate dead_action_Depot_Gate
 	}
 	
 	trigger red
@@ -606,6 +620,8 @@ depot_gate_controls
 		wm_announce "^7The Transmitter is ^1ready^7."
  		setstate genlightsoff invisible
  		setstate genlightson default
+		trigger main_upper_door disable
+		alertentity gen_gate
  		trigger move_Main_Gate alive_action_Main_Gate
 		
 
@@ -734,12 +750,19 @@ main_upper_door //old cov op door
 {
     spawn
 	{
+		accum 0 set 0			
 	}
 	
 	trigger main_upper_door_toggle
 	{
 	    alertentity cov_door_Main_Gate
-		// playsound sound/movers/switches/switch_02.wav volume 100
+	}
+	
+	trigger disable
+	{
+		alertentity cov_door_Main_Gate
+		wait 500
+		setstate cov_door_Main_Gate invisible
 	}
 }
 
@@ -798,8 +821,7 @@ Main_Gate
 		setstate button_dead_Main_Gate invisible
 		setstate button2_Main_Gate invisible
 		setstate button1_Main_Gate default
-		setstate cov_door_Main_Gate invisible
-		setstate main_door_tunnels invisible
+		// setstate main_door_tunnels invisible
 	}
 
 	trigger dead
