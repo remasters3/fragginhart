@@ -47,8 +47,9 @@ game_manager
 
 		wait 50
 
-		setautospawn "Axis Spawn" 0
-		//setautospawn "Forward bunker" 0
+		// setautospawn "Axis Spawn" 0
+		// setautospawn "Forward bunker" 0
+		setautospawn "Generator Spawn" 0
 		setautospawn "Allied Spawn" 1
 		
 		
@@ -582,6 +583,7 @@ depot_gate_controls
  		trigger self gen_blue
  		trigger self keycard_blue
  		trigger depot_gate_controls yellow
+		trigger genspawn hide
  		setautospawn "Forward bunker" 0
  
  		wm_objective_status 1 1 1
@@ -686,6 +688,18 @@ depot_gate_controls
 	
  }
 // ==== Main Gate ==== //
+
+genspawn
+{
+    trigger show
+	{
+		setstate genspawn default
+	}
+	trigger hide
+	{
+		setstate genspawn invisible
+	}
+}
 
 main_gate_dropzone
 {
