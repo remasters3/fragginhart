@@ -11,9 +11,6 @@
 3. Destroy the Depot Gate Controls.
    - Build the assualt ramp.
 4. Take the Documents to the Transmitter.
-
- 
-
-(/readme/map-overview.png)
+![MAP](/readme/map-overview.png)
 
 
