@@ -7,7 +7,7 @@
 
 
 1. Take keycard to Generator.
-   - Build CP to spawn at tranmitter garage. 
+   - Build Allied CP to spawn at transmitter garage. 
    - Destroy the Side wall.
    - Capture the forward bunker flag.
 2. Destroy the Depot Gate Controls.
