@@ -13,8 +13,9 @@
 2. Destroy the Depot Gate Controls.
    - Build the assualt ramp.
 3. Take the Documents to the Transmitter.
-The current objective will be shown as a yellow sign in game. 
+<br> The current objective will be shown as a yellow sign in game. 
 <br>![keycard](/textures/remasters/signs/keycard_yellow.jpg) ![sidewall](/textures/remasters/signs/sidewall_yellow.jpg) ![DepotCont](/textures/remasters/signs/depogate_yellow_ctl.jpg) ![Docs](/textures/remasters/signs/docs_yellow.jpg) ![transmitter](/textures/remasters/signs/transmitter_yellow.jpg)
+### Command Map Overview
 ![MAP](/readme/map-overview.png)
 
 
