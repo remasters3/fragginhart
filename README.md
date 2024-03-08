@@ -21,6 +21,7 @@
 
 
 ## Changes from V1
+- bsp name now has no version suffix. (for easier future server administration)
 - New allied CP spawn
 - New axis generator spawn
 - Reworked old allied CP building
