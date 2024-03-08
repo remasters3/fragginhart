@@ -4,8 +4,7 @@
 <br> https://www.etlegacy.com/
 
 ## Map Objectives
-
-
+<br> https://www.youtube.com/watch?v=UmFkwxGLSDw
 1. Take keycard to Generator.
    - Build Allied CP to spawn at transmitter garage. 
    - Destroy the Side wall.
