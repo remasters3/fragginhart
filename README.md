@@ -27,6 +27,7 @@
 - Increased doorway size and headroom on most indoor sections and doors.
 - Changed cov doors on main and depot gate sections. (will now auto open for axis)
 - Blocked the holes in the floor of axis final spawn and added alternative routes.
+- Moved documents to table.
 - Some cosmetic changes to terrain. 
 
 
