@@ -1,0 +1,17 @@
+/////////////////////////////////////////////////////////
+// Map name: fragginhart
+// Num. locations: 10
+// Created at: 9-3-2024
+// Created by: mapper
+/////////////////////////////////////////////////////////
+
+2170 1238 272 "Villa"
+-1016 2603 276 "Allied CP"
+-1795 303 264 "Generator"
+-649 1298 264 "Transmitter Road"
+-1390 1615 248 "Transmitter"
+-1058 -1859 264 "Forward Bunker"
+-1739 -573 264 "Main Gate"
+-820 -1036 284 "Side Wall"
+1514 -1515 264 "Depot Yard"
+1967 -694 408 "Documents Room"

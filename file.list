@@ -7,6 +7,7 @@ maps\fragginhart.map
 maps\fragginhart.script
 maps\fragginhart_tracemap.tga
 maps\fragginhart.objdata
+maps\fragginhart_loc_local.dat
 models\multiplayer\secretdocs\clipboard.tga
 models\multiplayer\secretdocs\paperstack.tga
 models\multiplayer\secretdocs\paperstack2.jpg
