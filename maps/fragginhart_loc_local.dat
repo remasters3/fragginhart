@@ -1,17 +1,38 @@
 /////////////////////////////////////////////////////////
 // Map name: fragginhart
-// Num. locations: 10
-// Created at: 9-3-2024
+// Num. locations: 31
+// Created at: 10-3-2024
 // Created by: mapper
 /////////////////////////////////////////////////////////
 
-2170 1238 272 "Villa"
--1016 2603 276 "Allied CP"
--1795 303 264 "Generator"
+-2094 264 276 "Generator"
 -649 1298 264 "Transmitter Road"
--1390 1615 248 "Transmitter"
 -1058 -1859 264 "Forward Bunker"
 -1739 -573 264 "Main Gate"
 -820 -1036 284 "Side Wall"
 1514 -1515 264 "Depot Yard"
-1967 -694 408 "Documents Room"
+-2651 262 492 "Generator Room"
+2137 1226 272 "Keycard Room"
+1486 1562 272 "Garden"
+343 1551 264 "Villa Road"
+-240 2321 268 "Allied CP Garage"
+-1697 296 264 "Generator Road"
+-181 -988 284 "Depot Entrance"
+87 -2678 280 "Depot Corridor"
+2382 -2738 280 "Depot Storage"
+2158 -707 268 "Documents Lower Room"
+-511 -86 460 "Central Store Room"
+-950 -170 284 "Side Wall Corridor"
+630 850 268 "Villa Garage"
+2314 742 312 "Villa"
+-1450 1577 600 "Transmitter Roof"
+-407 650 276 "Balcony Stairs"
+-1160 487 444 "Balcony"
+-1191 2401 276 "Allied CP"
+-1437 1680 248 "Transmitter"
+-1751 1833 272 "Transmitter Corridor"
+293 -1766 264 "Depot Gate"
+2043 -632 408 "Documents Room"
+1392 -721 318 "Depot Ramp"
+534 -603 268 "Depot Office"
+-1616 -1254 264 "Depot Road"
