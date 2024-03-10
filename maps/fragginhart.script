@@ -192,9 +192,8 @@ Forwardbunker_flag
 		accum 0 trigger_if_equal 1 Forwardbunker_flag axis_reclaim		// Reclaimed from Allies
 		accum 0 set 0													// Axis own the flag
 
-		//setautospawn "Forward bunker" 0 							// Disable setautospawn
-		setautospawn "Allied Spawn" 1
-
+		//setautospawn "Forward bunker" 0						// Disable setautospawn
+		// setautospawn "Allied Spawn" 1
 		setstate map_inst_axis default
 		setstate map_inst_allies invisible
 	}
@@ -202,8 +201,8 @@ Forwardbunker_flag
 	trigger axis_reclaim 
 	{
 		// setautospawn "Forward bunker" 0								// Disable setautospawn
-		setautospawn "Allied Spawn" 1
-
+		// setautospawn "Allied Spawn" 1
+		trigger allied_cp_open enable_autospawn
 		alertentity Forwardbunker_wobj									// Switch command map marker
 
 		wm_objective_status 3 1 0
@@ -228,6 +227,7 @@ Forwardbunker_flag
 		alertentity Forwardbunker_wobj									// Switch command map marker
 		// setautospawn "Axis Spawn" 0									// Disable setautospawn
 		setautospawn "Forward bunker" 1
+		trigger allied_cp_open no_autospawn
 
 		setstate map_inst_axis invisible
 		setstate map_inst_allies default
@@ -250,27 +250,24 @@ Forwardbunker_flag
 	{
 		//setautospawn "Axis Spawn" 0									// Disable setautospawn
 		setautospawn "Forward bunker" 1
+		trigger allied_cp_open no_autospawn
 	}
 
 	trigger disabled													// Disable Flag
 	{
+		trigger allied_cp_open no_autospawn
 		setstate Forwardbunker_flag invisible
-
 		accum 0 abort_if_equal 1 // do Allies own flag?
-
 		trigger Forwardbunker_flag allied_capture
-
 		alertentity Forwardbunker_spawns
 	}
 
 	trigger enabled														// Enable Flag
 	{
 		setstate Forwardbunker_flag default
-
+		trigger allied_cp_open enable_autospawn
 		accum 0 abort_if_equal 0 // do Axis own flag?
-
 		trigger Forwardbunker_flag axis_capture
-
 		alertentity Forwardbunker_spawns
 	}
 }
@@ -1086,10 +1083,11 @@ allied_cp_open
 	
 	trigger cp_spawn_enable
 	{
-		// alertentity cpspawn_wobj
 		setstate allies_cp_spawn default
 		setstate cpspawn_wobj default
 		wm_announce "^7Allied Command Post spawn ^1Enabled^7!"
+		accum 8 abort_if_equal 1
+		setautospawn "Allies CP Spawn" 1
 	}
 	
 	trigger cp_spawn_disable
@@ -1099,7 +1097,17 @@ allied_cp_open
 		setstate cpspawn_wobj invisible
 		wm_announce "^7Allied Command Post spawn ^1Disabled^7!"
 	}
-
+	
+	trigger no_autospawn
+	{
+		accum 8 set 1
+	}
+	
+	trigger enable_autospawn
+	{
+		accum 8 set 0
+	}
+	
 	trigger disable_cp_features
 	{
 		setstate allied_cp_open_model invisible							// Hide Open CP model
