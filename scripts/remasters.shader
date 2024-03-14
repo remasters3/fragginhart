@@ -1,3 +1,4 @@
+
 levelshots/fragginhart_cc_automap
 {
 	nopicmip
@@ -368,3 +369,20 @@ textures/remasters/fueldumpsky
 	}
 }
 
+textures/remasters/dirt3
+{
+	qer_editorimage textures/temperate_sd/dirt3.tga
+	implicitmap textures/temperate_sd/dirt3.tga
+}
+
+textures/remasters/road
+{
+	qer_editorimage textures/temperate_sd/dirt_m04cmp_brown.jpg
+	implicitmap textures/temperate_sd/dirt_m04cmp_brown.jpg
+}
+
+textures/remasters/grass_dirt
+{
+	qer_editorimage textures/temperate_sd/master_grass_dirt3.tga
+	implicitmap textures/temperate_sd/master_grass_dirt3.tga
+}
