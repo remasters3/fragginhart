@@ -60,9 +60,7 @@ game_manager
 		setstate genlightson invisible
 		////////////////////////////////////////
 		
-		///// axis spawn floor openings /////
-		// trigger self axis_spawn_hatches_hide
-		trigger self axis_spawn_hatches_show
+
 		
 		wait 1000
 		// *----------------------------------- vo ------------------------------------------*
@@ -114,18 +112,21 @@ game_manager
 		wm_endround
 	}
 	
-	trigger axis_spawn_hatches_show
-	{
-	    trigger axis_spawn_hatch_north show
-	    trigger axis_spawn_hatch_east show
-	    trigger axis_spawn_hatch_south show
-	}
-	trigger axis_spawn_hatches_hide
-	{
-	    trigger axis_spawn_hatch_north hide
-	    trigger axis_spawn_hatch_east hide
-	    trigger axis_spawn_hatch_south hide
-	}
+	/////!REMOVED!/////
+	// trigger self axis_spawn_hatches_hide
+	// trigger self axis_spawn_hatches_show
+	// trigger axis_spawn_hatches_show
+	// {
+	//     trigger axis_spawn_hatch_north show
+	//     trigger axis_spawn_hatch_east show
+	//     trigger axis_spawn_hatch_south show
+	// }
+	// trigger axis_spawn_hatches_hide
+	// {
+	//     trigger axis_spawn_hatch_north hide
+	//     trigger axis_spawn_hatch_east hide
+	//     trigger axis_spawn_hatch_south hide
+	// }
 }
 axis_spawn_hatch_north
 {

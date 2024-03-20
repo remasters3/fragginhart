@@ -1,33 +1,27 @@
 /////////////////////////////////////////////////////////
 // Map name: fragginhart
-// Num. locations: 31
-// Created at: 10-3-2024
+// Num. locations: 41
+// Created at: 17-3-2024
 // Created by: mapper
 /////////////////////////////////////////////////////////
 
--2094 264 276 "Generator"
--649 1298 264 "Transmitter Road"
+0 1412 264 "Transmitter Road"
 -1058 -1859 264 "Forward Bunker"
--1739 -573 264 "Main Gate"
 -820 -1036 284 "Side Wall"
 1514 -1515 264 "Depot Yard"
--2651 262 492 "Generator Room"
 2137 1226 272 "Keycard Room"
 1486 1562 272 "Garden"
 343 1551 264 "Villa Road"
 -240 2321 268 "Allied CP Garage"
--1697 296 264 "Generator Road"
 -181 -988 284 "Depot Entrance"
 87 -2678 280 "Depot Corridor"
 2382 -2738 280 "Depot Storage"
 2158 -707 268 "Documents Lower Room"
--511 -86 460 "Central Store Room"
--950 -170 284 "Side Wall Corridor"
+-868 -552 284 "Side Wall Corridor"
 630 850 268 "Villa Garage"
 2314 742 312 "Villa"
 -1450 1577 600 "Transmitter Roof"
--407 650 276 "Balcony Stairs"
--1160 487 444 "Balcony"
+-739 593 364 "Balcony Stairs"
 -1191 2401 276 "Allied CP"
 -1437 1680 248 "Transmitter"
 -1751 1833 272 "Transmitter Corridor"
@@ -36,3 +30,19 @@
 1392 -721 318 "Depot Ramp"
 534 -603 268 "Depot Office"
 -1616 -1254 264 "Depot Road"
+27 -129 284 "Barracks"
+-2123 207 288 "Generator"
+-1757 131 264 "Generator Road"
+-1741 -573 264 "Main Gate"
+-1810 1215 444 "Allied MG42"
+-2632 303 492 "Generator Corridor"
+-2453 1389 444 "Generator Room"
+-442 -4 284 "Side Wall Room"
+2751 -1752 264 "Depot Tunnel"
+-392 -108 460 "Center Room"
+-216 462 460 "North Exit"
+-185 -914 460 "South Exit"
+683 -83 444 "East Corridor"
+-35 801 276 "Balcony Corridor"
+-1094 -108 460 "Axis Center Spawn"
+-342 -389 284 "Axis CP"
