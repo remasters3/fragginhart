@@ -128,50 +128,50 @@ game_manager
 	//     trigger axis_spawn_hatch_south hide
 	// }
 }
-axis_spawn_hatch_north
-{
-    spawn
-	{
-	}
-	trigger show
-	{
-	    setstate axis_spawn_hatch_north default
-	}
-	trigger hide
-	{
-	    setstate axis_spawn_hatch_north invisible
-	}
-}
-
-axis_spawn_hatch_east
-{
-    spawn
-	{
-	}
-	trigger show
-	{
-	setstate axis_spawn_hatch_east default
-	}
-	trigger hide
-	{
-	setstate axis_spawn_hatch_east invisible
-	}
-}
-
-axis_spawn_hatch_south
-{
-    spawn
-	{
-	}
-	trigger show
-	{
-	setstate axis_spawn_hatch_south default
-	}
-	trigger hide
-	{
-	setstate axis_spawn_hatch_south invisible
-	}
-}
+// axis_spawn_hatch_north
+// {
+//     spawn
+// 	{
+// 	}
+// 	trigger show
+// 	{
+// 	    setstate axis_spawn_hatch_north default
+// 	}
+// 	trigger hide
+// 	{
+// 	    setstate axis_spawn_hatch_north invisible
+// 	}
+// }
+// 
+// axis_spawn_hatch_east
+// {
+//     spawn
+// 	{
+// 	}
+// 	trigger show
+// 	{
+// 	setstate axis_spawn_hatch_east default
+// 	}
+// 	trigger hide
+// 	{
+// 	setstate axis_spawn_hatch_east invisible
+// 	}
+// }
+// 
+// axis_spawn_hatch_south
+// {
+//     spawn
+// 	{
+// 	}
+// 	trigger show
+// 	{
+// 	setstate axis_spawn_hatch_south default
+// 	}
+// 	trigger hide
+// 	{
+// 	setstate axis_spawn_hatch_south invisible
+// 	}
+// }
 
 // ==== Forward Flag ==== //
 
@@ -930,6 +930,7 @@ ramp_alliedconstruct_n
 
 		alertentity ramp_door_right
 		alertentity ramp_door_left
+		trigger axis_doc_door disable
 	}
 
 	decayed final
@@ -943,6 +944,7 @@ ramp_alliedconstruct_n
 
 		alertentity ramp_door_right
 		alertentity ramp_door_left
+		trigger axis_doc_door enable
 
 		wm_announce "Axis have destroyed the Ramp!"
 
@@ -957,7 +959,6 @@ ramp_alliedconstruct_n
 }
 
 // ==== Documents ==== //
-
 documents
 {
 	spawn
@@ -1065,6 +1066,43 @@ the_dropzone
 		setstate the_dropzone invisible
 	}
 }
+
+axis_doc_door
+{
+    spawn
+	{
+		accum 0 set 0
+		accum 1 set 0
+	}
+	
+	trigger axis_doc_door_toggle
+	{
+		alertentity axis_doc_doors
+	}
+	
+	trigger axis_doc_door_open
+	{
+	    alertentity axis_doc_doors
+	}
+	
+	trigger axis_doc_door_close
+	{
+	    alertentity axis_doc_doors
+	}
+	
+	trigger disable
+	{
+		trigger self axis_doc_door_toggle
+		wait 500
+		setstate axis_doc_doors invisible
+	}
+	
+	trigger enable
+	{
+		setstate axis_doc_doors default
+	}
+}
+
 
 // ==== Allied Command Post ==== //
 
