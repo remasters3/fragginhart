@@ -21,16 +21,18 @@
 
 ## Changes from V1
 - BSP name now has no version suffix. (for easier server administration moving forward)
-- New allied CP spawn
-- New axis generator spawn
-- Reworked old allied CP building
-- Moved axis CP
-- Added cov door at axis CP
+- New allied CP spawn.
+- New axis generator spawn.
+- Reworked old allied CP building.
+- Moved axis CP.
+- Added cov door at axis CP.
 - Increased doorway size and headroom on most indoor sections and doors.
 - Changed cov doors on main and depot gate sections. (will now auto open for axis)
 - Blocked the holes in the floor of axis final spawn and added alternative routes.
 - Moved documents to table.
-- Some cosmetic changes to terrain. 
+- Some cosmetic changes to terrain.
+- Assualt ramp moved to front of document building.
+- swaped position of sidewall hole with sidewall cov door.
 
 
 

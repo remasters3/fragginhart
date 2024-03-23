@@ -47,7 +47,7 @@ game_manager
 
 		wait 50
 
-		// setautospawn "Axis Spawn" 0
+		// setautospawn "Middle Spawn" 0
 		// setautospawn "Forward bunker" 0
 		setautospawn "Generator Spawn" 0
 		setautospawn "Allied Spawn" 1
@@ -226,7 +226,7 @@ Forwardbunker_flag
 		accum 0 set 1													// Allied own the flag
 
 		alertentity Forwardbunker_wobj									// Switch command map marker
-		// setautospawn "Axis Spawn" 0									// Disable setautospawn
+		// setautospawn "Middle Spawn" 0									// Disable setautospawn
 		setautospawn "Forward bunker" 1
 		trigger allied_cp_open no_autospawn
 
@@ -236,7 +236,7 @@ Forwardbunker_flag
 		wm_objective_status 3 1 1
 		wm_objective_status 3 0 2
 
-		wm_announce "Allies capture the Forward Bunker!" 
+		wm_announce "Allies capture the Forward Bunker!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_captured"
@@ -270,6 +270,26 @@ Forwardbunker_flag
 		accum 0 abort_if_equal 0 // do Axis own flag?
 		trigger Forwardbunker_flag axis_capture
 		alertentity Forwardbunker_spawns
+	}
+}
+
+middle_spawn
+{
+	spawn
+	{
+		trigger self enable
+	}
+	
+	trigger enable
+	{
+		setstate middle_spawn default
+		accum 0 set 1
+	}
+	
+	trigger disable
+	{
+		setstate middle_spawn invisible
+		accum 0 set 0
 	}
 }
 
@@ -377,6 +397,8 @@ move_Depot_Gate
 	trigger dead_action_Depot_Gate
 	{	
 		trigger Depot_Gate dead
+		trigger basement_spawn enable
+		trigger middle_spawn disable
 		trigger Forwardbunker_flag disabled
 		// wait 11000
 	}
@@ -1100,6 +1122,26 @@ axis_doc_door
 	trigger enable
 	{
 		setstate axis_doc_doors default
+	}
+}
+
+basement_spawn
+{
+	spawn
+	{
+		trigger self disable
+	}
+	
+	trigger disable
+	{
+		setstate basement_spawn invisible
+		accum 0 set 0
+	}
+	
+	trigger enable
+	{
+		setstate basement_spawn default
+		accum 0 set 1
 	}
 }
 
