@@ -31,7 +31,8 @@
 - Blocked the holes in the floor of axis final spawn and added alternative routes.
 - Moved documents to table.
 - Some cosmetic changes to terrain.
-- Assualt ramp moved to front of document building.
+- Assualt ramp moved to front of document building with build activated doors.
+- Added Basement spawn for axis.
 - swaped position of sidewall hole with sidewall cov door.
 
 

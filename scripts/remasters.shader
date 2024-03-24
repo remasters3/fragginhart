@@ -369,6 +369,12 @@ textures/remasters/fueldumpsky
 	}
 }
 
+textures/remasters/floor_m3
+{
+	// surfaceparm metalsteps
+	implicitMap -
+}
+
 textures/remasters/dirt3
 {
 	qer_editorimage textures/temperate_sd/dirt3.tga
