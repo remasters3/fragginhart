@@ -1,8 +1,13 @@
 # ignore file
 pk3
 *.ps1
+<<<<<<< HEAD
 *.pk3
+=======
+fragginhart_v2.pk3
+>>>>>>> v2
 gather-source.ps1
+/Compile-pk3.ps1
 /gather-source.ps1
 /pk3
 /pk3/*

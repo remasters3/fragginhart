@@ -7,6 +7,7 @@ maps\fragginhart.map
 maps\fragginhart.script
 maps\fragginhart_tracemap.tga
 maps\fragginhart.objdata
+maps\fragginhart_loc_local.dat
 models\multiplayer\secretdocs\clipboard.tga
 models\multiplayer\secretdocs\paperstack.tga
 models\multiplayer\secretdocs\paperstack2.jpg
@@ -19,7 +20,6 @@ models\mapobjects\twt_generator\generator.md3
 models\mapobjects\twt_generator\generator.tga
 scripts\fragginhart.arena
 scripts\fragginhart.campaign
-scripts\fragginhart.shader
 scripts\fragginhart.shader
 scripts\fragginhart.sounds
 scripts\remasters.shader
@@ -81,6 +81,7 @@ textures\remasters\anatomychart_c04_light.jpg
 textures\remasters\mdoor_c07.jpg
 textures\remasters\castle_grid_c19m.jpg
 textures\remasters\vill_c01adm.jpg
+textures\remasters\floor_m3.jpg
 models\mapobjects\light\lantern.md3
 sound\remasters\bscdb.wav
 sound\maps\fragginhart.sps

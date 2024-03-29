@@ -1,3 +1,28 @@
+
+levelshots/fragginhart_cc_automap
+{
+	nopicmip
+	nocompress
+	nomipmaps
+	{
+		clampmap levelshots/fragginhart_cc.tga
+		depthFunc equal
+		rgbGen identity
+	}
+}
+
+levelshots/fragginhart_cc_trans
+{
+	nopicmip
+	nocompress
+	nomipmaps
+	{
+		clampmap levelshots/fragginhart_cc.tga
+		blendfunc blend
+		rgbGen identity
+		alphaGen vertex
+	}
+}
 textures/remasters/fragginhart_map
 {
     qer_editorimage levelshots/fragginhart_cc.tga
@@ -344,3 +369,26 @@ textures/remasters/fueldumpsky
 	}
 }
 
+textures/remasters/floor_m3
+{
+	// surfaceparm metalsteps
+	implicitMap -
+}
+
+textures/remasters/dirt3
+{
+	qer_editorimage textures/temperate_sd/dirt3.tga
+	implicitmap textures/temperate_sd/dirt3.tga
+}
+
+textures/remasters/road
+{
+	qer_editorimage textures/temperate_sd/dirt_m04cmp_brown.jpg
+	implicitmap textures/temperate_sd/dirt_m04cmp_brown.jpg
+}
+
+textures/remasters/grass_dirt
+{
+	qer_editorimage textures/temperate_sd/master_grass_dirt3.tga
+	implicitmap textures/temperate_sd/master_grass_dirt3.tga
+}
