@@ -128,50 +128,24 @@ game_manager
 	//     trigger axis_spawn_hatch_south hide
 	// }
 }
-// axis_spawn_hatch_north
-// {
-//     spawn
-// 	{
-// 	}
-// 	trigger show
-// 	{
-// 	    setstate axis_spawn_hatch_north default
-// 	}
-// 	trigger hide
-// 	{
-// 	    setstate axis_spawn_hatch_north invisible
-// 	}
-// }
-// 
-// axis_spawn_hatch_east
-// {
-//     spawn
-// 	{
-// 	}
-// 	trigger show
-// 	{
-// 	setstate axis_spawn_hatch_east default
-// 	}
-// 	trigger hide
-// 	{
-// 	setstate axis_spawn_hatch_east invisible
-// 	}
-// }
-// 
-// axis_spawn_hatch_south
-// {
-//     spawn
-// 	{
-// 	}
-// 	trigger show
-// 	{
-// 	setstate axis_spawn_hatch_south default
-// 	}
-// 	trigger hide
-// 	{
-// 	setstate axis_spawn_hatch_south invisible
-// 	}
-// }
+
+// for blocking the axis middle spawn to forward bunker archway. 
+middle_flag_door
+{
+	spawn
+	{
+	trigger self hide
+	}
+	trigger show
+	{
+		setstate middle_flag_door default
+	}
+	trigger hide
+	{
+		setstate middle_flag_door invisible
+	}
+}
+
 
 // ==== Forward Flag ==== //
 
