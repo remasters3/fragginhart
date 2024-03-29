@@ -4,7 +4,6 @@
 <br> https://www.etlegacy.com/
 
 ## Map Objectives
-<br> https://www.youtube.com/watch?v=UmFkwxGLSDw
 1. Take keycard to Generator.
    - Build Allied CP to spawn at transmitter garage. 
    - Destroy the Side wall.
@@ -21,6 +20,7 @@
 
 ## Changes from V1
 - BSP name now has no version suffix. (for easier server administration moving forward)
+- reworked allied villa spawn
 - New allied CP spawn.
 - New axis generator spawn.
 - Reworked old allied CP building.
@@ -32,9 +32,13 @@
 - Moved documents to table.
 - Some cosmetic changes to terrain.
 - Assualt ramp moved to front of document building with build activated doors.
-- Added Basement spawn for axis.
+- Added Basement spawn for axis. (set as disabled)
 - swaped position of sidewall hole with sidewall cov door.
+- moved barracks corridor outside exit, added ramp where there was a step. 
+- added location data
+- added option to block the middle spawn / forward bunker archway. (set as hidden)
 
 
+ 
 
 
