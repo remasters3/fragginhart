@@ -50,7 +50,7 @@ game_manager
 		// setautospawn "Middle Spawn" 0
 		// setautospawn "Forward bunker" 0
 		setautospawn "Generator Spawn" 0
-		setautospawn "Allied Spawn" 1
+		setautospawn "Villa" 1
 		
 		
 		setstate block_hidenroom default
@@ -194,7 +194,7 @@ Forwardbunker_flag
 		accum 0 set 0													// Axis own the flag
 
 		//setautospawn "Forward bunker" 0						// Disable setautospawn
-		// setautospawn "Allied Spawn" 1
+		// setautospawn "Villa" 1
 		setstate map_inst_axis default
 		setstate map_inst_allies invisible
 	}
@@ -202,7 +202,7 @@ Forwardbunker_flag
 	trigger axis_reclaim 
 	{
 		// setautospawn "Forward bunker" 0								// Disable setautospawn
-		// setautospawn "Allied Spawn" 1
+		// setautospawn "Villa" 1
 		trigger allied_cp_open enable_autospawn
 		alertentity Forwardbunker_wobj									// Switch command map marker
 
@@ -310,7 +310,6 @@ Sidewall
 		wm_objective_status 2 0 2
 		wm_announce "^1Allies have destroyed the Side Wall!"
 		setstate bit_of_sidewall default
-		setstate axis_spawn_door_docs invisible
 		trigger self blue
 		trigger depot_gate_controls yellow
 		// *----------------------------------- vo ------------------------------------------*
@@ -397,8 +396,8 @@ move_Depot_Gate
 	trigger dead_action_Depot_Gate
 	{	
 		trigger Depot_Gate dead
-		trigger basement_spawn enable
-		trigger middle_spawn disable
+		// trigger basement_spawn enable
+		// trigger middle_spawn disable
 		trigger Forwardbunker_flag disabled
 		// wait 11000
 	}
@@ -650,7 +649,6 @@ depot_gate_controls
  
  		setstate Maingate_cmm invisible
  		setstate main_gate_dropzone invisible
- 		setstate axis_spawn_door_docs invisible
  		trigger move_Main_Gate open_action_Main_Gate
  	}
 	
