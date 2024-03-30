@@ -4,7 +4,6 @@ pk3
 <<<<<<< HEAD
 *.pk3
 =======
-# fragginhart*.pk3
 >>>>>>> v2
 gather-source.ps1
 /Compile-pk3.ps1
