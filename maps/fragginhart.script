@@ -60,6 +60,9 @@ game_manager
 		setstate genlightson invisible
 		////////////////////////////////////////
 		
+		// to be removed in v3
+		setstate cov_door_Depot_Gate invisible
+		
 
 		
 		wait 1000
