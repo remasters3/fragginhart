@@ -40,13 +40,13 @@ global _MG =
 		TagName = "Axis Command Post",
 		TeamAvailability = 2,
 	},
-	CAPPOINT_generator = 
+	CAPPOINT_Generator = 
 	{
 		GoalType = "CapPoint",
 		MinRadius = 32,
 		Position = Vec3(1522.125, 3591.465, 96.125),
 	},
-	CAPPOINT_transmitter = 
+	CAPPOINT_Transmitter = 
 	{
 		GoalType = "CapPoint",
 		MinRadius = 32,
@@ -146,6 +146,29 @@ global _MG =
 	},
 	PLANT_Side_Wall = 
 	{
+		CoverSpots = 
+		{
+			[0] = 
+			{
+				AimVectors = 
+				{
+					[0] = Vec3(0.981, 0.044, 0.188),
+					[1] = Vec3(-0.014, 0.999, 0.043),
+				},
+				position = Vec3(2757.168, 2184.178, 108.125),
+				stance = "crouch",
+			},
+			[1] = 
+			{
+				AimVectors = 
+				{
+					[0] = Vec3(0.396, -0.915, 0.081),
+					[1] = Vec3(0.040, 0.997, 0.064),
+				},
+				position = Vec3(2722.125, 2623.665, 108.125),
+				stance = "crouch",
+			},
+		},
 		CreateOnLoad = 0,
 		ExplosiveType = 1,
 		GoalType = "PLANT",
@@ -167,6 +190,22 @@ global _MG =
 		GoalType = "REPAIRMG42",
 		Position = Vec3(4448.000, 2528.000, 306.000),
 		TeamAvailability = 6,
+	},
+	SWITCH_Main_Gate_Inner = 
+	{
+		AimPosition = Vec3(1713.125, 2577.831, 120.053),
+		Facing = Vec3(0.000, 0.000, 0.000),
+		GoalType = "SWITCH",
+		Position = Vec3(1753.406, 2568.882, 65.125),
+		Radius = 32,
+	},
+	SWITCH_Main_Gate_Outer = 
+	{
+		AimPosition = Vec3(2102.875, 2718.230, 119.976),
+		Facing = Vec3(0.000, 0.000, 0.000),
+		GoalType = "SWITCH",
+		Position = Vec3(2067.410, 2726.523, 65.125),
+		Radius = 32,
 	},
 	Version = 1,
 };

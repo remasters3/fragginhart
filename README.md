@@ -38,6 +38,7 @@
 - moved barracks corridor outside exit, added ramp where there was a step. 
 - added location data
 - added option to block the middle spawn / forward bunker archway. (set as hidden)
+- depo gate switch removed from axis side.
 
 
  
