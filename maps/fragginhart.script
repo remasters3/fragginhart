@@ -2,6 +2,31 @@ game_manager
 {
 	spawn
 	{
+
+// Add Transmitter message
+
+		create
+		{
+			scriptname "transmitter_message"
+			targetname "transmitter_message"
+			classname "trigger_multiple"
+			target "transmitter_message_print"
+			origin "2600 4846 120"
+			spawnflags "2"
+			mins "-100 0 -20"
+			maxs "0 180 20"
+		}
+
+		create
+		{
+			targetname "transmitter_message_print"
+			scriptname "transmitter_message_print"
+			message "^oTransmitter can be used after Generator is powered up!"
+			origin "2600 4846 120"
+			spawnflags "4"
+			classname "target_print"
+		}
+
 		// Game rules
 
 		wm_axis_respawntime 25
@@ -60,11 +85,6 @@ game_manager
 		setstate genlightson invisible
 		////////////////////////////////////////
 		
-		// to be removed in v3
-		setstate cov_door_Depot_Gate invisible
-		
-
-		
 		wait 1000
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
@@ -100,7 +120,7 @@ game_manager
 		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
 		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
 		// *---------------------------------------------------------------------------------*
-		
+
 		wm_setwinner 1
 
 		wait 1500
@@ -567,7 +587,7 @@ depot_gate_controls
  		setstate main_gate_keycard_CMM default
  		setstate main_gate_dropzone invisible
  		trigger self keycard_yellow
- 		trigger self gen_red		
+ 		trigger self gen_red
  	}
  
  	trigger captured
@@ -686,7 +706,7 @@ depot_gate_controls
 
 genspawn
 {
-    trigger show
+	trigger show
 	{
 		setstate genspawn default
 	}
@@ -757,9 +777,9 @@ main_gate_keycard_capmodel
 
 main_upper_door //old cov op door
 {
-    spawn
+	spawn
 	{
-		accum 0 set 0			
+		accum 0 set 0
 	}
 	
 	trigger main_upper_door_toggle
@@ -1042,22 +1062,29 @@ documents
 	}
 }
 
-
 the_dropzone
 {
 	death
 	{
 		trigger game_manager capture
 	}
-	
+
 	trigger show
 	{
 		setstate the_dropzone Default
+
 		wait 10
+
 		alertentity radio_speaker
+
 		// playsound sound/world/radio_static_01.wav looping volume 255
+
+// Remove Transmitter message
+
+		setstate transmitter_message invisible
+		setstate transmitter_message_print invisible
 	}
-	
+
 	trigger hide
 	{
 		setstate the_dropzone invisible
@@ -1066,7 +1093,7 @@ the_dropzone
 
 axis_doc_door
 {
-    spawn
+	spawn
 	{
 		accum 0 set 0
 		accum 1 set 0
