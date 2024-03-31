@@ -1,0 +1,1458 @@
+game_manager
+{
+	spawn
+	{
+
+// Add Transmitter message
+
+		create
+		{
+			scriptname "transmitter_message"
+			targetname "transmitter_message"
+			classname "trigger_multiple"
+			target "transmitter_message_print"
+			origin "2600 4846 120"
+			spawnflags "2"
+			mins "-100 0 -20"
+			maxs "0 180 20"
+		}
+
+		create
+		{
+			targetname "transmitter_message_print"
+			scriptname "transmitter_message_print"
+			message "^oTransmitter can be used after Generator is powered up!"
+			origin "2600 4846 120"
+			spawnflags "4"
+			classname "target_print"
+		}
+
+		// Game rules
+
+		wm_axis_respawntime 25
+		wm_allied_respawntime 15
+		wm_number_of_objectives 8
+		wm_set_round_timelimit 20
+		wm_set_defending_team 0
+		wm_setwinner 0
+
+		// Objectives
+
+		// 1: Generator
+		wm_objective_status 1 1 0
+		wm_objective_status 1 0 0
+
+		// 2: Side Wall
+		wm_objective_status 2 1 0
+		wm_objective_status 2 0 0
+
+		// 3: Forward Bunker
+		wm_objective_status 3 1 0
+		wm_objective_status 3 0 0
+
+		// 4: Depot Gate Controls
+		wm_objective_status 4 1 0
+		wm_objective_status 4 0 0
+
+		// 5: Documents
+		wm_objective_status 5 1 0
+		wm_objective_status 5 0 0
+
+		// 6: Transmitter
+		wm_objective_status 6 1 0
+		wm_objective_status 6 0 0
+
+		// 7: Axis Command Post
+		wm_objective_status 7 1 0
+		wm_objective_status 7 0 0
+
+		// 8: Allied Command Post
+		wm_objective_status 8 1 0
+		wm_objective_status 8 0 0
+
+		wait 50
+
+		// setautospawn "Middle Spawn" 0
+		// setautospawn "Forward bunker" 0
+		setautospawn "Generator Spawn" 0
+		setautospawn "Villa" 1
+		
+		
+		setstate block_hidenroom default
+		
+		////////// keycard /////////
+		setstate genlightsoff default
+		setstate genlightson invisible
+		////////////////////////////////////////
+		
+		wait 1000
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
+		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
+		wm_addteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_addteamvoiceannounce 0 "fragginhart_axis_entrance2_stop"
+		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_addteamvoiceannounce 1 "allies_hq_compost_construct"
+		wm_addteamvoiceannounce 1 "fragginhart_allies_bunker_capture"
+		wm_addteamvoiceannounce 1 "fragginhart_allies_entrance2_destroy"
+		wm_addteamvoiceannounce 1 "fragginhart_ramp_construct"
+
+		wm_teamvoiceannounce 0 "fragginhart_axis_generator_defend"
+		wm_teamvoiceannounce 0 "axis_hq_compost_construct"
+		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_teamvoiceannounce 0 "fragginhart_axis_entrance2_stop"
+		wm_teamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_teamvoiceannounce 1 "allies_hq_compost_construct"
+		wm_teamvoiceannounce 1 "fragginhart_allies_bunker_capture"
+		wm_teamvoiceannounce 1 "fragginhart_allies_entrance2_destroy"
+		wm_teamvoiceannounce 1 "fragginhart_ramp_construct"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	trigger capture
+	{
+		wm_objective_status 6 1 1
+		wm_objective_status 6 0 2
+
+		wm_announce "Allies have transmitted the Documents!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
+		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
+		// *---------------------------------------------------------------------------------*
+
+		wm_setwinner 1
+
+		wait 1500
+
+		// *----------------------------------- vo ------------------------------------------*
+		// wm_teamvoiceannounce 0 "fragginhart_axis_dannyboy"
+		// wm_teamvoiceannounce 1 "fragginhart_allies_dannyboy"
+		// wm_teamvoiceannounce 0 "fragginhart_axis_dannyboy"
+		// wm_teamvoiceannounce 1 "fragginhart_allies_dannyboy"
+		// *---------------------------------------------------------------------------------*
+
+		wm_endround
+	}
+	
+	/////!REMOVED!/////
+	// trigger self axis_spawn_hatches_hide
+	// trigger self axis_spawn_hatches_show
+	// trigger axis_spawn_hatches_show
+	// {
+	//     trigger axis_spawn_hatch_north show
+	//     trigger axis_spawn_hatch_east show
+	//     trigger axis_spawn_hatch_south show
+	// }
+	// trigger axis_spawn_hatches_hide
+	// {
+	//     trigger axis_spawn_hatch_north hide
+	//     trigger axis_spawn_hatch_east hide
+	//     trigger axis_spawn_hatch_south hide
+	// }
+}
+
+// for blocking the axis middle spawn to forward bunker archway. 
+middle_flag_door
+{
+	spawn
+	{
+	trigger self hide
+	}
+	trigger show
+	{
+		setstate middle_flag_door default
+	}
+	trigger hide
+	{
+		setstate middle_flag_door invisible
+	}
+}
+
+
+// ==== Forward Flag ==== //
+
+Forwardbunker_flag
+{
+	spawn
+	{
+		accum 0 set 2													// Who owns flag: 0-Axis, 1-Allied, 2-Nobody
+
+		wait 50
+
+		setstate map_inst_axis default
+		setstate map_inst_allies invisible
+	}
+
+	trigger axis_capture			// Touched by an Axis player 
+	{
+		accum 0 abort_if_equal 0										// do Axis own flag?
+		accum 0 trigger_if_equal 1 Forwardbunker_flag axis_reclaim		// Reclaimed from Allies
+		accum 0 set 0													// Axis own the flag
+
+		//setautospawn "Forward bunker" 0						// Disable setautospawn
+		// setautospawn "Villa" 1
+		setstate map_inst_axis default
+		setstate map_inst_allies invisible
+	}
+
+	trigger axis_reclaim 
+	{
+		// setautospawn "Forward bunker" 0								// Disable setautospawn
+		// setautospawn "Villa" 1
+		trigger allied_cp_open enable_autospawn
+		alertentity Forwardbunker_wobj									// Switch command map marker
+
+		wm_objective_status 3 1 0
+		wm_objective_status 3 0 0
+
+		wm_announce "Axis reclaim the Forward Bunker!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_addteamvoiceannounce 1 "fragginhart_allies_bunker_capture"
+
+		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_reclaimed"
+		wm_teamvoiceannounce 1 "fragginhart_allies_bunker_reclaimed"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	trigger allied_capture												// Touched by an allied player
+	{
+		accum 0 abort_if_equal 1										// do Allies own flag?
+		accum 0 set 1													// Allied own the flag
+
+		alertentity Forwardbunker_wobj									// Switch command map marker
+		// setautospawn "Middle Spawn" 0									// Disable setautospawn
+		setautospawn "Forward bunker" 1
+		trigger allied_cp_open no_autospawn
+
+		setstate map_inst_axis invisible
+		setstate map_inst_allies default
+
+		wm_objective_status 3 1 1
+		wm_objective_status 3 0 2
+
+		wm_announce "Allies capture the Forward Bunker!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_captured"
+		wm_teamvoiceannounce 1 "fragginhart_allies_bunker_captured"
+
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_removeteamvoiceannounce 1 "fragginhart_allies_bunker_capture"     
+		// *---------------------------------------------------------------------------------*
+	}
+
+	trigger allied_reclaim 
+	{
+		//setautospawn "Axis Spawn" 0									// Disable setautospawn
+		setautospawn "Forward bunker" 1
+		trigger allied_cp_open no_autospawn
+	}
+
+	trigger disabled													// Disable Flag
+	{
+		trigger allied_cp_open no_autospawn
+		setstate Forwardbunker_flag invisible
+		accum 0 abort_if_equal 1 // do Allies own flag?
+		trigger Forwardbunker_flag allied_capture
+		alertentity Forwardbunker_spawns
+	}
+
+	trigger enabled														// Enable Flag
+	{
+		setstate Forwardbunker_flag default
+		trigger allied_cp_open enable_autospawn
+		accum 0 abort_if_equal 0 // do Axis own flag?
+		trigger Forwardbunker_flag axis_capture
+		alertentity Forwardbunker_spawns
+	}
+}
+
+middle_spawn
+{
+	spawn
+	{
+		trigger self enable
+	}
+	
+	trigger enable
+	{
+		setstate middle_spawn default
+		accum 0 set 1
+	}
+	
+	trigger disable
+	{
+		setstate middle_spawn invisible
+		accum 0 set 0
+	}
+}
+
+// ==== Side Wall ==== //
+Sidewall
+{
+	spawn
+	{
+		wait 300
+		constructible_class 3     // 2=Satchel 3=Dyna
+		setstate bit_of_sidewall invisible
+		trigger self yellow
+	}
+
+	death
+	{
+		wm_objective_status 2 1 1
+		wm_objective_status 2 0 2
+		wm_announce "^1Allies have destroyed the Side Wall!"
+		setstate bit_of_sidewall default
+		trigger self blue
+		trigger depot_gate_controls yellow
+		// *----------------------------------- vo ------------------------------------------*
+		wm_teamvoiceannounce 0 "fragginhart_axis_entrance2_destroyed"
+		wm_teamvoiceannounce 1 "fragginhart_allies_entrance2_destroyed"zz
+
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_entrance2_stop"
+		wm_removeteamvoiceannounce 1 "fragginhart_allies_entrance2_destroy"
+		// *---------------------------------------------------------------------------------*
+	}
+	
+	trigger red
+	{
+		setstate sidewall_yellow invisible
+		setstate sidewall_red default
+		setstate sidewall_blue invisible
+	}
+	
+	trigger blue
+	{
+		setstate sidewall_yellow invisible
+		setstate sidewall_red invisible
+		setstate sidewall_blue default
+	}
+	
+	trigger yellow
+	{
+		setstate sidewall_yellow default
+		setstate sidewall_red invisible
+		setstate sidewall_blue invisible
+	}
+}
+
+/////// depo gate upper cov door
+depo_upper_door //old cov op door
+{
+    spawn
+	{
+	}
+	
+	trigger depo_upper_door_toggle
+	{
+	    alertentity cov_door_Depot_Gate
+		// playsound sound/movers/switches/switch_02.wav volume 100
+	}
+	
+		trigger disable
+	{
+	    alertentity cov_door_Depot_Gate
+		wait 500
+		setstate cov_door_Depot_Gate invisible
+		// playsound sound/movers/switches/switch_02.wav volume 100
+	}
+}
+
+
+// ==== Depot Gate ==== //
+
+move_Depot_Gate
+{
+	spawn
+	{
+		wait 50
+
+		setstate button_dead_Depot_Gate invisible
+		setstate button2_Depot_Gate invisible
+		setstate button1_Depot_Gate default
+
+	}
+
+	trigger open_action_Depot_Gate
+	{
+		trigger Depot_Gate open
+		wait 11000
+		trigger Depot_Gate close
+	}
+
+	trigger close_action_Depot_Gate
+	{	
+		trigger Depot_Gate close
+		// wait 11000
+	}
+
+	trigger dead_action_Depot_Gate
+	{	
+		trigger Depot_Gate dead
+		// trigger basement_spawn enable
+		// trigger middle_spawn disable
+		trigger Forwardbunker_flag disabled
+		// wait 11000
+	}
+
+	trigger alive_action_Depot_Gate
+	{
+		trigger Depot_Gate alive
+	 // trigger Forwardbunker_flag enabled							// Axis can not take flag back
+	}
+}
+
+Depot_Gate
+{
+	spawn
+	{
+	}
+
+	trigger alive
+	{
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Depot_Gate_closed_pos 50 wait
+
+		stopsound
+
+		wm_objective_status 4 1 0
+		wm_objective_status 4 0 0
+
+		// wm_announce "Axis have repaired the Depot Gate Controls!"
+	
+		setstate button_dead_Depot_Gate invisible
+		setstate button2_Depot_Gate invisible
+		setstate button1_Depot_Gate default
+		setstate cov_door_Depot_Gate default
+	}
+
+	trigger dead
+	{
+		setstate button_dead_Depot_Gate default
+		setstate button2_Depot_Gate invisible
+		setstate button1_Depot_Gate invisible
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Depot_Gate_dead_pos 50 wait
+		// gotomarker Depot_Gate_open_pos 50 wait							// Depot Gate will open 100% on death
+
+		stopsound
+
+		// wm_announce "Allies have damaged the Depot Gate Controls!"
+		
+		playsound sound/movers/misc/garage_door_end_01.wav volume 1024
+
+		wait 80
+
+	}
+
+	trigger open
+	{
+		setstate button_dead_Depot_Gate default
+		setstate button1_Depot_Gate invisible
+
+		wm_announce "^7Depot Gate is ^2opening^7!"
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Depot_Gate_open_pos 50 wait
+		// gotomarker Depot_Gate_dead_pos 50 wait							// Depot Gate will open 50% on button
+
+		stopsound
+
+		setstate button_dead_Depot_Gate invisible
+		setstate button2_Depot_Gate default
+	}
+	
+	trigger close
+	{
+		setstate button_dead_Depot_Gate default
+		setstate button2_Depot_Gate invisible
+
+		wm_announce "^7Depot Gate is ^1closing^7!"
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Depot_Gate_closed_pos 50 wait
+
+		stopsound
+
+		setstate button_dead_Depot_Gate invisible
+		setstate button1_Depot_Gate default
+	}
+
+}
+
+// ==== Depot Gate Controls ==== //
+
+depot_gate_controls
+{
+	spawn
+	{
+		wait 300
+		constructible_class 3
+		setstate Depot_Gate_deadplate invisible
+		setstate SecondCovDoor_axisconstruct_n default
+		accum 4 set 0 //red 0 blue 1 yellow 2
+		trigger self red
+	}
+
+	death
+	{
+		accum 4 set 1 //red 0 blue 1 yellow 2
+		wm_objective_status 4 1 1
+		wm_objective_status 4 0 2
+		wm_announce "Allies have damaged the Depot Gate Controls and secured the Forward Bunker!"
+		wm_announce "^7Depot Gate is ^2opening^7!"
+		setstate Depot_Gate_deadplate default
+		trigger self blue
+		trigger documents yellow
+		trigger self open_all
+	}
+	
+	trigger open_all
+	{
+		setstate SecondCovDoor_axisconstruct_n invisible
+		trigger depo_upper_door disable
+		alertentity depo_fb_door
+		trigger move_Depot_Gate dead_action_Depot_Gate
+	}
+	
+	trigger red
+	{
+		setstate depogate_red_ctl default
+		setstate depogate_blue_ctl invisible
+		setstate depogate_yellow_ctl invisible
+	}
+	
+	trigger blue
+	{
+		setstate depogate_red_ctl invisible
+		setstate depogate_blue_ctl default
+		setstate depogate_yellow_ctl invisible
+	}
+	
+	trigger yellow
+	{
+		accum 4 abort_if_not_equal 0
+		setstate depogate_red_ctl invisible
+		setstate depogate_blue_ctl invisible
+		setstate depogate_yellow_ctl default
+	}
+}
+
+ // ==== Keycard ==== //
+ main_gate_keycard
+ {
+ 	spawn
+ 	{
+ 		wait 200
+ 
+ 		setstate main_gate_keycard_CMM default
+ 		setstate Maingate_cmm default
+ 		setstate main_gate_dropzone invisible
+ 		setstate genlightsoff default
+ 		setstate genlightson invisible
+ 		trigger self keycard_yellow
+ 		trigger self gen_red
+		trigger self show
+ 	}
+ 
+ 	trigger stolen
+ 	{
+ 		setstate main_gate_keycard_CMM invisible
+ 		setstate main_gate_dropzone default
+ 		trigger self keycard_blue
+ 		trigger self gen_yellow
+ 	}
+ 
+ 	trigger dropped
+ 	{
+ 		wm_announce_icon 5 "Allies have dropped the Main Gate Keycard!"
+ 
+ 		// *----------------------------------- vo ------------------------------------------*
+ 		wm_teamvoiceannounce 1 "allies_hq_objective_lost"
+ 		// *---------------------------------------------------------------------------------*
+ 		// setstate main_gate_dropzone invisible
+ 	}
+ 
+ 	trigger returned
+ 	{
+ 		setstate main_gate_keycard_CMM default
+ 		setstate main_gate_dropzone invisible
+ 		trigger self keycard_yellow
+ 		trigger self gen_red
+ 	}
+ 
+ 	trigger captured
+ 	{
+ 		// trigger move_Main_Gate alive_action_Main_Gate
+ 		// setstate Maingate_cmm invisible
+ 		alertentity gen_sound
+ 		// setstate main_gate_dropzone invisible
+ 		trigger self gen_blue
+ 		trigger self keycard_blue
+ 		trigger depot_gate_controls yellow
+		trigger genspawn hide
+ 		setautospawn "Forward bunker" 0
+ 
+ 		wm_objective_status 1 1 1
+ 		wm_objective_status 1 0 2
+ 
+ 		// *----------------------------------- vo ------------------------------------------*
+ 		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
+ 		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
+ 
+ 		wm_removeteamvoiceannounce 0 "fragginhart_axis_generator_defend"
+ 		// *---------------------------------------------------------------------------------*
+  		wm_announce "Allies have delivered the Keycard!"
+ 		wm_announce "^7Generator powering up in:"
+		wm_announce "^7...^110^7..."
+		wait 1000               ...
+		wm_announce "^7...^109^7..."
+		wait 1000               ...
+		wm_announce "^7...^108^7..."
+		wait 1000      ...      ...
+		wm_announce "^7...^107^7..."
+		wait 1000      ...      ...
+		wm_announce "^7...^106^7..."
+		wait 1000      ...      ...
+		wm_announce "^7...^105^7..."
+		wait 1000      ...      ...
+		wm_announce "^7...^104^7..."
+		wait 1000      ...      ...
+		wm_announce "^7...^103^7..."
+		wait 1000      ...      ...
+		wm_announce "^7...^102^7..."
+		wait 1000
+		wm_announce "^7...^101^7..."
+		trigger main_gate_keycard_capmodel generator_sound				// Add sound to the Generator
+ 		wm_announce "^7Main Gate Controls are ^1enabled^7."
+		trigger the_dropzone show
+		wm_announce "^7The Transmitter is ^1ready^7."
+ 		setstate genlightsoff invisible
+ 		setstate genlightson default
+		trigger main_upper_door disable
+		alertentity gen_gate
+ 		trigger move_Main_Gate alive_action_Main_Gate
+		
+
+ 
+ 		setstate Maingate_cmm invisible
+ 		setstate main_gate_dropzone invisible
+ 		trigger move_Main_Gate open_action_Main_Gate
+ 	}
+	
+	trigger show
+	{
+		setstate main_gate_keycard default
+	}
+
+	trigger hide
+	{
+		setstate main_gate_keycard invisible
+	}
+ 	
+ 	trigger gen_red
+ 	{
+ 	    setstate generator_blue_sign invisible
+ 		setstate generator_red_sign default
+ 		setstate generator_yellow_sign invisible
+ 	}
+ 	
+ 	trigger gen_blue
+ 	{
+ 	    setstate generator_blue_sign default
+ 		setstate generator_red_sign invisible
+ 		setstate generator_yellow_sign invisible
+ 	}
+ 	
+ 	trigger gen_yellow
+ 	{
+ 	    setstate generator_blue_sign invisible
+ 		setstate generator_red_sign invisible
+ 		setstate generator_yellow_sign default
+ 	}
+ 	
+ 	trigger keycard_red
+ 	{
+ 	    setstate keycard_blue_sign invisible
+ 		setstate keycard_red_sign default
+ 		setstate keycard_yellow_sign invisible
+ 	}
+ 	
+ 	trigger keycard_blue
+ 	{
+ 	    setstate keycard_blue_sign default
+ 		setstate keycard_red_sign invisible
+ 		setstate keycard_yellow_sign invisible
+ 	}
+ 	
+ 	trigger keycard_yellow
+ 	{
+ 	    setstate keycard_blue_sign invisible
+ 		setstate keycard_red_sign invisible
+ 		setstate keycard_yellow_sign default
+ 	}
+	
+ }
+// ==== Main Gate ==== //
+
+genspawn
+{
+	trigger show
+	{
+		setstate genspawn default
+	}
+	trigger hide
+	{
+		setstate genspawn invisible
+	}
+}
+
+main_gate_dropzone
+{
+	spawn
+	{
+		trigger main_gate_keycard_capmodel_red hide
+		trigger main_gate_keycard_capmodel show
+		trigger move_Main_Gate dead_action_Main_Gate
+	}
+
+	death
+	{
+		trigger main_gate_keycard_capmodel_red hide
+		trigger main_gate_keycard_capmodel show
+	}
+}
+
+
+main_gate_keycard_capmodel_red
+{
+	spawn
+	{
+		wait 100
+		trigger self show
+	}
+
+	trigger show
+	{
+		setstate main_gate_keycard_capmodel_red default
+	}
+
+	trigger hide
+	{
+		setstate main_gate_keycard_capmodel_red invisible
+	}
+}
+
+main_gate_keycard_capmodel
+{
+	spawn
+	{
+		wait 100
+		trigger self hide
+	}
+
+	trigger show
+	{
+		setstate main_gate_keycard_capmodel default
+	}
+
+	trigger hide
+	{
+		setstate main_gate_keycard_capmodel invisible
+	}
+	trigger generator_sound
+	{
+		playsound sound/world/transformer.wav looping volume 255
+	}
+}
+
+main_upper_door //old cov op door
+{
+	spawn
+	{
+		accum 0 set 0
+	}
+	
+	trigger main_upper_door_toggle
+	{
+	    alertentity cov_door_Main_Gate
+	}
+	
+	trigger disable
+	{
+		alertentity cov_door_Main_Gate
+		wait 500
+		setstate cov_door_Main_Gate invisible
+	}
+}
+
+move_Main_Gate
+{
+	spawn
+	{
+		wait 50
+
+		setstate button_dead_Main_Gate invisible
+		setstate button2_Main_Gate invisible
+		setstate button1_Main_Gate default
+	}
+
+	trigger open_action_Main_Gate
+	{
+		trigger Main_Gate open
+		// wait 11000
+	}
+
+	trigger close_action_Main_Gate
+	{	
+		trigger Main_Gate close
+		// wait 11000
+	}
+
+	trigger dead_action_Main_Gate
+	{	
+		trigger Main_Gate dead
+		// wait 11000
+	}
+	
+	trigger alive_action_Main_Gate
+	{
+		trigger Main_Gate alive
+	}
+}
+
+Main_Gate
+{
+	spawn
+	{
+	}
+
+	trigger alive
+	{
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		// gotomarker Main_Gate_closed_pos 50 wait
+		// gotomarker Main_Gate_open_pos 50 wait
+
+		stopsound
+
+		// wm_announce "Main Gate Controls enabled!"
+
+		setstate button_dead_Main_Gate invisible
+		setstate button2_Main_Gate invisible
+		setstate button1_Main_Gate default
+		// setstate main_door_tunnels invisible
+	}
+
+	trigger dead
+	{
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		// gotomarker Main_Gate_open_pos 50 wait
+		gotomarker Main_Gate_closed_pos 50 wait
+
+		stopsound
+
+		wm_announce "Main Gate Controls disabled!"
+
+		wait 80
+
+		setstate button_dead_Main_Gate default
+		// setstate cov_door_Main_Gate invisible
+		setstate button2_Main_Gate invisible
+		setstate button1_Main_Gate invisible
+		setstate main_door_tunnels default
+	}
+	
+	trigger open
+	{
+		setstate button_dead_Main_Gate default
+		setstate button1_Main_Gate invisible
+
+		// wm_announce "^7Main Gate is ^2opening^7!"
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Main_Gate_open_pos 50 wait
+
+		stopsound
+
+		setstate button_dead_Main_Gate invisible
+		setstate button2_Main_Gate default
+	}
+	
+	trigger close
+	{
+		setstate button_dead_Main_Gate default
+		setstate button2_Main_Gate invisible
+
+		// wm_announce "^7Main Gate is ^1closing^7!"
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Main_Gate_closed_pos 50 wait
+
+		stopsound
+
+		setstate button_dead_Main_Gate invisible
+		setstate button1_Main_Gate default
+	}
+
+}
+
+// ==== Ramp ==== //
+
+ramp_alliedconstruct_n
+{
+	spawn
+	{
+		wait 50
+		trigger self setup
+		constructible_class	2											// 2=Satchel 3=Dyna
+	}
+
+	trigger setup
+	{
+		setstate ramp_alliedconstruct_n_materials default				// Crate Models
+		setstate ramp_alliedconstruct_n_clip default					// Clip brushes
+		setstate ramp_alliedconstruct_n_flag default
+		setstate bit_of_wall default
+	}
+
+	built final
+	{
+		setstate ramp_alliedconstruct_n_materials invisible				// Crate Models
+		setstate ramp_alliedconstruct_n_clip invisible					// Clip brushes
+		setstate ramp_alliedconstruct_n_flag invisible
+		setstate bit_of_wall invisible
+
+		wm_announce "Allies have built the Ramp!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_removeteamvoiceannounce 1 "fragginhart_ramp_construct"
+
+		wm_teamvoiceannounce 0 "fragginhart_axis_ramp_constructed"
+		wm_teamvoiceannounce 1 "fragginhart_ramp_constructed"
+		// *---------------------------------------------------------------------------------*
+
+		alertentity ramp_door_right
+		alertentity ramp_door_left
+		trigger axis_doc_door disable
+	}
+
+	decayed final
+	{
+		trigger self setup
+	}
+
+	death
+	{
+		trigger self setup
+
+		alertentity ramp_door_right
+		alertentity ramp_door_left
+		trigger axis_doc_door enable
+
+		wm_announce "Axis have destroyed the Ramp!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_addteamvoiceannounce 1 "fragginhart_ramp_construct"
+
+		wm_teamvoiceannounce 0 "fragginhart_axis_ramp_destroyed"
+		wm_teamvoiceannounce 1 "fragginhart_allies_ramp_destroyed"
+		// *---------------------------------------------------------------------------------*
+	}
+}
+
+// ==== Documents ==== //
+documents
+{
+	spawn
+	{
+		wait 20
+		trigger the_dropzone hide
+		trigger self red
+		trigger self tred
+		accum 5 set 0 //red 0 blue 1 yellow 2
+	}
+	trigger stolen
+	{
+		setstate documents_CMM invisible
+		trigger self blue
+		trigger self tyellow
+		wm_objective_status 5 1 1
+		wm_objective_status 5 0 2
+	}
+	trigger dropped
+	{
+		wm_announce_icon 5 "Allies have dropped the Documents!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_teamvoiceannounce 1 "allies_hq_objective_lost"
+		// *---------------------------------------------------------------------------------*
+	}
+	trigger returned
+	{
+		setstate documents_CMM default
+		wm_objective_status 5 1 0
+		wm_objective_status 5 0 0
+		trigger self tred
+		trigger self red
+		accum 5 abort_if_not_equal 2
+		trigger self yellow
+	} 
+	trigger captured
+	{
+		trigger self blue
+		trigger self tblue
+	}
+	
+	trigger red
+	{
+		setstate docs_red_sign default
+		setstate docs_blue_sign invisible
+		setstate docs_yellow_sign invisible
+	}
+	
+	trigger blue
+	{
+		setstate docs_red_sign invisible
+		setstate docs_blue_sign default
+		setstate docs_yellow_sign invisible
+	}
+	
+	trigger yellow
+	{
+		setstate docs_red_sign invisible
+		setstate docs_blue_sign invisible
+		setstate docs_yellow_sign default
+		accum 5 set 2 //red 0 blue 1 yellow 2
+	}
+	
+	trigger tred
+	{
+		setstate transmitter_red default
+		setstate transmitter_blue invisible
+		setstate transmitter_yellow invisible
+	}
+	
+	trigger tblue
+	{
+		setstate transmitter_red invisible
+		setstate transmitter_blue default
+		setstate transmitter_yellow invisible
+	}
+	
+	trigger tyellow
+	{
+		setstate transmitter_red invisible
+		setstate transmitter_blue invisible
+		setstate transmitter_yellow default
+	}
+}
+
+the_dropzone
+{
+	death
+	{
+		trigger game_manager capture
+	}
+
+	trigger show
+	{
+		setstate the_dropzone Default
+
+		wait 10
+
+		alertentity radio_speaker
+
+		// playsound sound/world/radio_static_01.wav looping volume 255
+
+// Remove Transmitter message
+
+		setstate transmitter_message invisible
+		setstate transmitter_message_print invisible
+	}
+
+	trigger hide
+	{
+		setstate the_dropzone invisible
+	}
+}
+
+axis_doc_door
+{
+	spawn
+	{
+		accum 0 set 0
+		accum 1 set 0
+	}
+	
+	trigger axis_doc_door_toggle
+	{
+		alertentity axis_doc_doors
+	}
+	
+	trigger axis_doc_door_open
+	{
+	    alertentity axis_doc_doors
+	}
+	
+	trigger axis_doc_door_close
+	{
+	    alertentity axis_doc_doors
+	}
+	
+	trigger disable
+	{
+		trigger self axis_doc_door_toggle
+		wait 500
+		setstate axis_doc_doors invisible
+	}
+	
+	trigger enable
+	{
+		setstate axis_doc_doors default
+	}
+}
+
+basement_spawn
+{
+	spawn
+	{
+		trigger self disable
+	}
+	
+	trigger disable
+	{
+		setstate basement_spawn invisible
+		accum 0 set 0
+	}
+	
+	trigger enable
+	{
+		setstate basement_spawn default
+		accum 0 set 1
+	}
+}
+
+
+// ==== Allied Command Post ==== //
+
+allied_cp_open
+{
+	spawn
+	{
+		wait 100
+		accum 0 set 0													// 0=CP Closed, 1=CP Damaged
+		constructible_class 2											// Dyno+Satchel
+
+		trigger self disable_cp_features								// Default charge bar times
+		trigger self cp_spawn_disable
+		setstate allied_cp_damaged invisible							// Hide damaged CP clipbrush+model
+		setstate allied_cp_damaged_model invisible
+	}
+	
+	trigger cp_spawn_enable
+	{
+		setstate allies_cp_spawn default
+		setstate cpspawn_wobj default
+		wm_announce "^7Allied Command Post spawn ^1Enabled^7!"
+		accum 8 abort_if_equal 1
+		setautospawn "Allies CP Spawn" 1
+	}
+	
+	trigger cp_spawn_disable
+	{
+		// alertentity cpspawn_wobj
+		setstate allies_cp_spawn invisible
+		setstate cpspawn_wobj invisible
+		wm_announce "^7Allied Command Post spawn ^1Disabled^7!"
+	}
+	
+	trigger no_autospawn
+	{
+		accum 8 set 1
+	}
+	
+	trigger enable_autospawn
+	{
+		accum 8 set 0
+	}
+	
+	trigger disable_cp_features
+	{
+		setstate allied_cp_open_model invisible							// Hide Open CP model
+
+		setchargetimefactor 1 soldier 1
+		setchargetimefactor 1 lieutenant 1
+		setchargetimefactor 1 medic 1
+		setchargetimefactor 1 engineer 1
+		setchargetimefactor 1 covertops 1
+
+		sethqstatus 1 0													// Landmines team warning message
+		disablespeaker speaker_allied_cp								// Disable morse code sound
+		// wm_allied_respawntime 20										// Disable change in Allied respantime
+	}
+
+	trigger enable_cp_features
+	{
+		setstate allied_cp_open_model default							// Show open CP model
+
+		setchargetimefactor 1 soldier 0.75
+		setchargetimefactor 1 lieutenant 0.75
+		setchargetimefactor 1 medic 0.75
+		setchargetimefactor 1 engineer 0.75
+		setchargetimefactor 1 covertops 0.75
+
+		sethqstatus 1 1													// Landmines team warning message
+		enablespeaker speaker_allied_cp									// Enable morse code sound
+		// wm_allied_respawntime 15										// Disable change in Allied respantime
+	}
+
+	buildstart final
+	{
+		setstate allied_cp_closed invisible								// Hide closed CP clipbrush+model
+		setstate allied_cp_closed_model invisible
+		setstate allied_cp_damaged invisible							// Hide damaged CP clipbrush+model
+		setstate allied_cp_damaged_model invisible
+	}
+
+	built final
+	{
+		accum 0 set 1													// Only show the damaged CP model
+		trigger self enable_cp_features									// Increase charge bar times
+
+		wm_objective_status 8 1 1
+		wm_objective_status 8 0 2
+		
+		trigger self cp_spawn_enable
+		wm_announce "Allied Command Post constructed. Charge speed increased!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 0 "axis_hq_compost_constructed_allies"
+
+		wm_teamvoiceannounce 0 "axis_hq_compost_constructed_allies"
+		wm_teamvoiceannounce 1 "allies_hq_compost_constructed"
+
+		wm_removeteamvoiceannounce 1 "allies_hq_compost_construct"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	decayed final
+	{
+		setstate allied_cp_open_model invisible							// Hide Open CP model
+
+		trigger self show_damaged_cabinet								// Show previous cabinet state
+		trigger self show_closed_cabinet
+	}
+
+	death
+	{
+		trigger self show_damaged_cabinet								// Show damaged CP model
+		trigger self disable_cp_features								// Default charge bar times
+		trigger self cp_spawn_disable
+		
+		wm_objective_status 8 1 0
+		wm_objective_status 8 0 0
+		
+
+		wm_announce "Axis team has destroyed the Allied Command Post!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 1 "allies_hq_compost_construct"
+
+		wm_teamvoiceannounce 1 "allies_hq_compost_damaged"
+
+		wm_removeteamvoiceannounce 0 "axis_hq_compost_constructed_allies"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	trigger show_closed_cabinet
+	{
+		accum 0 abort_if_equal 1										// Closed cabinet active yet?
+		setstate allied_cp_closed default
+		setstate allied_cp_closed_model default
+	}
+
+	trigger show_damaged_cabinet
+	{
+		accum 0 abort_if_equal 0										// Damaged cabinet active yet?
+		setstate allied_cp_damaged default
+		setstate allied_cp_damaged_model default
+	}
+}
+
+// ==== Axis Command Post ==== //
+
+axis_cp_open
+{
+	spawn
+	{
+		wait 100
+		accum 0 set 0													// 0=CP Closed, 1=CP Damaged
+		constructible_class 2											// Dyno+Satchel
+
+		trigger self disable_cp_features								// Default charge bar times
+
+		setstate axis_cp_damaged invisible								// Hide damaged CP clipbrush+model
+		setstate axis_cp_damaged_model invisible
+	}
+
+	trigger disable_cp_features
+	{
+		setstate axis_cp_open_model invisible							// Hide Open CP model
+
+		setchargetimefactor 0 soldier 1
+		setchargetimefactor 0 lieutenant 1
+		setchargetimefactor 0 medic 1
+		setchargetimefactor 0 engineer 1
+		setchargetimefactor 0 covertops 1
+
+		sethqstatus 0 0													// Landmines team warning message
+		disablespeaker speaker_axis_cp									// Disable morse code sound
+		// wm_axis_respawntime 30										// Disable change in Axis respawntime
+	}
+
+	trigger enable_cp_features
+	{
+		setstate axis_cp_open_model default								// Show open CP model
+
+		setchargetimefactor 0 soldier 0.75
+		setchargetimefactor 0 lieutenant 0.75
+		setchargetimefactor 0 medic 0.75
+		setchargetimefactor 0 engineer 0.75
+		setchargetimefactor 0 covertops 0.75
+
+		sethqstatus 0 1													// Landmines team warning message
+		enablespeaker speaker_axis_cp									// Enable morse code sound
+		// wm_axis_respawntime 25										// Disable change in Allies respawntime
+	}
+
+	buildstart final
+	{
+		setstate axis_cp_closed invisible								// Hide closed CP clipbrush+model
+		setstate axis_cp_closed_model invisible
+		setstate axis_cp_damaged invisible								// Hide damaged CP clipbrush+model
+		setstate axis_cp_damaged_model invisible
+	}
+
+	built final
+	{
+		accum 0 set 1													// Only show the damaged CP model
+		trigger self enable_cp_features									// Increase charge bar times
+
+		wm_objective_status 7 1 2
+		wm_objective_status 7 0 1
+
+		wm_announce "Axis Command Post constructed. Charge speed increased!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 1 "allies_hq_compost_constructed_axis"
+
+		wm_teamvoiceannounce 0 "axis_hq_compost_constructed"
+		wm_teamvoiceannounce 1 "allies_hq_compost_constructed_axis"
+
+		wm_removeteamvoiceannounce 0 "axis_hq_compost_construct"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	decayed final
+	{
+		setstate axis_cp_open_model invisible							// Hide Open CP model
+
+		trigger self show_damaged_cabinet								// Show previous cabinet state
+		trigger self show_closed_cabinet
+	}
+
+	death
+	{
+		trigger self show_damaged_cabinet	 							// Show damaged CP model
+		trigger self disable_cp_features								// Default charge bar times
+
+		wm_objective_status 7 1 0
+		wm_objective_status 7 0 0
+
+		wm_announce "Allied team has destroyed the Axis Command Post!"
+
+		// *----------------------------------- vo ------------------------------------------*
+		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
+
+		wm_teamvoiceannounce 0 "axis_hq_compost_damaged"
+
+		wm_removeteamvoiceannounce 1 "allies_hq_compost_constructed_axis"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	trigger show_closed_cabinet
+	{
+		accum 0 abort_if_equal 1										// Closed cabinet active yet?
+		setstate axis_cp_closed default
+		setstate axis_cp_closed_model default
+	}
+
+	trigger show_damaged_cabinet
+	{
+		accum 0 abort_if_equal 0										// Damaged cabinet active yet?
+		setstate axis_cp_damaged default
+		setstate axis_cp_damaged_model default
+	}
+}
+
+// ==== MG42 Nest ==== //
+
+alliedconstruct1
+{
+	spawn
+	{
+		wait 50
+		trigger self setup
+		constructible_class 2											// 2=Satchel 3=Dyna
+	}
+
+	trigger setup
+	{
+		setstate alliedconstruct1_materials default                     // Crate Models
+		setstate alliedconstruct1_clip default							// Clip brushes
+		setstate alliedconstruct1_flag default
+
+		setstate alliedconstruct1_extra invisible						// Sandbags
+		setstate alliedconstruct1_mg42 invisible						// MG42 entity
+		repairmg42 alliedconstruct1_mg42
+	}
+
+	built final
+	{
+		setstate alliedconstruct1_materials invisible					// Crate Models
+		setstate alliedconstruct1_clip invisible						// Clip brushes
+		setstate alliedconstruct1_flag invisible
+
+		setstate alliedconstruct1_extra default							// Sandbags
+		setstate alliedconstruct1_mg42 default							// MG42 entity
+
+		wm_announce "Allies have built the MG42 nest!"
+	}
+
+	decayed final
+	{
+		trigger self setup
+	}
+
+	death
+	{
+		trigger self setup
+
+		wm_announce "Axis have destroyed the MG42 Nest!"
+	}
+}
