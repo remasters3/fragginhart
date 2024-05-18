@@ -1,8 +1,51 @@
 // allied commander
 
-fragginhart_allies_dannyboy
+
+// fragginhart_allies_dannyboy
+// {
+// 	sound sound/remasters/bscdb.wav
+//	voice
+//	streaming
+// }
+
+fragginhart_generator_attack
 {
-	sound sound/remasters/bscdb.wav
+	sound sound/remasters/vo/allies/attack_gen.wav
+	voice
+	streaming
+}
+
+fragginhart_allies_take_docs
+{
+	sound sound/remasters/vo/allies/allies_take_docs.wav
+	voice
+	streaming
+}
+
+fragginhart_allies_sw_inst
+{
+	sound sound/remasters/vo/allies/allies_sw_instruction.wav
+	voice
+	streaming
+}
+
+fragginhart_allies_sw_raised
+{
+	sound sound/remasters/vo/allies/allies_sw_raised.wav
+	voice
+	streaming
+}
+
+fragginhart_allies_sw_low
+{
+	sound sound/remasters/vo/allies/allies_sw_low.wav
+	voice
+	streaming
+}
+
+fragginhart_allies_gates_destroyed
+{
+	sound sound/vo/fueldump/allies/hq_gatesdest.wav
 	voice
 	streaming
 }
@@ -72,7 +115,7 @@ fragginhart_allies_entrances_destroy
 
 fragginhart_allies_entrance1_destroy
 {
-	sound sound/vo/radar/allies/hq_entrance1dyn.wav
+	sound sound/remasters/vo/allies/fh_depotdyn.wav
 	voice
 	streaming
 }
@@ -99,13 +142,6 @@ fragginhart_allies_entrance2_destroyed
 }
 
 // axis commander
-
-fragginhart_axis_dannyboy
-{
-	sound sound/remasters/bscdb.wav
-	voice
-	streaming
-}
 
 fragginhart_axis_ramp_stop
 {
@@ -216,6 +252,48 @@ fragginhart_axis_entrance2_destroyed
 fragginhart_axis_generator_defend
 {
 	sound sound/vo/battery/axis/hq_gendef.wav
+	voice
+	streaming
+}
+
+fragginhart_axis_gates_destroyed
+{
+	sound sound/vo/fueldump/axis/hq_gatesdest.wav
+	voice
+	streaming
+}
+
+fragginhart_axis_cp_stop
+{
+	sound sound/remasters/vo/axis/axis_stop_cp.wav
+	voice
+	streaming
+}
+
+fragginhart_axis_def_docs
+{
+	sound sound/remasters/vo/axis/axis_def_docs.wav
+	voice
+	streaming
+}
+
+fragginhart_axis_sw_inst
+{
+	sound sound/remasters/vo/axis/axis_sw_instruction.wav
+	voice
+	streaming
+}
+
+fragginhart_axis_sw_low
+{
+	sound sound/remasters/vo/axis/axis_sw_low.wav
+	voice
+	streaming
+}
+
+fragginhart_axis_sw_raised
+{
+	sound sound/remasters/vo/axis/axis_sw_raised.wav
 	voice
 	streaming
 }

@@ -392,3 +392,39 @@ textures/remasters/grass_dirt
 	qer_editorimage textures/temperate_sd/master_grass_dirt3.tga
 	implicitmap textures/temperate_sd/master_grass_dirt3.tga
 }
+
+textures/remasters/walls/int_wall07_red
+{
+	qer_editorimage textures/remasters/walls/int_wall07_red.jpg
+	implicitMap textures/remasters/walls/int_wall07_red.jpg
+}
+
+textures/remasters/walls/int_wall07_green
+{
+	qer_editorimage textures/remasters/walls/int_wall07_green.jpg
+	implicitMap textures/remasters/walls/int_wall07_green.jpg
+}
+
+textures/remasters/walls/int_wall07_blue
+{
+	qer_editorimage textures/remasters/walls/int_wall07_blue.jpg
+	implicitMap textures/remasters/walls/int_wall07_blue.jpg
+}
+
+textures/remasters/walls/wall02_bot_green
+{
+	qer_editorimage textures/remasters/walls/wall02_bot_green.jpg
+	implicitMap textures/remasters/walls/wall02_bot_green.jpg
+}
+
+textures/remasters/walls/wall02_bot_red
+{
+	qer_editorimage textures/remasters/walls/wall02_bot_red.jpg
+	implicitMap textures/remasters/walls/wall02_bot_red.jpg
+}
+
+textures/remasters/walls/wall02_bot_blue
+{
+	qer_editorimage textures/remasters/walls/wall02_bot_blue.jpg
+	implicitMap textures/remasters/walls/wall02_bot_blue.jpg
+}

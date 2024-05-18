@@ -1,16 +1,17 @@
 /////////////////////////////////////////////////////////
 // Map name: fragginhart
 // Num. locations: 65
-// Created at: 29-3-2024
+// Created at: 15-5-2024
 // Created by: mapper
 /////////////////////////////////////////////////////////
-2679 3145 328 "middle spawn room"
+
+0 3145 328 "middle spawn room"
 3458 3992 324 "middle north exit"
 3477 2277 324 "middle south exit"
 4624 3182 308 "documents corridor"
 5676 2590 272 "documents room"
 6250 2778 201 "documents ramp"
-5984 4468 136 "villa keycard room"
+5984 4468 136 "villa spawn"
 6120 3815 136 "villa back room"
 5693 3831 137 "villa side room"
 5010 3912 140 "villa corridor"
@@ -40,7 +41,7 @@
 2194 4775 464 "transmitter roof"
 4287 4150 132 "villa garage"
 3981 4805 128 "villa road"
-3254 5499 140 "villa garage"
+3254 5499 140 "transmitter garage"
 2489 5652 140 "transmitter store room"
 4065 2927 228 "middle stairs"
 4415 2626 308 "depot balcony"
@@ -68,3 +69,4 @@
 5902 3186 272 "documents east entrance"
 5482 3196 272 "documents west entrance"
 4296 3149 308 "middle east corridor"
+2457 6606 140 "allied CP"

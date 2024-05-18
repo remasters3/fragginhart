@@ -5,21 +5,44 @@
 <br> https://et.trackbase.net/map/9158
 
 ## Map Objectives
-1. Take keycard to Generator.
-   - Build Allied CP to spawn at transmitter garage. 
+1. Activate the generator.
+   - Build Allied CP to enable allied spawn.
+2. Destroy the Depot Gate Controls.
    - Destroy the Side wall.
    - Capture the forward bunker flag.
-2. Destroy the Depot Gate Controls.
+3. Steal the Documents.
    - Build the assualt ramp.
-3. Take the Documents to the Transmitter.
+   - Take the Documents to the Transmitter
 
 ## Command Map Overview
 <br> The current objective will be shown as a yellow sign in game. 
-<br>![keycard](/textures/remasters/signs/keycard_yellow.jpg) ![sidewall](/textures/remasters/signs/sidewall_yellow.jpg) ![DepotCont](/textures/remasters/signs/depogate_yellow_ctl.jpg) ![Docs](/textures/remasters/signs/docs_yellow.jpg) ![transmitter](/textures/remasters/signs/transmitter_yellow.jpg)
+<br>![sidewall](/textures/remasters/signs/sidewall_yellow.jpg) ![DepotCont](/textures/remasters/signs/depogate_yellow_ctl.jpg) ![Docs](/textures/remasters/signs/docs_yellow.jpg) ![transmitter](/textures/remasters/signs/transmitter_yellow.jpg)
 ![MAP](/readme/map-overview.png)
 
+## Omni Bot
+- Mateos has very kindly created and uploaded the omnibot navs to the [omnibot repo](https://app.assembla.com/spaces/omnibot/subversion/source/HEAD/Enemy-Territory/0.8/et/incomplete_navs/with_script "omnibot repo")
 
-## Changes from V1
+## V3 change log
+- Fixed missing brush above main gate.
+- Fixed cov_door_Depot_Gate bug.
+- Added route from transmitter to sidewall area. ( requested by U!ps )
+- Added custom textures. ( provided by U!ps )
+- Reworked door at assualt ramp, added button inside docs room.
+- Removed keycard to fix map breaking bug ( reported by ETc|nick )
+  - Changed generator activation to "repair" or "switch". 
+  - Generator activation type can be changed by server admin via mapscript (default set to switch).
+- Allied CP room now longer, moved Allied CP location in the room. ( requested by U!ps )
+- Added new route at generator axis spawn. ( requested by U!ps )
+- Fixed FPS drops. ( reported by kevlar )
+- Added limbo cams. ( requested by [eG] johnd0eafk )
+- Updated location data.
+- Improved the command map. ( requested by [eG] johnd0eafk )*
+- Added wm_addteamvoiceannounce sounds.
+- Allies can no longer access the sidewall before the generator has been activated. ( requested by U!ps )
+- Axis can no longer access the north middle spawn exit before the generator has been activated. ( requested by U!ps )
+
+
+## V2 Change log
 - BSP name now has no version suffix. (for easier server administration moving forward)
 - reworked allied villa spawn
 - New allied CP spawn.
