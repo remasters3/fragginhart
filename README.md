@@ -15,8 +15,6 @@
    - Take the Documents to the Transmitter
 
 ## Command Map Overview
-<br> The current objective will be shown as a yellow sign in game. 
-<br>![sidewall](/textures/remasters/signs/sidewall_yellow.jpg) ![DepotCont](/textures/remasters/signs/depogate_yellow_ctl.jpg) ![Docs](/textures/remasters/signs/docs_yellow.jpg) ![transmitter](/textures/remasters/signs/transmitter_yellow.jpg)
 ![MAP](/readme/map-overview.png)
 
 ## Omni Bot
