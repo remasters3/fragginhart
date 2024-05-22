@@ -13,34 +13,42 @@ game_manager
 		// Objectives
 
 		// 1: Generator
+		accum 1 set	0
 		wm_objective_status 1 1 0
 		wm_objective_status 1 0 0
 
 		// 2: Side Wall
+		accum 2 set	0
 		wm_objective_status 2 1 0
 		wm_objective_status 2 0 0
 
 		// 3: Forward Bunker
+		accum 3 set	0
 		wm_objective_status 3 1 0
 		wm_objective_status 3 0 0
 
 		// 4: Depot Gate Controls
+		accum 4 set	0
 		wm_objective_status 4 1 0
 		wm_objective_status 4 0 0
 
 		// 5: Documents
+		accum 5 set	0
 		wm_objective_status 5 1 0
 		wm_objective_status 5 0 0
 
 		// 6: Transmitter
+		accum 6 set	0
 		wm_objective_status 6 1 0
 		wm_objective_status 6 0 0
 
 		// 7: Axis Command Post
+		accum 7 set	0
 		wm_objective_status 7 1 0
 		wm_objective_status 7 0 0
 
 		// 8: Allied Command Post
+		accum 8 set	0
 		wm_objective_status 8 1 0
 		wm_objective_status 8 0 0
 
@@ -52,6 +60,7 @@ game_manager
 		setautospawn "Villa" 1
 		
 		wait 1000
+		
 		trigger self phase1
 		// *----------------------------------- vo ------------------------------------------*
 		// wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
@@ -79,7 +88,7 @@ game_manager
 	trigger phase1
 	{
 		wait 500
-		wm_announce "Phase 1 enabled"
+		// wm_announce "Phase 1 enabled"
 		
 		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
 		wm_addteamvoiceannounce 1 "fragginhart_generator_attack"
@@ -191,6 +200,7 @@ game_manager
 	{
 		wm_objective_status 6 1 1
 		wm_objective_status 6 0 2
+		trigger game_manager transmitter_complete
 		wm_announce "Allies have transmitted the Documents!"
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
@@ -201,6 +211,82 @@ game_manager
 
 		wm_endround
 	}
+	
+	trigger generator_reset
+	{
+		accum 1 set	0
+	}
+
+	trigger sidewall_reset
+	{
+		accum 2 set	0
+	}
+
+	trigger forward_bunker_reset
+	{
+		accum 3 set	0
+	}
+
+	trigger depotgatecontrols_reset
+	{
+		accum 4 set	0
+	}
+
+	trigger documents_reset
+	{
+		accum 5 set	0
+	}
+
+	trigger transmitter_reset
+	{
+		accum 6 set 0
+	}
+
+	trigger axiscp_reset
+	{
+		accum 7 set	0
+	}
+	
+	trigger generator_complete
+	{
+		accum 1 set	1
+	}
+
+	trigger sidewall_complete
+	{
+		accum 2 set	1
+	}
+
+	trigger forward_bunker_complete
+	{
+		accum 3 set	1
+	}
+
+	trigger depotgatecontrols_complete
+	{
+		accum 4 set	1
+	}
+
+	trigger documents_complete
+	{
+		accum 5 set	1
+	}
+
+	trigger transmitter_complete
+	{
+		accum 6 set 1
+	}
+
+	trigger axiscp_complete
+	{
+		accum 7 set	1
+	}
+
+	trigger alliedcp_complete
+	{
+		accum 8 set	1
+	}
+	
 }
 
 // for blocking the axis middle spawn to forward bunker archway. 
@@ -335,6 +421,7 @@ Forwardbunker_flag
 	{
 		trigger allied_cp_open no_autospawn
 		setstate Forwardbunker_flag invisible
+		trigger game_manager forward_bunker_complete
 		accum 0 abort_if_equal 1 // do Allies own flag?
 		trigger Forwardbunker_flag allied_capture
 		alertentity Forwardbunker_spawns
@@ -344,6 +431,7 @@ Forwardbunker_flag
 	{
 		setstate Forwardbunker_flag default
 		trigger allied_cp_open enable_autospawn
+		trigger game_manager generator_reset
 		accum 0 abort_if_equal 0 // do Axis own flag?
 		trigger Forwardbunker_flag axis_capture
 		alertentity Forwardbunker_spawns
@@ -394,6 +482,7 @@ Sidewall
 	{
 		wm_objective_status 2 1 1
 		wm_objective_status 2 0 2
+		trigger game_manager sidewall_complete
 		wm_announce "^1Allies have destroyed the Side Wall!"
 		setstate bit_of_sidewall default
 		trigger self blue
@@ -621,6 +710,7 @@ depot_gate_controls
 		wm_announce "Allies have damaged the Depot Gate Controls and secured the Forward Bunker!"
 		wm_announce "^7Depot Gate is ^2opening^7!"
 		setstate Depot_Gate_deadplate default
+		trigger game_manager depotgatecontrols_complete
 		trigger self open_all
 		trigger self blue
 		trigger game_manager phase3
@@ -852,6 +942,7 @@ gen_allies_tst
 	
 	trigger capture
 	{
+		trigger game_manager generator_complete
 		trigger alarm_box stop
  		trigger move_Main_Gate alive_action_Main_Gate
 		trigger move_Main_Gate open_action_Main_Gate
@@ -1281,6 +1372,7 @@ documents
 	} 
 	trigger captured
 	{
+		trigger game_manager documents_complete
 		trigger self blue
 		trigger self tblue
 	}
@@ -1497,6 +1589,7 @@ allied_cp_open
 	{
 		accum 0 set 1													// Only show the damaged CP model
 		trigger self enable_cp_features									// Increase charge bar times
+		trigger game_manager alliedcp_complete
 
 		wm_objective_status 8 1 1
 		wm_objective_status 8 0 2
@@ -1525,6 +1618,7 @@ allied_cp_open
 	{
 		trigger self show_damaged_cabinet								// Show damaged CP model
 		trigger self disable_cp_features								// Default charge bar times
+		trigger game_manager alliedcp_reset
 		trigger self cp_spawn_disable
 		
 		wm_objective_status 8 1 0
@@ -1616,6 +1710,7 @@ axis_cp_open
 	{
 		accum 0 set 1													// Only show the damaged CP model
 		trigger self enable_cp_features									// Increase charge bar times
+		trigger game_manager axiscp_complete
 
 		wm_objective_status 7 1 2
 		wm_objective_status 7 0 1
@@ -1644,7 +1739,7 @@ axis_cp_open
 	{
 		trigger self show_damaged_cabinet	 							// Show damaged CP model
 		trigger self disable_cp_features								// Default charge bar times
-
+		trigger game_manager axiscp_reset
 		wm_objective_status 7 1 0
 		wm_objective_status 7 0 0
 
