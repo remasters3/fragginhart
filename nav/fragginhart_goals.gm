@@ -12,7 +12,7 @@ global _MG =
 	{
 		CreateOnLoad = 0,
 		GoalType = "BUILD",
-		Position = Vec3(2158.000, 6560.000, 128.000),
+		Position = Vec3(2612.000, 5932.000, 128.000),
 		TagName = "Allied Command Post",
 		TeamAvailability = 4,
 	},
@@ -39,13 +39,6 @@ global _MG =
 		Position = Vec3(3307.000, 2951.000, 137.000),
 		TagName = "Axis Command Post",
 		TeamAvailability = 2,
-	},
-	BUILD_Generator = 
-	{
-		CreateOnLoad = 0,
-		GoalType = "BUILD",
-		Position = Vec3(1546.000, 3564.000, 122.000),
-		TeamAvailability = 4,
 	},
 	CAPPOINT_Generator = 
 	{
@@ -76,11 +69,8 @@ global _MG =
 	{
 		CreateOnLoad = 0,
 		GoalType = "Flag",
-		Name = "FLAG_main_gate_keycard",
 		Position = Vec3(5727.000, 4467.000, 101.125),
-		TagName = "main_gate_keycard",
 		TeamAvailability = 4,
-		Version = 1,
 	},
 	HEALTHCAB_first_healthcabinet = 
 	{
@@ -114,7 +104,7 @@ global _MG =
 		CreateOnLoad = 0,
 		ExplosiveType = 3,
 		GoalType = "PLANT",
-		Position = Vec3(2110.500, 6559.000, 128.000),
+		Position = Vec3(2611.000, 5979.500, 128.000),
 		TagName = "Allied Command Post",
 		TeamAvailability = 2,
 	},
@@ -153,14 +143,6 @@ global _MG =
 		Position = Vec3(3914.000, 1711.000, 112.000),
 		TagName = "Depot Gate Controls",
 		TeamAvailability = 4,
-	},
-	PLANT_Generator = 
-	{
-		CreateOnLoad = 0,
-		ExplosiveType = 3,
-		GoalType = "PLANT",
-		Position = Vec3(1481.500, 3520.000, 145.000),
-		TeamAvailability = 2,
 	},
 	PLANT_Side_Wall = 
 	{
@@ -208,14 +190,6 @@ global _MG =
 		GoalType = "REPAIRMG42",
 		Position = Vec3(4448.000, 2528.000, 306.000),
 		TeamAvailability = 6,
-	},
-	SWITCH_Generator = 
-	{
-		AimPosition = Vec3(1508.797, 3681.150, 100.125),
-		Facing = Vec3(0.000, 0.000, 0.000),
-		GoalType = "SWITCH",
-		Position = Vec3(1539.269, 3701.612, 89.125),
-		Radius = 32,
 	},
 	SWITCH_Main_Gate_Inner = 
 	{

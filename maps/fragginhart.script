@@ -89,15 +89,13 @@ game_manager
 	{
 		wait 500
 		// wm_announce "Phase 1 enabled"
+		accum 1 trigger_if_equal 0 self generator_active
 		
-		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
-		wm_addteamvoiceannounce 1 "fragginhart_generator_attack"
 		
 		// wm_addteamvoiceannounce 0 "fragginhart_axis_cp_stop"
 		wm_addteamvoiceannounce 1 "allies_hq_compost_construct"
 		
-		wm_teamvoiceannounce 0 "fragginhart_axis_generator_defend"
-		wm_teamvoiceannounce 1 "fragginhart_generator_attack"
+
 		
 		wm_teamvoiceannounce 0 "fragginhart_axis_cp_stop"
 		wm_teamvoiceannounce 1 "allies_hq_compost_construct"
@@ -124,8 +122,7 @@ game_manager
 		// wm_announce "Phase 2 enabled"
 		
 		// clean up from phase1
-		wm_removeteamvoiceannounce 0 "fragginhart_axis_generator_defend"
-		wm_removeteamvoiceannounce 1 "fragginhart_generator_attack"
+
 		
 		// new objectives
 		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
@@ -212,37 +209,41 @@ game_manager
 		wm_endround
 	}
 	
-	trigger generator_reset
+	trigger generator_active
 	{
 		accum 1 set	0
+		wm_addteamvoiceannounce 0 "fragginhart_axis_generator_defend"
+		wm_addteamvoiceannounce 1 "fragginhart_generator_attack"
+		wm_teamvoiceannounce 0 "fragginhart_axis_generator_defend"
+		wm_teamvoiceannounce 1 "fragginhart_generator_attack"
 	}
 
-	trigger sidewall_reset
+	trigger sidewall_active
 	{
 		accum 2 set	0
 	}
 
-	trigger forward_bunker_reset
+	trigger forward_bunker_active
 	{
 		accum 3 set	0
 	}
 
-	trigger depotgatecontrols_reset
+	trigger depotgatecontrols_active
 	{
 		accum 4 set	0
 	}
 
-	trigger documents_reset
+	trigger documents_active
 	{
 		accum 5 set	0
 	}
 
-	trigger transmitter_reset
+	trigger transmitter_active
 	{
 		accum 6 set 0
 	}
 
-	trigger axiscp_reset
+	trigger axiscp_active
 	{
 		accum 7 set	0
 	}
@@ -250,6 +251,8 @@ game_manager
 	trigger generator_complete
 	{
 		accum 1 set	1
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_generator_defend"
+		wm_removeteamvoiceannounce 1 "fragginhart_generator_attack"
 	}
 
 	trigger sidewall_complete
@@ -431,7 +434,7 @@ Forwardbunker_flag
 	{
 		setstate Forwardbunker_flag default
 		trigger allied_cp_open enable_autospawn
-		trigger game_manager generator_reset
+		trigger game_manager generator_active
 		accum 0 abort_if_equal 0 // do Axis own flag?
 		trigger Forwardbunker_flag axis_capture
 		alertentity Forwardbunker_spawns
@@ -1618,7 +1621,7 @@ allied_cp_open
 	{
 		trigger self show_damaged_cabinet								// Show damaged CP model
 		trigger self disable_cp_features								// Default charge bar times
-		trigger game_manager alliedcp_reset
+		trigger game_manager alliedcp_active
 		trigger self cp_spawn_disable
 		
 		wm_objective_status 8 1 0
@@ -1739,7 +1742,7 @@ axis_cp_open
 	{
 		trigger self show_damaged_cabinet	 							// Show damaged CP model
 		trigger self disable_cp_features								// Default charge bar times
-		trigger game_manager axiscp_reset
+		trigger game_manager axiscp_active
 		wm_objective_status 7 1 0
 		wm_objective_status 7 0 0
 

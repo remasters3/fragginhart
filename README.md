@@ -20,6 +20,7 @@
 ## Omni Bot
 - Mateos has very kindly created and uploaded the omnibot navs to the [omnibot repo](https://app.assembla.com/spaces/omnibot/subversion/source/HEAD/Enemy-Territory/0.8/et/incomplete_navs/with_script "omnibot repo")
 
+
 ## V3 change log
 - Fixed missing brush above main gate.
 - Fixed cov_door_Depot_Gate bug.
@@ -38,7 +39,7 @@
 - Added wm_addteamvoiceannounce sounds.
 - Allies can no longer access the sidewall before the generator has been activated. ( requested by U!ps )
 - Axis can no longer access the north middle spawn exit before the generator has been activated. ( requested by U!ps )
-
+- Fixed the crashing issues with ET 2.60b and the progresive jpegs. ( reported by Mateos )
 
 ## V2 Change log
 - BSP name now has no version suffix. (for easier server administration moving forward)
@@ -60,8 +61,3 @@
 - added location data
 - added option to block the middle spawn / forward bunker archway. (set as hidden)
 - depo gate switch removed from axis side.
-
-
- 
-
-
