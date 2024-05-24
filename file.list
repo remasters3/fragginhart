@@ -23,6 +23,7 @@ scripts\fragginhart.campaign
 scripts\fragginhart.shader
 scripts\fragginhart.sounds
 scripts\remasters.shader
+scripts\fragginhart_lvlshots.shader
 gfx\limbo\docs.tga
 gfx\limbo\gen.tga
 gfx\limbo\transmitter.tga

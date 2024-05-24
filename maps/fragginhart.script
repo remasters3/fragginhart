@@ -979,6 +979,7 @@ gen_allies_tst
 	trigger capture
 	{
 		trigger game_manager generator_complete
+		wait 5000
 		trigger alarm_box stop
  		trigger move_Main_Gate alive_action_Main_Gate
 		trigger move_Main_Gate open_action_Main_Gate
@@ -1631,8 +1632,8 @@ allied_cp_open
 		wm_objective_status 8 1 1
 		wm_objective_status 8 0 2
 		
-		trigger game_manager allies_cp_spawn
 		trigger game_manager alliedcp_complete
+		trigger game_manager allies_cp_spawn
 		wm_announce "Allied Command Post constructed. Charge speed increased!"
 
 		// *----------------------------------- vo -----------------------------------------
