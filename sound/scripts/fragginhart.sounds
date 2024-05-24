@@ -228,7 +228,7 @@ fragginhart_axis_entrance1_destroyed
 	streaming
 }
 
-fragginhart_axis_entrance2_stop
+fragginhart_axis_entrance2_stop //side entrance
 {
 	sound sound/vo/radar/axis/hq_entrance2stop.wav
 	voice

@@ -51,6 +51,9 @@ game_manager
 		accum 8 set	0
 		wm_objective_status 8 1 0
 		wm_objective_status 8 0 0
+		
+		// assualt ramp
+		accum 9 set	0
 
 		wait 50
 
@@ -89,16 +92,10 @@ game_manager
 	{
 		wait 500
 		// wm_announce "Phase 1 enabled"
-		accum 1 trigger_if_equal 0 self generator_active
-		
-		
-		// wm_addteamvoiceannounce 0 "fragginhart_axis_cp_stop"
-		wm_addteamvoiceannounce 1 "allies_hq_compost_construct"
+		accum 1 trigger_if_equal 0 game_manager generator_active
+		accum 8 trigger_if_equal 0 game_manager alliedcp_active
 		
 
-		
-		wm_teamvoiceannounce 0 "fragginhart_axis_cp_stop"
-		wm_teamvoiceannounce 1 "allies_hq_compost_construct"
 		
 		// doors //
 		trigger middle_flag_door open
@@ -122,24 +119,13 @@ game_manager
 		// wm_announce "Phase 2 enabled"
 		
 		// clean up from phase1
-
+		accum 1 trigger_if_equal 1 game_manager generator_complete
 		
 		// new objectives
-		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
-		wm_addteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
-		wm_addteamvoiceannounce 0 "fragginhart_axis_entrance2_stop"
-		wm_addteamvoiceannounce 0 "fragginhart_axis_gates_stop"
-		wm_addteamvoiceannounce 1 "fragginhart_allies_bunker_capture"
-		wm_addteamvoiceannounce 1 "fragginhart_allies_entrance2_destroy"
-		wm_addteamvoiceannounce 1 "fragginhart_allies_entrance1_destroy"
-		
-		wm_teamvoiceannounce 0 "axis_hq_compost_construct"
-		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_stop"
-		wm_teamvoiceannounce 0 "fragginhart_axis_entrance2_stop"
-		wm_teamvoiceannounce 0 "fragginhart_axis_gates_stop"
-		wm_teamvoiceannounce 1 "fragginhart_allies_bunker_capture"
-		wm_teamvoiceannounce 1 "fragginhart_allies_entrance2_destroy"
-		wm_teamvoiceannounce 1 "fragginhart_allies_entrance1_destroy"
+		accum 7 trigger_if_equal 0 game_manager gaxiscp_active
+		accum 3 trigger_if_equal 0 game_manager forward_bunker_active
+		accum 2 trigger_if_equal 0 game_manager sidewall_active
+		accum 4 trigger_if_equal 0 game_manager depotgatecontrols_active
 		
 		// doors //
 		trigger main_upper_door disable
@@ -166,25 +152,14 @@ game_manager
 		wait 500
 		// wm_announce "Phase 3 enabled"
 		// clean up from phase 2
-		wm_removeteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
-		wm_removeteamvoiceannounce 0 "fragginhart_axis_entrance2_stop"
-		wm_removeteamvoiceannounce 0 "fragginhart_axis_gates_stop"
-		wm_removeteamvoiceannounce 1 "fragginhart_allies_bunker_capture"
-		wm_removeteamvoiceannounce 1 "fragginhart_allies_entrance2_destroy"
-		wm_removeteamvoiceannounce 1 "fragginhart_allies_entrance1_destroy"
+		accum 3 trigger_if_equal 1 game_manager forward_bunker_complete
+		accum 2 trigger_if_equal 1 game_manager sidewall_complete
+		accum 4 trigger_if_equal 1 game_manager depotgatecontrols_complete
 		
 		// new objectives
-		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
-		wm_addteamvoiceannounce 0 "fragginhart_axis_def_docs"
-		wm_addteamvoiceannounce 1 "fragginhart_allies_take_docs"
-		wm_addteamvoiceannounce 1 "fragginhart_ramp_construct"
-
-		wm_teamvoiceannounce 0 "fragginhart_axis_ramp_stop"
-		wm_teamvoiceannounce 0 "fragginhart_axis_def_docs"
-		wm_teamvoiceannounce 1 "fragginhart_allies_take_docs"
-		wm_teamvoiceannounce 1 "fragginhart_ramp_construct"
-		
-		
+		accum 9 trigger_if_equal 0 game_manager ramp_active
+		accum 5 trigger_if_equal 0 game_manager documents_active
+			
 		// doors //
 		trigger middle_flag_door close
 		trigger middle_transmitter_door open
@@ -221,21 +196,37 @@ game_manager
 	trigger sidewall_active
 	{
 		accum 2 set	0
+		wm_addteamvoiceannounce 1 "fragginhart_allies_entrance2_destroy" //side
+		wm_addteamvoiceannounce 0 "fragginhart_axis_entrance2_stop" //side
+		wm_teamvoiceannounce 1 "fragginhart_allies_entrance2_destroy" //side
+		wm_teamvoiceannounce 0 "fragginhart_axis_entrance2_stop" //side
 	}
 
 	trigger forward_bunker_active
 	{
 		accum 3 set	0
+		wm_addteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_addteamvoiceannounce 1 "fragginhart_allies_bunker_capture"
+		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_teamvoiceannounce 1 "fragginhart_allies_bunker_capture"
 	}
 
 	trigger depotgatecontrols_active
 	{
 		accum 4 set	0
+		wm_addteamvoiceannounce 0 "fragginhart_axis_gates_stop"
+		wm_addteamvoiceannounce 1 "fragginhart_allies_entrance1_destroy"
+		wm_teamvoiceannounce 0 "fragginhart_axis_gates_stop"
+		wm_teamvoiceannounce 1 "fragginhart_allies_entrance1_destroy"
 	}
 
 	trigger documents_active
 	{
 		accum 5 set	0
+		wm_addteamvoiceannounce 0 "fragginhart_axis_def_docs"
+		wm_addteamvoiceannounce 1 "fragginhart_allies_take_docs"
+		wm_teamvoiceannounce 0 "fragginhart_axis_def_docs"
+		wm_teamvoiceannounce 1 "fragginhart_allies_take_docs"
 	}
 
 	trigger transmitter_active
@@ -246,6 +237,24 @@ game_manager
 	trigger axiscp_active
 	{
 		accum 7 set	0
+		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
+	}
+	
+	trigger alliedcp_active
+	{
+		accum 8 set	0
+		wm_addteamvoiceannounce 0 "fragginhart_axis_cp_stop"
+		wm_addteamvoiceannounce 1 "allies_hq_compost_construct"
+		wm_teamvoiceannounce 0 "fragginhart_axis_cp_stop"
+		wm_teamvoiceannounce 1 "allies_hq_compost_construct"
+	}
+	trigger ramp_active
+	{
+		accum 9 set	0
+		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_addteamvoiceannounce 1 "fragginhart_ramp_construct"
+		wm_teamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_teamvoiceannounce 1 "fragginhart_ramp_construct"
 	}
 	
 	trigger generator_complete
@@ -258,21 +267,29 @@ game_manager
 	trigger sidewall_complete
 	{
 		accum 2 set	1
+		wm_removeteamvoiceannounce 1 "fragginhart_allies_entrance2_destroy" //side
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_entrance2_stop" //side
 	}
 
 	trigger forward_bunker_complete
 	{
 		accum 3 set	1
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
+		wm_removeteamvoiceannounce 1 "fragginhart_allies_bunker_capture"
 	}
 
 	trigger depotgatecontrols_complete
 	{
 		accum 4 set	1
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_gates_stop"
+		wm_removeteamvoiceannounce 1 "fragginhart_allies_entrance1_destroy"
 	}
 
 	trigger documents_complete
 	{
 		accum 5 set	1
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_def_docs"
+		wm_removeteamvoiceannounce 1 "fragginhart_allies_take_docs"
 	}
 
 	trigger transmitter_complete
@@ -283,11 +300,21 @@ game_manager
 	trigger axiscp_complete
 	{
 		accum 7 set	1
+		wm_removeteamvoiceannounce 0 "axis_hq_compost_construct"
 	}
 
 	trigger alliedcp_complete
 	{
 		accum 8 set	1
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_cp_stop"
+		wm_removeteamvoiceannounce 1 "allies_hq_compost_construct"
+	}
+	
+	trigger ramp_complete
+	{
+		accum 9 set	1
+		wm_removeteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_removeteamvoiceannounce 1 "fragginhart_ramp_construct"
 	}
 	
 }
@@ -1310,6 +1337,7 @@ ramp_alliedconstruct_n
 
 		trigger ramp_door disable
 		trigger axis_doc_door disable
+		trigger game_manager ramp_complete
 	}
 
 	decayed final
@@ -1324,6 +1352,7 @@ ramp_alliedconstruct_n
 		trigger axis_doc_door enable
 
 		wm_announce "Axis have destroyed the Ramp!"
+		trigger game_manager ramp_active
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
@@ -1516,7 +1545,6 @@ allied_cp_open
 		wait 100
 		accum 0 set 0													// 0=CP Closed, 1=CP Damaged
 		constructible_class 2											// Dyno+Satchel
-		wm_addteamvoiceannounce 0 "fragginhart_axis_cp_stop"
 		trigger self disable_cp_features								// Default charge bar times
 		trigger self cp_spawn_disable
 		setstate allied_cp_damaged invisible							// Hide damaged CP clipbrush+model
@@ -1598,6 +1626,7 @@ allied_cp_open
 		wm_objective_status 8 0 2
 		
 		trigger self cp_spawn_enable
+		trigger game_manager alliedcp_complete
 		wm_announce "Allied Command Post constructed. Charge speed increased!"
 
 		// *----------------------------------- vo -----------------------------------------

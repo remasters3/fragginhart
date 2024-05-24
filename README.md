@@ -39,7 +39,7 @@
 - Added wm_addteamvoiceannounce sounds.
 - Allies can no longer access the sidewall before the generator has been activated. ( requested by U!ps )
 - Axis can no longer access the north middle spawn exit before the generator has been activated. ( requested by U!ps )
-- Fixed the crashing issues with ET 2.60b and the progresive jpegs. ( reported by Mateos )
+- Fixed the crashing issues with ET 2.60b and the progressive jpegs. ( reported by Mateos )
 
 ## V2 Change log
 - BSP name now has no version suffix. (for easier server administration moving forward)
