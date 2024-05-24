@@ -979,6 +979,7 @@ gen_allies_tst
 	trigger capture
 	{
 		trigger game_manager generator_complete
+		trigger game_manager allies_cp_spawn
 		wait 5000
 		trigger alarm_box stop
  		trigger move_Main_Gate alive_action_Main_Gate
