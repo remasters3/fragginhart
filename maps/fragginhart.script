@@ -128,10 +128,10 @@ game_manager
 		accum 4 trigger_if_equal 0 game_manager depotgatecontrols_active
 		
 		// doors //
-		trigger main_upper_door disable
 		trigger gen_gate open
 		trigger sidewall_gate open
 		trigger cheese_door open
+		trigger main_upper_door disable_slow
 
 		// signs //
 		trigger gen_allies_tst gen_blue
@@ -248,6 +248,7 @@ game_manager
 		wm_teamvoiceannounce 0 "fragginhart_axis_cp_stop"
 		wm_teamvoiceannounce 1 "allies_hq_compost_construct"
 	}
+	
 	trigger ramp_active
 	{
 		accum 9 set	0
@@ -594,6 +595,14 @@ depo_upper_door //old cov op door
 		setstate cov_door_Depot_Gate invisible
 		// playsound sound/movers/switches/switch_02.wav volume 100
 	}
+	trigger disable_slow
+	{
+		wait 10000
+	    alertentity cov_door_Depot_Gate
+		wait 500
+		setstate cov_door_Depot_Gate invisible
+		// playsound sound/movers/switches/switch_02.wav volume 100
+	}
 }
 
 
@@ -704,6 +713,27 @@ Depot_Gate
 		setstate button2_Depot_Gate default
 	}
 	
+	trigger open_slow
+	{
+		setstate button_dead_Depot_Gate default
+		setstate button2_Depot_Gate invisible
+		setstate button1_Depot_Gate invisible
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Depot_Gate_dead_pos 5 wait
+		// gotomarker Depot_Gate_open_pos 5 wait							// Depot Gate will open 100% on death
+
+		stopsound
+
+		// wm_announce "Allies have damaged the Depot Gate Controls!"
+		
+		playsound sound/movers/misc/garage_door_end_01.wav volume 1024
+
+		wait 80
+
+	}
+	
 	trigger close
 	{
 		setstate button_dead_Depot_Gate default
@@ -755,10 +785,10 @@ depot_gate_controls
 	
 	trigger open_all
 	{
+		trigger depo_upper_door disable_slow
 		setstate SecondCovDoor_axisconstruct_n invisible
-		trigger depo_upper_door disable
 		alertentity depo_fb_door
-		trigger move_Depot_Gate dead_action_Depot_Gate
+		trigger Depot_Gate open_slow
 	}
 	
 	trigger red
@@ -980,10 +1010,9 @@ gen_allies_tst
 	{
 		trigger game_manager generator_complete
 		trigger game_manager allies_cp_spawn
-		wait 5000
 		trigger alarm_box stop
  		trigger move_Main_Gate alive_action_Main_Gate
-		trigger move_Main_Gate open_action_Main_Gate
+		trigger Main_Gate open_slow
 		trigger game_manager phase2
  		wm_objective_status 1 1 1
  		wm_objective_status 1 0 2
@@ -1113,6 +1142,13 @@ main_upper_door //old cov op door
 		wait 500
 		setstate cov_door_Main_Gate invisible
 	}
+	trigger disable_slow
+	{
+		wait 10000
+		alertentity cov_door_Main_Gate
+		wait 500
+		setstate cov_door_Main_Gate invisible
+	}
 }
 
 move_Main_Gate
@@ -1204,6 +1240,23 @@ Main_Gate
 		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
 
 		gotomarker Main_Gate_open_pos 50 wait
+
+		stopsound
+
+		setstate button_dead_Main_Gate invisible
+		setstate button2_Main_Gate default
+	}
+	
+	trigger open_slow
+	{
+		setstate button_dead_Main_Gate default
+		setstate button1_Main_Gate invisible
+
+		// wm_announce "^7Main Gate is ^2opening^7!"
+
+		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+
+		gotomarker Main_Gate_open_pos 5 wait
 
 		stopsound
 
@@ -1872,6 +1925,11 @@ alarm_box
 	trigger alarm_one
 	{
 		playsound sound/world/alarm_01.wav looping volume 500
+	}
+	
+	trigger alarm_two
+	{
+		playsound sound/world/alarm_02.wav looping volume 500
 	}
 }
 
