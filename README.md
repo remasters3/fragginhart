@@ -5,6 +5,7 @@
 <br> https://et.trackbase.net/map/9158
 - download the current version.
   - [fragginhart_v3.pk3](https://github.com/remasters3/fragginhart/raw/main/fragginhart_v3.pk3 "fragginhart_v3.pk3")
+  - please remove any previous versions and related scripts.
 ## Map Objectives
 1. Activate the generator.
    - Build Allied CP to enable allied spawn.
