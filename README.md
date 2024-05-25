@@ -3,7 +3,8 @@
 <br> https://www.splashdamage.com/games/wolfenstein-enemy-territory/
 <br> https://www.etlegacy.com/
 <br> https://et.trackbase.net/map/9158
-
+- download the current version.
+  - [fragginhart_v3.pk3](https://github.com/remasters3/fragginhart/raw/main/fragginhart_v3.pk3 "fragginhart_v3.pk3")
 ## Map Objectives
 1. Activate the generator.
    - Build Allied CP to enable allied spawn.
@@ -39,7 +40,7 @@
 - Added wm_addteamvoiceannounce sounds.
 - Allies can no longer access the sidewall before the generator has been activated. ( requested by U!ps )
 - Axis can no longer access the north middle spawn exit before the generator has been activated. ( requested by U!ps )
-- Fixed the crashing issues with ET 2.60b and the progressive jpegs. ( reported by Mateos )
+- Main and Depot gates now open slower. ( requested by U!ps )
 
 ## V2 Change log
 - BSP name now has no version suffix. (for easier server administration moving forward)
