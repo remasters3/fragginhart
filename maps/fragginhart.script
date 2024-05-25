@@ -777,6 +777,7 @@ depot_gate_controls
 		wm_announce "^7Depot Gate is ^2opening^7!"
 		setstate Depot_Gate_deadplate default
 		trigger game_manager depotgatecontrols_complete
+		trigger Forwardbunker_flag disabled
 		trigger self open_all
 		trigger self blue
 		trigger game_manager phase3
