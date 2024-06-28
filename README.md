@@ -21,6 +21,14 @@
 
 ## Omni Bot
 - Mateos has very kindly created and uploaded the omnibot navs to the [omnibot repo](https://app.assembla.com/spaces/omnibot/subversion/source/HEAD/Enemy-Territory/0.8/et/incomplete_navs/with_script "omnibot repo")
+## v4
+- Added route from middle spawn to lower barracks. ( requested by U!ps )
+- Changed generator switch.
+- Added new textures. 
+- TODO: Terrian/Road.
+- TODO: Rework Allies villa spawn.
+- TODO: obj dropped sound.
+- TODO: clip roof at middle spawn.
 
 
 ## V3 change log

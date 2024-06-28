@@ -505,6 +505,43 @@ middle_spawn
 	}
 }
 
+middle_spawn_ladder_door
+{
+	spawn
+	{
+		wait 500
+		trigger self enable
+	}
+	
+	trigger middle_spawn_ladder_door_toggle
+	{
+		alertentity middle_spawn_ladder_door
+	}
+	
+	trigger disable
+	{
+		trigger self middle_spawn_ladder_door_toggle
+		wait 500
+		setstate middle_spawn_ladder_door invisible
+	}
+	
+	trigger enable
+	{
+		setstate middle_spawn_ladder_door default
+	}
+	
+	trigger lock
+	{
+		setstate middle_spawn_ladder_door_tm invisible
+	}
+	
+	trigger unlock
+	{
+		setstate middle_spawn_ladder_door_tm default
+	}
+}
+
+
 // ==== Side Wall ==== //
 Sidewall
 {
@@ -858,6 +895,7 @@ gen_controls
 	}
 }
 
+
 switchlever
 {
 	spawn
@@ -868,6 +906,7 @@ switchlever
 	trigger init
 	{
 		faceangles 0 0 0 1000
+
 	}
 
 	trigger off
@@ -884,7 +923,7 @@ switchlever
 	trigger on
 	{
 		playsound sound/movers/switches/switch_01.wav volume 100
-		faceangles -90 0 0 500
+		faceangles -180 0 0 500
 		trigger gen_sound start
 		trigger gen_sound idle
 		trigger alarm_box alarm_one
@@ -1110,6 +1149,74 @@ gen_gate
 
 
 // ==== Main Gate ==== //
+
+maingateswitch
+{
+		spawn
+	{
+		trigger self init
+	}
+
+	trigger init
+	{
+		faceangles 90 0 0 1000
+
+	}
+
+	trigger off
+	{
+		faceangles 90 0 0 500
+		trigger maingateswitch2 off
+	}
+
+	trigger on
+	{
+		faceangles -90 0 0 500
+		trigger maingateswitch2 on
+
+	}
+	
+	trigger momentry
+	{
+		trigger maingateswitch2 momentry
+		faceangles -90 0 0 500
+		faceangles 0 0 0 1000
+	}
+	
+}
+
+maingateswitch2
+{
+		spawn
+	{
+		trigger self init
+	}
+
+	trigger init
+	{
+		faceangles -90 0 0 1000
+
+	}
+
+	trigger off
+	{
+		faceangles -90 0 0 500
+	}
+
+	trigger on
+	{
+		faceangles 90 0 0 500
+
+	}
+	
+	trigger momentry
+	{
+		faceangles 90 0 0 500
+		faceangles 0 0 0 1000
+	}
+	
+}
+
 genspawn
 {
 	trigger show
@@ -1158,7 +1265,6 @@ move_Main_Gate
 	{
 		wait 50
 
-		setstate button_dead_Main_Gate invisible
 		setstate button2_Main_Gate invisible
 		setstate button1_Main_Gate default
 		trigger move_Main_Gate dead_action_Main_Gate
@@ -1204,8 +1310,8 @@ Main_Gate
 		stopsound
 
 		// wm_announce "Main Gate Controls enabled!"
-
-		setstate button_dead_Main_Gate invisible
+		trigger maingateswitch on
+		
 		setstate button2_Main_Gate invisible
 		setstate button1_Main_Gate default
 		// setstate main_door_tunnels invisible
@@ -1223,7 +1329,8 @@ Main_Gate
 		wm_announce "Main Gate Controls disabled!"
 
 		wait 80
-
+		
+		trigger maingateswitch off
 		setstate button_dead_Main_Gate default
 		// setstate cov_door_Main_Gate invisible
 		setstate button2_Main_Gate invisible
@@ -1233,8 +1340,10 @@ Main_Gate
 	
 	trigger open
 	{
-		setstate button_dead_Main_Gate default
+		trigger maingateswitch on
+		wait 200
 		setstate button1_Main_Gate invisible
+		setstate button2_Main_Gate default
 
 		// wm_announce "^7Main Gate is ^2opening^7!"
 
@@ -1244,13 +1353,14 @@ Main_Gate
 
 		stopsound
 
-		setstate button_dead_Main_Gate invisible
-		setstate button2_Main_Gate default
+		
+		
 	}
 	
 	trigger open_slow
 	{
-		setstate button_dead_Main_Gate default
+		trigger maingateswitch on
+		
 		setstate button1_Main_Gate invisible
 
 		// wm_announce "^7Main Gate is ^2opening^7!"
@@ -1261,14 +1371,16 @@ Main_Gate
 
 		stopsound
 
-		setstate button_dead_Main_Gate invisible
+		
 		setstate button2_Main_Gate default
 	}
 	
 	trigger close
 	{
-		setstate button_dead_Main_Gate default
+		trigger maingateswitch off
+		wait 200
 		setstate button2_Main_Gate invisible
+		setstate button1_Main_Gate default
 
 		// wm_announce "^7Main Gate is ^1closing^7!"
 
@@ -1278,8 +1390,8 @@ Main_Gate
 
 		stopsound
 
-		setstate button_dead_Main_Gate invisible
-		setstate button1_Main_Gate default
+		
+		
 	}
 
 }

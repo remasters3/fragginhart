@@ -403,3 +403,302 @@ textures/remasters/walls/wall02_bot_blue
 	qer_editorimage textures/remasters/walls/wall02_bot_blue.jpg
 	implicitMap textures/remasters/walls/wall02_bot_blue.jpg
 }
+
+textures/remasters/doors/main_gate_texture
+{
+    qer_editorimage textures/remasters/doors/main_gate_texture.jpg
+	surfaceparm roofsteps
+	surfaceparm slick
+	implicitMap textures/remasters/doors/main_gate_texture.jpg
+}
+
+textures/remasters/doors/caslte_l_16o_fh
+{
+    qer_editorimage textures/remasters/walls/caslte_l_16o.jpg
+	surfaceparm roofsteps
+	surfaceparm slick
+	implicitMap textures/remasters/walls/caslte_l_16o.jpg
+}
+
+textures/remasters/doors/castle_m04_fh
+{
+    qer_editorimage textures/remasters/walls/castle_m04.jpg
+	surfaceparm roofsteps
+	surfaceparm slick
+	implicitMap textures/remasters/walls/castle_m04.jpg
+}
+
+
+textures/remasters/walls/concrete_m01
+{
+	qer_editorimage textures/miltary_wall/concrete_m01.jpg
+	implicitMap textures/miltary_wall/concrete_m01.jpg
+}
+
+textures/remasters/doors/axisslidedoor
+{
+	qer_editorimage textures/remasters/doors/axisslidedoor.jpg
+	implicitMap textures/remasters/doors/axisslidedoor.jpg
+}
+
+textures/remasters/doors/slidedoor
+{
+	qer_editorimage textures/remasters/doors/slidedoor.jpg
+	implicitMap textures/remasters/doors/slidedoor.jpg
+}
+
+textures/remasters/villwin_c01
+{
+	qer_editorimage textures/remasters/windows/villwin_c01.tga
+	implicitMap textures/remasters/windows/villwin_c01.tga
+}
+
+textures/remasters/villwin_c04
+{
+	qer_editorimage textures/remasters/windows/villwin_c04.tga
+	implicitMap textures/remasters/windows/villwin_c04.tga
+}
+
+textures/remasters/villwin_c05
+{
+	qer_editorimage textures/remasters/windows/villwin_c05.tga
+	implicitMap textures/remasters/windows/villwin_c05.tga
+}
+
+textures/remasters/villwin_c05dm
+{
+	qer_editorimage textures/remasters/windows/villwin_c05dm.jpg
+	implicitMap textures/remasters/windows/villwin_c05dm.jpg
+}
+
+textures/remasters/win_c07
+{
+	qer_editorimage textures/remasters/windows/villwin_c07.tga
+	implicitMap textures/remasters/windows/villwin_c07.tga
+}
+
+textures/remasters/paperstack1
+{
+	qer_editorimage models/multiplayer/secretdocs/paperstack.tga
+	implicitMap models/multiplayer/secretdocs/paperstack.tga
+}
+
+textures/remasters/paperstack2
+{
+	qer_editorimage models/multiplayer/secretdocs/paperstack2.jpg
+	implicitMap models/multiplayer/secretdocs/paperstack2.jpg
+}
+
+textures/miltary_wall/mroof_m01a
+{
+	surfaceparm roofsteps
+	implicitMap -
+}
+
+textures/remasters/square_green_light
+{
+	qer_editorimage textures/remasters/lights/light_tp_m06.tga
+	q3map_surfacelight 6000
+	surfaceparm nomarks
+	{
+		map $lightmap
+		rgbGen identity
+	}
+	{
+		map textures/remasters/lights/light_tp_m06.tga
+		blendFunc GL_DST_COLOR GL_ZERO
+		rgbGen identity
+	}
+	{
+		map textures/remasters/lights/light_tp_m2.blend.tga
+		blendFunc GL_ONE GL_ONE
+	}
+}
+
+textures/remasters/walls/vill_c01a
+{
+	qer_editorimage textures/remasters/walls/vill_c01a.tga
+	implicitMap textures/remasters/walls/vill_c01a.tga
+}
+
+textures/remasters/walls/vill_c02.tga
+{
+	qer_editorimage textures/remasters/walls/vill_c02.tga
+	implicitMap textures/remasters/walls/vill_c02.tga
+}
+
+textures/remasters/walls/ill_c03a
+{
+	qer_editorimage textures/remasters/walls/vill_c03a.tga
+	implicitMap textures/remasters/walls/vill_c03a.tga
+}
+
+textures/remasters/walls/vill_c03b
+{
+	qer_editorimage textures/remasters/walls/vill_c03b.tga
+	implicitMap textures/remasters/walls/vill_c03b.tga
+}
+
+textures/remasters/walls/vill_c04
+{
+	qer_editorimage textures/remasters/walls/vill_c04.jpg
+	implicitMap textures/remasters/walls/vill_c04.jpg
+}
+
+textures/remasters/walls/vill_c05
+{
+	qer_editorimage textures/remasters/walls/vill_c05.jpg
+	implicitMap textures/remasters/walls/vill_c05.jpg
+}
+
+textures/remasters/walls/flagstoneashlar
+{
+	qer_editorimage textures/remasters/walls/flagstoneashlar.jpg
+	implicitMap textures/remasters/walls/flagstoneashlar.jpg
+}
+
+textures/remasters/walls/flagstoneashlar
+{
+	qer_editorimage textures/remasters/walls/flagstoneashlar.jpg
+	implicitMap textures/remasters/walls/flagstoneashlar.jpg
+}
+
+textures/remasters/walls/FinnishGreyBrickStretcher
+{
+	qer_editorimage textures/remasters/walls/FinnishGreyBrickStretcher.jpg
+	implicitMap textures/remasters/walls/FinnishGreyBrickStretcher.jpg
+}
+
+textures/remasters/walls/FlagstoneBasketweave
+{
+	qer_editorimage textures/remasters/walls/FlagstoneBasketweave.jpg
+	implicitMap textures/remasters/walls/FlagstoneBasketweave.jpg
+}
+
+textures/remasters/metal_misc/yellow_lever
+{
+	surfaceparm metalsteps
+	qer_editorimage textures/metal_misc/metal_m03.tga
+	implicitMap textures/metal_misc/metal_m03.tga
+	q3map_surfacelight 6000
+}
+
+textures/remasters/metal_misc/red_lever
+{
+	surfaceparm metalsteps
+	qer_editorimage textures/metal_misc/metal_m04r2.jpg
+	implicitMap textures/metal_misc/metal_m04r2.jpg
+	q3map_surfacelight 6000
+}
+
+
+textures/remasters/signs/yellowarrownet
+{
+	qer_trans 0.85
+	qer_editorimage textures/remasters/signs/yellowarrownet.tga
+	cull disable
+	nomipmaps
+	nopicmip
+
+	surfaceparm clipmissile
+	surfaceparm nomarks
+	surfaceparm alphashadow
+	surfaceparm pointlight
+	surfaceparm trans
+	implicitMask textures/remasters/signs/yellowarrownet.tga
+}
+
+// models/multiplayer/duke-of-wellington/source/duke0
+// {
+// 	qer_editorimage models/multiplayer/duke-of-wellington/source/tex_0.jpg
+// 	implicitMap models/multiplayer/duke-of-wellington/source/tex_0.jpg
+// }
+// 
+// models/multiplayer/duke-of-wellington/source/duke1
+// {
+// 	qer_editorimage models/multiplayer/duke-of-wellington/source/tex_1.jpg
+// 	implicitMap models/multiplayer/duke-of-wellington/source/tex_1.jpg
+// }
+// 
+// models/multiplayer/duke-of-wellington/source/duke2
+// {
+// 	qer_editorimage models/multiplayer/duke-of-wellington/source/tex_2.jpg
+// 	implicitMap models/multiplayer/duke-of-wellington/source/tex_2.jpg
+// }
+// 
+// models/multiplayer/duke-of-wellington/source/material_3
+// {
+// 	qer_editorimage models/multiplayer/duke-of-wellington/source/tex_2.jpg
+// 	implicitMap models/multiplayer/duke-of-wellington/source/tex_2.jpg
+// }
+// 
+// models/multiplayer/duke-of-wellington/source/tex_3
+// {
+// 	qer_editorimage models/multiplayer/duke-of-wellington/source/tex_3.jpg
+// 	implicitMap models/multiplayer/duke-of-wellington/source/tex_3.jpg
+// }
+
+textures/remasters/lights/light_gen_red_on
+{
+	qer_editorimage textures/remasters/lights/light_tp_m07.tga
+	q3map_surfacelight 6000
+	surfaceparm nomarks
+	{
+		map $lightmap
+		rgbGen identity
+	}
+	{
+		map textures/remasters/lights/light_tp_m07.tga
+		blendFunc GL_DST_COLOR GL_ZERO
+		rgbGen identity
+	}
+	{
+		map textures/remasters/lights/light_tp_m2.blend.tga
+		blendFunc GL_ONE GL_ONE
+	}
+}
+
+textures/remasters/lights/light_gen_red_off
+{
+	qer_editorimage textures/remasters/lights/light_tp_m07off.tga
+	surfaceparm nomarks
+	{
+		map textures/remasters/lights/light_tp_m07off.tga
+		blendFunc GL_DST_COLOR GL_ZERO
+		rgbGen identity
+	}
+}
+
+textures/remasters/lights/light_gen_green_on
+{
+	qer_editorimage textures/remasters/lights/light_tp_m06o.tga
+	q3map_surfacelight 6000
+	surfaceparm nomarks
+	{
+		map $lightmap
+		rgbGen identity
+	}
+	{
+		map textures/remasters/lights/light_tp_m06o.tga
+		blendFunc GL_DST_COLOR GL_ZERO
+		rgbGen identity
+	}
+	{
+		map textures/remasters/lights/light_tp_m2.blend.tga
+		blendFunc GL_ONE GL_ONE
+	}
+}
+
+textures/remasters/lights/light_gen_green_off
+{
+	qer_editorimage textures/remasters/lights/light_tp_m06off.tga
+	surfaceparm nomarks
+	{
+		map textures/remasters/lights/light_tp_m06off.tga
+		blendFunc GL_DST_COLOR GL_ZERO
+		rgbGen identity
+	}
+}
+
+
+
