@@ -1,5 +1,5 @@
-# Fragginhart Canyon map for Enemy-Territoy 
-
+# Fragginhart a map for Wolfenstein Enemy-Territoy.
+<br> Map by Remasters in close collaboration with U!ps
 <br> https://www.splashdamage.com/games/wolfenstein-enemy-territory/
 <br> https://www.etlegacy.com/
 <br> https://et.trackbase.net/map/9158
@@ -20,30 +20,31 @@
 ## Command Map Overview
 ![MAP](/readme/map-overview.png)
 ## Screenshots
-[![sample screenshot](/readme/ss/2024-09-15-123933-fragginhart-Small.png)](/readme/ss/2024-09-15-123933-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-123957-fragginhart-Small.png)](/readme/ss/2024-09-15-123957-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124034-fragginhart-Small.png)](/readme/ss/2024-09-15-124034-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124051-fragginhart-Small.png)](/readme/ss/2024-09-15-124051-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124116-fragginhart-Small.png)](/readme/ss/2024-09-15-124116-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124136-fragginhart-Small.png)](/readme/ss/2024-09-15-124136-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124146-fragginhart-Small.png)](/readme/ss/2024-09-15-124146-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124153-fragginhart-Small.png)](/readme/ss/2024-09-15-124153-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124206-fragginhart-Small.png)](/readme/ss/2024-09-15-124206-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124234-fragginhart-Small.png)](/readme/ss/2024-09-15-124234-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124254-fragginhart-Small.png)](/readme/ss/2024-09-15-124254-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124323-fragginhart-Small.png)](/readme/ss/2024-09-15-124323-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124356-fragginhart-Small.png)](/readme/ss/2024-09-15-124356-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124808-fragginhart-Small.png)](/readme/ss/2024-09-15-124808-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124834-fragginhart-Small.png)](/readme/ss/2024-09-15-124834-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124847-fragginhart-Small.png)](/readme/ss/2024-09-15-124847-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124902-fragginhart-Small.png)](/readme/ss/2024-09-15-124902-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124924-fragginhart-Small.png)](/readme/ss/2024-09-15-124924-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-124950-fragginhart-Small.png)](/readme/ss/2024-09-15-124950-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-125105-fragginhart-Small.png)](/readme/ss/2024-09-15-125105-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-125335-fragginhart-Small.png)](/readme/ss/2024-09-15-125335-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-125357-fragginhart-Small.png)](/readme/ss/2024-09-15-125357-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-125412-fragginhart-Small.png)](/readme/ss/2024-09-15-125412-fragginhart.png)
-[![sample screenshot](/readme/ss/2024-09-15-125506-fragginhart-Small.png)](/readme/ss/2024-09-15-125506-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121254-fragginhart-Small.png)](/readme/ss/2024-09-21-121254-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121316-fragginhart-Small.png)](/readme/ss/2024-09-21-121316-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121327-fragginhart-Small.png)](/readme/ss/2024-09-21-121327-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121336-fragginhart-Small.png)](/readme/ss/2024-09-21-121336-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121346-fragginhart-Small.png)](/readme/ss/2024-09-21-121346-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121354-fragginhart-Small.png)](/readme/ss/2024-09-21-121354-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121359-fragginhart-Small.png)](/readme/ss/2024-09-21-121359-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121405-fragginhart-Small.png)](/readme/ss/2024-09-21-121405-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121414-fragginhart-Small.png)](/readme/ss/2024-09-21-121414-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121441-fragginhart-Small.png)](/readme/ss/2024-09-21-121441-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121453-fragginhart-Small.png)](/readme/ss/2024-09-21-121453-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121506-fragginhart-Small.png)](/readme/ss/2024-09-21-121506-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121516-fragginhart-Small.png)](/readme/ss/2024-09-21-121516-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121526-fragginhart-Small.png)](/readme/ss/2024-09-21-121526-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121535-fragginhart-Small.png)](/readme/ss/2024-09-21-121535-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121540-fragginhart-Small.png)](/readme/ss/2024-09-21-121540-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121549-fragginhart-Small.png)](/readme/ss/2024-09-21-121549-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121606-fragginhart-Small.png)](/readme/ss/2024-09-21-121606-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121612-fragginhart-Small.png)](/readme/ss/2024-09-21-121612-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121633-fragginhart-Small.png)](/readme/ss/2024-09-21-121633-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121653-fragginhart-Small.png)](/readme/ss/2024-09-21-121653-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121707-fragginhart-Small.png)](/readme/ss/2024-09-21-121707-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121739-fragginhart-Small.png)](/readme/ss/2024-09-21-121739-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
+[![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 
 ## v4 change log
 - Added route from middle spawn to lower barracks. ( requested by U!ps )
