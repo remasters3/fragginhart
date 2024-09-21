@@ -141,7 +141,20 @@ fragginhart_allies_entrance2_destroyed
 	streaming
 }
 
+fragginhart_allies_docs_dropped
+{
+	sound sound/vo/general/allies/hq_objlost.wav
+	voice
+	streaming
+}
+
 // axis commander
+fragginhart_axis_docs_dropped
+{
+	sound sound/remasters/vo/axis/axis_drop.wav
+	voice
+	streaming
+}
 
 fragginhart_axis_ramp_stop
 {

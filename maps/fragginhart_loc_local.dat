@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////
 // Map name: fragginhart
-// Num. locations: 65
-// Created at: 15-5-2024
+// Num. locations: 64
+// Created at: 19-9-2024
 // Created by: mapper
 /////////////////////////////////////////////////////////
 
@@ -12,8 +12,6 @@
 5676 2590 272 "documents room"
 6250 2778 201 "documents ramp"
 5984 4468 136 "villa spawn"
-6120 3815 136 "villa back room"
-5693 3831 137 "villa side room"
 5010 3912 140 "villa corridor"
 3553 4014 140 "north corridor"
 2869 3839 244 "generator stairs"
@@ -49,11 +47,10 @@
 3441 3621 324 "middle north"
 3754 3297 324 "middle east"
 5578 2926 104 "basement"
-5947 4342 352 "villa upper floor"
 5144 4874 136 "villa garden"
 3793 3129 148 "barracks"
 4423 3125 121 "barracks corridor"
-4979 3138 116 "bacement corridor"
+4979 3138 116 "basement corridor"
 4132 2468 132 "depot office"
 1038 2907 -119 "sewer"
 1061 3554 63 "sewer north stairs"
@@ -70,3 +67,5 @@
 5482 3196 272 "documents west entrance"
 4296 3149 308 "middle east corridor"
 2457 6606 140 "allied CP"
+1174 5228 136 "battery array"
+6876 4482 129 "villa"
