@@ -46,6 +46,9 @@
 [![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 
+## known issues/bugs
+- "textures/remasters/vswindow1" has a typo in the shader causing the texture to not be displayed correctly in 2.60b. (does not affect legacy)
+
 ## v4 change log
 - Added route from middle spawn to lower barracks. ( requested by U!ps )
 - Changed generator switch.
