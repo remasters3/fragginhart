@@ -47,8 +47,9 @@
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 
 ## v5 issues/bugs/requests 
-- "textures/remasters/vswindow1" has a typo in the shader causing the texture to not be displayed correctly in 2.60b. (does not affect legacy)
+- "textures/remasters/vswindow1" has a typo in the shader causing the texture to not be displayed correctly in 2.60b. ( reported by pappywolf )
 - Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
+- Axis vo "objective dropped" audio file is wrong bitrate.
 
 ## v4 change log
 - Added route from middle spawn to lower barracks. ( requested by U!ps )
