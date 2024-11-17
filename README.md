@@ -46,12 +46,13 @@
 [![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 
-## v5 issues/bugs/requests
+## v5 change log
 https://discord.com/channels/554253675506171916/774304977165484062/1298275781331390564
-- Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
+- Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
+  - the depo gate now opens from the opposite side.
 - Axis vo "objective dropped" audio file is wrong bitrate.
 ## v4.1 change log
-- Fixed "textures/remasters/vswindow1" has a typo in the shader causing the texture to not be displayed correctly in 2.60b. ( reported by pappywolf ) 
+- Fixed "textures/remasters/vswindow1" typo in the shader causing the texture to not be displayed correctly in 2.60b. ( reported by pappywolf ) 
 ## v4 change log
 - Added route from middle spawn to lower barracks. ( requested by U!ps )
 - Changed generator switch.

@@ -1,9 +1,10 @@
 //==========================================================================================
 //
-//	Fragginhart Canyon V2 - fragginhart.gm
+//	Fragginhart Canyon V3 - fragginhart.gm
 //
 //	Who			When				What
 //------------------------------------------------------------------------------------------
+//	Mateos		21 May 2024			WIP V3
 //	Mateos		30 March 2024		Copy from V1 version
 //
 //==========================================================================================
@@ -13,7 +14,7 @@
 Path mapping by Remasters, fixes by Mateos
 Script by Mateos
 Correspondant WAY file hash: -
-Last update: 30th March 2024
+Last update: 21st May 2024
 ****************************************************/
 
 global Map =
@@ -138,6 +139,13 @@ global Map =
 		Util.MapDebugPrint( "Forwardbunker_flag_Allies_Captured", true );
 	},
 
+	Generator_Powering_Up = function( trigger )
+	{
+		SetAvailableMapGoals( TEAM.ALLIES, false, "SWITCH_Generator" );
+
+		Util.MapDebugPrint( "Generator_Powering_Up" );
+	},
+
 	Main_Gate_Moving = function( trigger )
 	{
 		Map.isMainGateOpened = trigger.Action == "opening";
@@ -156,10 +164,10 @@ global Map =
 		Wp.CheckBlockable();
 
 		Util.EnableGoal( "CHECKPOINT_Forwardbunker_flag" );
-		SetAvailableMapGoals( TEAM.ALLIES, false, {
+		/*SetAvailableMapGoals( TEAM.ALLIES, false, {
 			"CAPPOINT_Generator",
 			"FLAG_main_gate_keycard" // Still listed in active goals...
-		});
+		});*/
 		SetAvailableMapGoals( TEAM.ALLIES, true, {
 			"PLANT_Depot_Gate_Controls",
 			"SWITCH_Main_Gate_.*"
@@ -186,21 +194,23 @@ global OnMapLoad = function()
 	OnTrigger( "^1Allies have destroyed the Side Wall!", Map.Side_Wall_Destroyed );
 
 	OnTrigger( "Allies have stolen the documents!", Map.documents_Taken );
-	OnTrigger( "Allies have stolen Main Gate Keycard!", Map.main_gate_keycard_Taken );
+	//OnTrigger( "Allies have stolen Main Gate Keycard!", Map.main_gate_keycard_Taken );
 	OnTrigger( "Flag returned documents!", Map.documents_Returned );
-	OnTrigger( "Flag returned main_gate_keycard!", Map.main_gate_keycard_Returned );
+	//OnTrigger( "Flag returned main_gate_keycard!", Map.main_gate_keycard_Returned );
 	OnTrigger( "Allies have transmitted the Documents!", Map.documents_Secured );
-	OnTrigger( "Allies have delivered the Keycard!", Map.main_gate_keycard_Secured );
+	//OnTrigger( "Allies have delivered the Keycard!", Map.main_gate_keycard_Secured );
 
 	OnTrigger( "Axis reclaim the Forward Bunker!", Map.Forwardbunker_flag_Axis_Captured );
 	OnTrigger( "Allies capture the Forward Bunker!", Map.Forwardbunker_flag_Allies_Captured );
+
+	OnTrigger( "^7Generator powering up in:", Map.Generator_Powering_Up );
 
 	// ^7Main Gate is ^2opening^7!
 	// ^7Main Gate is ^1closing^7!
 	OnTrigger( "Main_Gate_Moving", Map.Main_Gate_Moving );
 
 	// Generator powering up in 10 seconds!
-	OnTrigger( "^7The Transmitter is ^1ready^7.", Map.Generator_Powered_Up );
+	OnTrigger( "^7Main Gate Controls are ^1enabled^7.", Map.Generator_Powered_Up );
 
 	// Main Gate Controls enabled!
 	// Main Gate Controls disabled!
@@ -214,9 +224,10 @@ global OnMapLoad = function()
 	SetAvailableMapGoals( TEAM.ALLIES, true, {
 		"BUILD_Allied_Command_Post",
 		"BUILD_Allied_MG42_Construction",
-		"CAPPOINT_Generator",
-		"FLAG_main_gate_keycard",
-		"PLANT_Side_Wall"
+		/*"CAPPOINT_Generator",
+		"FLAG_main_gate_keycard",*/
+		"PLANT_Side_Wall",
+		"SWITCH_Generator"
 	});
 
 	Functions.AddMainGateAxisDoorFlags();
@@ -256,49 +267,4 @@ global Functions =
 	{
 		Wp.SetWaypointFlag( Functions.DEPOT_GATE_AXIS_DOOR, Functions.AXIS_DOOR_FLAGS, false );
 	}
-};
-
-global InitializeRoutes = function()
-{
-	MapRoutes =
-	{
-		BUILD_Allied_Ramp =
-		{
-		},
-		PLANT_Allied_Ramp =
-		{
-		},
-		FLAG_documents =
-		{
-		},
-		BUILD_Allied_Command_Post =
-		{
-		},
-		PLANT_Allied_Command_Post =
-		{
-		},
-		BUILD_Axis_Command_Post =
-		{
-		},
-		PLANT_Axis_Command_Post =
-		{
-		},
-		PLANT_Side_Wall =
-		{
-		},
-		BUILD_Allied_MG42_Construction =
-		{
-		},
-		PLANT_Allied_MG42_Construction =
-		{
-		},
-		CHECKPOINT_Forwardbunker_flag =
-		{
-		},
-		FLAG_main_gate_keycard =
-		{
-		},
-	};
-
-	Util.Routes( MapRoutes );
 };
