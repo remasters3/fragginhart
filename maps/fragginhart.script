@@ -104,6 +104,10 @@ game_manager
 		accum 2 trigger_if_equal 0 game_manager sidewall_active
 		accum 4 trigger_if_equal 0 game_manager depotgatecontrols_active
 		
+		// depo gate stuff
+		trigger depogateswitchdoor closed
+		trigger depogateswitchdoor2 closed
+		
 		// doors //
 		trigger gen_gate open
 		trigger sidewall_gate open
@@ -627,8 +631,6 @@ move_Depot_Gate
 	spawn
 	{
 		wait 50
-
-		setstate button_dead_Depot_Gate invisible
 		setstate button2_Depot_Gate invisible
 		setstate button1_Depot_Gate default
 
@@ -637,13 +639,17 @@ move_Depot_Gate
 	trigger open_action_Depot_Gate
 	{
 		trigger Depot_Gate open
+		trigger depogateswitch on
+		trigger depogateswitch2 on
 		wait 11000
-		trigger Depot_Gate close
+		// trigger Depot_Gate close
 	}
 
 	trigger close_action_Depot_Gate
 	{	
 		trigger Depot_Gate close
+		trigger depogateswitch off
+		trigger depogateswitch2 off
 		// wait 11000
 	}
 
@@ -681,19 +687,16 @@ Depot_Gate
 		wm_objective_status 4 0 0
 
 		// wm_announce "Axis have repaired the Depot Gate Controls!"
-	
-		setstate button_dead_Depot_Gate invisible
 		setstate button2_Depot_Gate invisible
 		setstate button1_Depot_Gate default
+	
 		setstate cov_door_Depot_Gate default
 	}
 
 	trigger dead
 	{
-		setstate button_dead_Depot_Gate default
 		setstate button2_Depot_Gate invisible
 		setstate button1_Depot_Gate invisible
-
 		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
 
 		gotomarker Depot_Gate_dead_pos 50 wait
@@ -711,11 +714,11 @@ Depot_Gate
 
 	trigger open
 	{
-		setstate button_dead_Depot_Gate default
+
+		// wm_announce "^7Depot Gate is ^2opening^7!"
 		setstate button1_Depot_Gate invisible
-
-		wm_announce "^7Depot Gate is ^2opening^7!"
-
+		setstate button2_Depot_Gate default
+		
 		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
 
 		gotomarker Depot_Gate_open_pos 50 wait
@@ -723,13 +726,10 @@ Depot_Gate
 
 		stopsound
 
-		setstate button_dead_Depot_Gate invisible
-		setstate button2_Depot_Gate default
 	}
 	
 	trigger open_slow
 	{
-		setstate button_dead_Depot_Gate default
 		setstate button2_Depot_Gate invisible
 		setstate button1_Depot_Gate invisible
 
@@ -750,24 +750,167 @@ Depot_Gate
 	
 	trigger close
 	{
-		setstate button_dead_Depot_Gate default
+		// trigger depogateswitch off
 		setstate button2_Depot_Gate invisible
-
-		wm_announce "^7Depot Gate is ^1closing^7!"
+		setstate button1_Depot_Gate default
+		// wm_announce "^7Depot Gate is ^1closing^7!"
 
 		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
 
 		gotomarker Depot_Gate_closed_pos 50 wait
 
 		stopsound
-
-		setstate button_dead_Depot_Gate invisible
-		setstate button1_Depot_Gate default
 	}
 
 }
 
+depogateswitchdoor
+{
+	spawn
+	{
+		trigger self open
+	}
+
+	trigger init
+	{
+		faceangles 0 -90 0 1000
+	}
+
+	trigger closed
+	{
+		faceangles 0 -90 0 2000
+	}
+
+	trigger open
+	{
+		faceangles 0 70 0 2000
+		// playsound sound/world/icecrack.wav volume 256
+
+	}
+		
+	trigger dead
+	{
+		faceangles 0 -90 0 1000
+	}
+}
+
+depogateswitch
+{
+	spawn
+	{
+		trigger self init
+	}
+
+	trigger init
+	{
+		faceangles 0 0 -80 1000
+	}
+
+	trigger off
+	{
+		playsound sound/movers/switches/switch_01.wav volume 128
+		faceangles 0 0 0 250
+		faceangles 0 0 -80 250
+		// playsound sound/movers/switches/switch_01.wav volume 128
+	}
+
+	trigger on
+	{
+		playsound sound/movers/switches/switch_01.wav volume 128
+		faceangles 0 0 0 250
+		faceangles 0 0 80 250
+		//playsound sound/movers/switches/switch_01.wav volume 128
+	}
+	
+	trigger momentry
+	{
+		faceangles 80 0 0 250
+		faceangles 0 0 0 1000
+	}
+	
+	trigger dead
+	{
+		faceangles 0 0 90 1000
+	}
+}
+
+depogateswitchdoor2
+{
+	spawn
+	{
+		trigger self open
+	}
+
+	trigger init
+	{
+		faceangles 0 -90 0 1000
+	}
+
+	trigger closed
+	{
+		faceangles 0 -90 0 2000
+		setstate depogateswitchdoor2 invisible
+		setstate depogateswitch2 invisible
+		setstate depogateswitch1 invisible
+		trigger depot_gate_controls show
+		trigger Depot_Gate close
+	}
+
+	trigger open
+	{
+		faceangles 0 70 0 2000
+		// playsound sound/world/icecrack.wav volume 256
+
+	}
+		
+	trigger dead
+	{
+		faceangles 0 -90 0 1000
+	}
+}
+
+depogateswitch2
+{
+	spawn
+	{
+		trigger self init
+	}
+
+	trigger init
+	{
+		faceangles 0 0 80 1000
+	}
+
+	trigger off
+	{
+		playsound sound/movers/switches/switch_01.wav volume 128
+		faceangles 0 0 0 250
+		faceangles 0 0 80 250
+		// playsound sound/movers/switches/switch_01.wav volume 128
+	}
+
+	trigger on
+	{
+		playsound sound/movers/switches/switch_01.wav volume 128
+		faceangles 0 0 0 250
+		faceangles 0 0 -80 250
+		//playsound sound/movers/switches/switch_01.wav volume 128
+	}
+	
+	trigger momentry
+	{
+		faceangles 80 0 0 250
+		faceangles 0 0 0 1000
+	}
+	
+	trigger dead
+	{
+		faceangles 0 0 90 1000
+	}
+}
+
 // ==== Depot Gate Controls ==== //
+
 
 depot_gate_controls
 {
@@ -778,6 +921,7 @@ depot_gate_controls
 		setstate Depot_Gate_deadplate invisible
 		setstate SecondCovDoor_axisconstruct_n default
 		accum 4 set 0 //red 0 blue 1 yellow 2
+		trigger self hide
 	}
 
 	death
@@ -790,12 +934,24 @@ depot_gate_controls
 		wm_announce "Allies have damaged the Depot Gate Controls and secured the Forward Bunker!"
 		wm_announce "^7Depot Gate is ^2opening^7!"
 		setstate Depot_Gate_deadplate default
+		trigger fallingbeam dead
 		trigger game_manager depotgatecontrols_complete
 		trigger Forwardbunker_flag disabled
 		trigger self open_all
 		trigger self blue
 		trigger game_manager phase3
 
+	}
+	trigger show
+	{
+		setstate depot_gate_controls default
+		setstate depot_gate_controls_info default
+	}
+	
+	trigger hide
+	{
+		setstate depot_gate_controls invisible
+		setstate depot_gate_controls_info invisible
 	}
 	
 	trigger open_all
@@ -826,6 +982,25 @@ depot_gate_controls
 		setstate depogate_red_ctl invisible
 		setstate depogate_blue_ctl invisible
 		setstate depogate_yellow_ctl default
+	}
+}
+
+fallingbeam
+{
+	spawn
+	{
+		trigger self init
+	}
+
+	trigger init
+	{
+		faceangles 0 0 0 1000
+	}
+
+	trigger dead
+	{
+		playsound sound/world/metalbreak.wav volume 256
+		faceangles 0 0 -31 400
 	}
 }
 
