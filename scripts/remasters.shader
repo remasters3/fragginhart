@@ -1,3 +1,45 @@
+// depo yard //
+textures/remasters/doroofa
+{
+	qer_editorimage textures/remasters/depo/ut_shingle_roof2.jpg
+	implicitMap textures/remasters/depo/ut_shingle_roof2.jpg
+}
+
+textures/remasters/doroofb
+{
+	qer_editorimage textures/remasters/depo/ut_shingle_roof3.jpg
+	implicitMap textures/remasters/depo/ut_shingle_roof3.jpg
+}
+textures/remasters/dowalla
+{
+	qer_editorimage textures/remasters/depo/concrete04.jpg
+	implicitMap textures/remasters/depo/concrete04.jpg
+}
+
+textures/remasters/dowallb
+{
+	qer_editorimage textures/remasters/depo/concrete04dmg4.jpg
+	implicitMap textures/remasters/depo/concrete04dmg4.jpg
+}
+
+textures/remasters/dowallc
+{
+	qer_editorimage textures/remasters/depo/brick02.jpg
+	implicitMap textures/remasters/depo/brick02.jpg
+}
+
+textures/remasters/dowalld
+{
+	qer_editorimage textures/remasters/depo/brick02.jpg
+	implicitMap textures/remasters/depo/brick02.jpg
+}
+
+textures/remasters/dowalle
+{
+	qer_editorimage textures/remasters/depo/ut_stonewall2.jpg
+	implicitMap textures/remasters/depo/ut_stonewall2.jpg
+}
+
 // rip veltins
 textures/remasters/veltins
 {
@@ -1069,5 +1111,3 @@ textures/remasters/mscale
 	qer_editorimage textures/remasters/mscale.jpg
 	implicitMap textures/remasters/mscale.jpg
 }
-
-

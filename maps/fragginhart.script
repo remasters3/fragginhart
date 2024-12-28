@@ -85,9 +85,13 @@ game_manager
 		trigger documents red
 		trigger documents tred
 		
+		// forward bunker (flag) stuff
+		trigger Forwardbunker_flag hide
+		
 		// spawn stuff
 		setautospawn "Generator Spawn" 0
-		// trigger Forwardbunker_flag hide
+		
+
 	}
 	
 	trigger phase2
@@ -103,6 +107,9 @@ game_manager
 		accum 3 trigger_if_equal 0 game_manager forward_bunker_active
 		accum 2 trigger_if_equal 0 game_manager sidewall_active
 		accum 4 trigger_if_equal 0 game_manager depotgatecontrols_active
+		
+		// forward bunker (flag) stuff
+		trigger Forwardbunker_flag show
 		
 		// depo gate stuff
 		trigger depogateswitchdoor closed
@@ -330,6 +337,44 @@ middle_flag_door
 	}
 }
 
+// brush for blocking the window looking onto the generator from sidewall room.
+block_gen_sidewall_window
+{
+	spawn
+	{
+		trigger self false
+	}
+	
+	trigger false
+	{
+		setstate block_gen_sidewall_window invisible
+	}
+	
+	trigger true
+	{
+		setstate block_gen_sidewall_window default
+	}
+}
+
+// blocks the passage between the sidewall and the flag/bottom of maingate stairs.
+block_flag_sidewall
+{
+	spawn
+	{
+		trigger self false
+	}
+	
+	trigger false
+	{
+		setstate block_flag_sidewall invisible
+	}
+	
+	trigger true
+	{
+		setstate block_flag_sidewall default
+	}
+}
+
 middle_transmitter_door
 {
 	spawn
@@ -363,7 +408,6 @@ Forwardbunker_flag
 		accum 0 set 2													// Who owns flag: 0-Axis, 1-Allied, 2-Nobody
 
 		wait 50
-
 		setstate map_inst_axis default
 		setstate map_inst_allies invisible
 	}
@@ -457,10 +501,12 @@ Forwardbunker_flag
 	trigger hide
 	{
 		setstate Forwardbunker_flag invisible
+		setstate Forwardbunker_flag_base invisible
 	}
 	trigger show
 	{
 		setstate Forwardbunker_flag default
+		setstate Forwardbunker_flag_base default
 	}
 }
 
@@ -736,8 +782,9 @@ Depot_Gate
 		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
 
 		gotomarker Depot_Gate_dead_pos 5 wait
+		faceangles 0 0 2 500
 		// gotomarker Depot_Gate_open_pos 5 wait							// Depot Gate will open 100% on death
-
+		trigger fallingbeam dead
 		stopsound
 
 		// wm_announce "Allies have damaged the Depot Gate Controls!"
@@ -934,7 +981,6 @@ depot_gate_controls
 		wm_announce "Allies have damaged the Depot Gate Controls and secured the Forward Bunker!"
 		wm_announce "^7Depot Gate is ^2opening^7!"
 		setstate Depot_Gate_deadplate default
-		trigger fallingbeam dead
 		trigger game_manager depotgatecontrols_complete
 		trigger Forwardbunker_flag disabled
 		trigger self open_all
@@ -1001,6 +1047,187 @@ fallingbeam
 	{
 		playsound sound/world/metalbreak.wav volume 256
 		faceangles 0 0 -31 400
+	}
+}
+/// Depo yard elevator/lift
+Depot_lift
+{
+	spawn
+	{	
+		wait 2000
+		trigger Depot_lift_up_tst push
+	}
+	
+	trigger up
+	{
+		playsound sound/movers/motors/motor_start_01.wav volume 200
+		playsound sound/movers/motors/motor_loop_01.wav  looping volume 200
+		gotomarker Depot_lift_up_pos 40 wait
+		stopsound
+		playsound sound/movers/motors/motor_end_01.wav volume 200
+		trigger self doors_open
+		setstate Depot_lift_down_trigger default
+		setstate Depot_lift_up_trigger invisible
+	}
+	
+	trigger down
+	{
+		trigger self doors_closed
+		playsound sound/movers/motors/motor_start_01.wav volume 200
+		playsound sound/movers/motors/motor_loop_01.wav  looping volume 200
+		gotomarker Depot_lift_down_pos 40 wait
+		stopsound
+		playsound sound/movers/motors/motor_end_01.wav volume 200
+		setstate Depot_lift_down_trigger invisible
+		setstate Depot_lift_up_trigger default
+	}
+	
+	trigger doors_open
+	{
+		playsound sound/vehicles/misc/radar_start.wav volume 200
+		trigger Depot_lift_door_l open
+		trigger Depot_lift_door_r open
+		
+	}
+	
+	trigger doors_closed
+	{
+		playsound sound/vehicles/misc/radar_end.wav volume 200
+		trigger Depot_lift_door_l close
+		trigger Depot_lift_door_r close
+	}
+}
+
+Depot_lift_up_tst
+{
+	trigger push
+	{
+		trigger depo_lift_switch_a up
+		trigger depo_lift_switch_b up
+		trigger depo_lift_switch_c up
+		trigger Depot_lift up
+		setstate Depot_lift_down_trigger invisible
+		setstate Depot_lift_up_trigger invisible
+	}
+}
+
+Depot_lift_down_tst
+{
+	trigger push
+	{
+		trigger depo_lift_switch_a down
+		trigger depo_lift_switch_b down
+		trigger depo_lift_switch_c down
+		trigger Depot_lift down
+		setstate Depot_lift_down_trigger invisible
+		setstate Depot_lift_up_trigger invisible
+	}
+}
+
+Depot_lift_door_l
+{
+	spawn
+	{
+		accum 0 set	2
+	}
+	
+	trigger open
+	{
+		//accum 0 abort_if_equal 0
+		gotomarker Depot_lift_door_l_open_pos 40 wait
+		accum 0 set	0
+	}
+	
+	trigger close
+	{
+		//accum 0 abort_if_equal 1
+		gotomarker Depot_lift_door_l_close_pos 40 wait
+		accum 0 set	1
+	}
+}
+
+Depot_lift_door_r
+{
+	spawn
+	{
+		accum 0 set	0
+	}
+	
+	trigger open
+	{
+		//accum 0 abort_if_equal 0
+		gotomarker Depot_lift_door_r_open_pos 40 wait
+		accum 0 set	0
+	}
+	
+	trigger close
+	{
+		//accum 0 abort_if_equal 1
+		gotomarker Depot_lift_door_r_close_pos 40 wait
+		accum 0 set	1
+	}
+}
+
+depo_lift_switch_a
+{
+	spawn
+	{
+		faceangles 70 0 0 100
+	}
+	
+	trigger up
+	{	faceangles 0 0 0 100
+		faceangles 70 0 0 100
+		playsound sound/movers/switches/switch_02.wav volume 200
+	}
+	
+	trigger down
+	{
+		faceangles 0 0 0 100
+		faceangles -70 0 0 100
+		playsound sound/movers/switches/switch_02.wav volume 200
+	}
+}
+
+depo_lift_switch_b
+{
+	spawn
+	{
+		faceangles 70 0 0 100
+	}
+	
+	trigger up
+	{	faceangles 0 0 0 100
+		faceangles 70 0 0 100
+		playsound sound/movers/switches/switch_02.wav volume 200
+	}
+	
+	trigger down
+	{
+		faceangles 0 0 0 100
+		faceangles -70 0 0 100
+		playsound sound/movers/switches/switch_02.wav volume 200
+	}
+}
+
+depo_lift_switch_c
+{
+	spawn
+	{
+		faceangles 0 0 70 100
+	}
+	
+	trigger up
+	{	faceangles 0 0 0 100
+		faceangles 0 0 70 100
+		playsound sound/movers/switches/switch_02.wav volume 200
+	}
+	
+	trigger down
+	{
+		faceangles 0 0 0 100
+		faceangles 0 0 -70 100
+		playsound sound/movers/switches/switch_02.wav volume 200
 	}
 }
 
@@ -1622,88 +1849,6 @@ Main_Gate
 }
 
 // ==== Ramp ==== //
-ramp_door
-{
-	spawn
-	{
-		accum 0 set 0
-		wait 500
-	}
-	
-	trigger open
-	{
-		accum 0 abort_if_equal 1
-		alertentity ramp_door
-		accum 0 set 1
-	}
-	
-	trigger close
-	{
-		accum 0 abort_if_equal 0
-		alertentity ramp_door
-		accum 0 set 0
-	}
-	
-	trigger hide
-	{
-		setstate ramp_door invisible
-	}
-	
-	trigger show
-	{
-		setstate ramp_door default
-	}
-	
-	trigger disable
-	{
-		setstate ramp_door_button_open_trigger invisible
-		setstate ramp_door_button_close_trigger invisible
-		trigger self open
-		wait 100
-		trigger self hide
-	}
-	
-	trigger enable
-	{
-		setstate ramp_door_button_open_trigger default
-		setstate ramp_door_button_close_trigger invisible
-		trigger self show
-		wait 100
-		trigger self close
-	}
-	
-}
-
-ramp_door_button_open
-{
-	spawn
-	{
-		setstate ramp_door_button_open_trigger default
-	}
-	
-	trigger open
-	{
-		trigger ramp_door open
-		setstate ramp_door_button_open_trigger invisible
-		setstate ramp_door_button_close_trigger default
-	}
-}
-
-ramp_door_button_close
-{
-	spawn
-	{
-		setstate ramp_door_button_close_trigger invisible
-	}
-	
-	trigger close
-	{
-		trigger ramp_door close
-		setstate ramp_door_button_close_trigger invisible
-		setstate ramp_door_button_open_trigger default
-	}
-}
-
 ramp_alliedconstruct_n
 {
 	spawn
@@ -1738,8 +1883,8 @@ ramp_alliedconstruct_n
 		wm_teamvoiceannounce 1 "fragginhart_ramp_constructed"
 		// *---------------------------------------------------------------------------------*
 
-		trigger ramp_door disable
-		trigger axis_doc_door disable
+		// trigger ramp_door disable
+		// trigger axis_doc_door disable
 		trigger game_manager ramp_complete
 	}
 
@@ -1751,8 +1896,8 @@ ramp_alliedconstruct_n
 	death
 	{
 		trigger self setup
-		trigger ramp_door enable
-		trigger axis_doc_door enable
+		// trigger ramp_door enable
+		// trigger axis_doc_door enable
 
 		wm_announce "Axis have destroyed the Ramp!"
 		trigger game_manager ramp_active
@@ -1887,6 +2032,8 @@ axis_doc_door
 	{
 		accum 0 set 0
 		accum 1 set 0
+		wait 500
+		trigger self disable
 	}
 	
 	trigger axis_doc_door_toggle
