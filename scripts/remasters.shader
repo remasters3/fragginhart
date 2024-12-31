@@ -1,4 +1,39 @@
 // depo yard //
+textures/remasters/rampa
+{
+	qer_editorimage textures/miltary_wall/concrete_c07bcmp.jpg
+	implicitMap textures/miltary_wall/concrete_c07bcmp.jpg
+}
+textures/remasters/rampb
+{
+	qer_editorimage textures/miltary_wall/concrete_c02.jpg
+	implicitMap textures/miltary_wall/concrete_c02.jpg
+}
+textures/remasters/rampc
+{
+	qer_editorimage textures/wood/wood_m16.jpg
+	implicitMap textures/wood/wood_m16.jpg
+}
+textures/remasters/rampd
+{
+	qer_editorimage textures/wood/wood_m02.jpg
+	implicitMap textures/wood/wood_m02.jpg
+}
+textures/remasters/rampwa
+{
+	qer_editorimage textures/battery_wall/wall03_mid.jpg
+	implicitMap textures/battery_wall/wall03_mid.jpg
+}
+textures/remasters/rampwb
+{
+	qer_editorimage textures/battery_wall/wall02_top.jpg
+	implicitMap textures/battery_wall/wall02_top.jpg
+}
+textures/remasters/rampra
+{
+	qer_editorimage textures/miltary_wall/concrete_c05.jpg
+	implicitMap textures/miltary_wall/concrete_c05.jpg
+}
 textures/remasters/doroofa
 {
 	qer_editorimage textures/remasters/depo/ut_shingle_roof2.jpg
@@ -12,28 +47,33 @@ textures/remasters/doroofb
 }
 textures/remasters/dowalla
 {
-	qer_editorimage textures/remasters/depo/concrete04.jpg
-	implicitMap textures/remasters/depo/concrete04.jpg
+	qer_editorimage textures/miltary_wall/concrete_c02.jpg
+	implicitMap textures/miltary_wall/concrete_c02.jpg
 }
 
 textures/remasters/dowallb
 {
-	qer_editorimage textures/remasters/depo/concrete04dmg4.jpg
-	implicitMap textures/remasters/depo/concrete04dmg4.jpg
+	qer_editorimage textures/castle_wall/castle_m03_step_grave_03.jpg
+	implicitMap textures/castle_wall/castle_m03_step_grave_03.jpg
 }
 
 textures/remasters/dowallc
 {
-	qer_editorimage textures/remasters/depo/brick02.jpg
-	implicitMap textures/remasters/depo/brick02.jpg
+	qer_editorimage textures/remasters/depo/brick_beigegrey.jpg
+	{
+		map textures/remasters/depo/brick_beigegrey.jpg
+		tcmod scale 0.5 0.5
+	}
 }
 
 textures/remasters/dowalld
 {
-	qer_editorimage textures/remasters/depo/brick02.jpg
-	implicitMap textures/remasters/depo/brick02.jpg
+	qer_editorimage textures/town_wall/church_c01dm.jpg
+	{
+		map textures/town_wall/church_c01dm.jpg
+		tcmod scale 1 1
+	}
 }
-
 textures/remasters/dowalle
 {
 	qer_editorimage textures/remasters/depo/ut_stonewall2.jpg
