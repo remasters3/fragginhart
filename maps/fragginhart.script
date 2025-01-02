@@ -314,6 +314,42 @@ game_manager
 	}	
 }
 
+// for blocking the upper maingate office
+uppermaingateoffice_door
+{
+	spawn
+	{
+		accum 0 set	0 //default is closed
+		accum 1 set	1 //default enable
+		wait 500
+	}
+	trigger open
+	{
+		accum 1 abort_if_equal 0
+		accum 0 abort_if_equal 1
+		playsound sound/movers/doors/door5_open.wav volume 200
+		gotomarker umgo_door_open_pos 80 wait
+		stopsound
+		accum 0 set	1
+	}
+	trigger close
+	{
+		accum 1 abort_if_equal 0
+		accum 0 abort_if_equal 0
+		gotomarker umgo_door_closed_pos 80 wait
+		stopsound
+		accum 0 set	0
+	}
+	trigger disable
+	{
+		accum 1 set	0
+	}
+	
+	trigger enable
+	{
+		accum 1 set	1
+	}
+}
 // for blocking the axis middle spawn to forward bunker archway. 
 middle_flag_door
 {
@@ -1176,7 +1212,8 @@ depo_lift_switch_a
 	}
 	
 	trigger up
-	{	faceangles 0 0 0 100
+	{	
+		faceangles 0 0 0 100
 		faceangles 70 0 0 100
 		playsound sound/movers/switches/switch_02.wav volume 200
 	}
@@ -1704,6 +1741,7 @@ main_upper_door //old cov op door
 		alertentity cov_door_Main_Gate
 		wait 500
 		setstate cov_door_Main_Gate invisible
+		trigger uppermaingateoffice_door open
 	}
 	trigger disable_slow
 	{
@@ -1711,6 +1749,7 @@ main_upper_door //old cov op door
 		alertentity cov_door_Main_Gate
 		wait 500
 		setstate cov_door_Main_Gate invisible
+		trigger uppermaingateoffice_door open
 	}
 }
 

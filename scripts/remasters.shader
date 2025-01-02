@@ -405,6 +405,26 @@ textures/remasters/light_m16_a
 	}
 }
 
+textures/remasters/light_m16_a2
+{
+	qer_editorimage textures/lights/light_m16.tga
+	q3map_surfacelight 1000
+	surfaceparm nomarks
+	{
+		map $lightmap
+		rgbGen identity
+	}
+	{
+		map textures/lights/light_m16.tga
+		blendFunc GL_DST_COLOR GL_ZERO
+		rgbGen identity
+	}
+	{
+		map textures/lights/light_m16.blend.tga
+		blendFunc GL_ONE GL_ONE
+	}
+}
+
 textures/remasters/rem_xlight_4000
 {
 	qer_editorimage textures/lights/light_xlight_02.tga
