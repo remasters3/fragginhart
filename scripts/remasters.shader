@@ -60,19 +60,15 @@ textures/remasters/dowallb
 textures/remasters/dowallc
 {
 	qer_editorimage textures/remasters/depo/brick_beigegrey.jpg
-	{
-		map textures/remasters/depo/brick_beigegrey.jpg
-		tcmod scale 0.5 0.5
-	}
+	implicitMap textures/remasters/depo/brick_beigegrey.jpg
+
 }
 
 textures/remasters/dowalld
 {
-	qer_editorimage textures/town_wall/church_c01dm.jpg
-	{
-		map textures/town_wall/church_c01dm.jpg
-		tcmod scale 1 1
-	}
+	qer_editorimage textures/remasters/depo/cathedrale_c06dm.jpg
+	implicitMap textures/remasters/depo/cathedrale_c06dm.jpg
+
 }
 textures/remasters/dowalle
 {

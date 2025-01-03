@@ -322,6 +322,7 @@ uppermaingateoffice_door
 		accum 0 set	0 //default is closed
 		accum 1 set	1 //default enable
 		wait 500
+		// trigger self disable
 	}
 	trigger open
 	{
