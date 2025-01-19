@@ -314,6 +314,22 @@ game_manager
 	}	
 }
 
+// for blocking the windows in the documents room
+docswindow
+{
+	spawn
+	{
+		trigger self enable
+	}
+	trigger enable
+	{
+		setstate docswindow invisible
+	}
+	trigger disable
+	{
+		setstate docswindow default
+	}
+}
 // for blocking the upper maingate office
 uppermaingateoffice_door
 {
