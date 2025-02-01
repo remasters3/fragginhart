@@ -2503,3 +2503,95 @@ cheese_door
 		accum 0 set 0
 	}
 }
+
+// little radio at axis middle spawn.
+axis_spawn_radio
+{
+	spawn
+	{
+		wait 2000
+		accum 0 set 0
+	}
+	
+	trigger toggle
+	{
+		accum 0 trigger_if_equal 0 axis_spawn_radio play_0
+		accum 0 trigger_if_equal 1 axis_spawn_radio play_1
+		accum 0 trigger_if_equal 2 axis_spawn_radio play_2
+		accum 0 trigger_if_equal 3 axis_spawn_radio play_3
+		accum 0 trigger_if_equal 4 axis_spawn_radio play_4
+		accum 0 trigger_if_equal 5 axis_spawn_radio play_5
+		accum 0 trigger_if_equal 6 axis_spawn_radio stop
+	}
+	
+	trigger play_0
+	{
+		accum 0 abort_if_not_equal 0
+		playsound sound/menu/select.wav volume 10
+		playsound sound/music/menu_server.wav looping volume 30
+		wait 500
+		accum 0 set 1
+	}
+	
+	trigger play_1
+	{
+		accum 0 abort_if_not_equal 1
+		playsound sound/menu/select.wav volume 10
+		playsound sound/world/radio_static_01.wav looping volume 30
+		wait 500
+		accum 0 set 2
+	}
+	
+	trigger play_2
+	{
+		accum 0 abort_if_not_equal 2
+		playsound sound/menu/select.wav volume 10
+		playsound sound/vo/radar/news_radar.wav looping volume 30
+		wait 500
+		accum 0 set 3
+	}
+	
+	trigger play_3
+	{
+		accum 0 abort_if_not_equal 3
+		playsound sound/menu/select.wav volume 10
+		playsound sound/world/radio_static_02.wav looping volume 30
+		wait 500
+		accum 0 set 4
+	}
+	
+	trigger play_4
+	{
+		accum 0 abort_if_not_equal 4
+		playsound sound/menu/select.wav volume 10
+		playsound sound/vo/battery/news_battery.wav looping volume 30
+		wait 500
+		accum 0 set 5
+	}
+	
+	trigger play_5
+	{
+		accum 0 abort_if_not_equal 5
+		playsound sound/menu/select.wav volume 10
+		playsound sound/world/radio_static_01.wav looping volume 30
+		wait 500
+		accum 0 set 6
+	}
+	
+	trigger stop
+	{
+		accum 0 abort_if_not_equal 6
+		stopsound
+		playsound sound/menu/select.wav volume 10
+		wait 500
+		accum 0 set 0
+	}
+}
+
+axis_spawn_radio_tst
+{
+	trigger push
+	{
+		trigger axis_spawn_radio toggle
+	}
+}
