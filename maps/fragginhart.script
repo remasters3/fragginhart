@@ -3,15 +3,17 @@ game_manager
 	spawn
 	{
 		// Game rules
-		wm_axis_respawntime 25
-		wm_allied_respawntime 15
+		wm_axis_respawntime 30
+		wm_allied_respawntime 20
 		wm_number_of_objectives 8
-		wm_set_round_timelimit 20
+		wm_set_round_timelimit 30
 		wm_set_defending_team 0
 		wm_setwinner 0
-
+		
+		// map config // 
+		globalaccum 0 set 0 // 0 = default, 1 = te
+		
 		// Objectives
-
 		// 1: Generator
 		accum 1 set	0
 		wm_objective_status 1 1 0
@@ -63,13 +65,54 @@ game_manager
 		setautospawn "Villa" 1
 		
 		wait 1000
-		
 		trigger self phase1
+	}
+	
+	trigger config_default
+	{
+		wm_announce "^1<<^Bdefault config loaded^1>>"
+		
+		trigger villa_garage unblock             //blocks the route between the villa garage and the balcony north corridor
+		trigger cheese_door enabled              //door that opens between north corridor and transmitter road when generator is captured.
+		trigger battery_room unblock             //blocks the route between the transmitter and generator spawn
+		trigger gen_gate enabled                 //door that opens for access to the rear of the generator and maingate
+		trigger block_gen_sidewall_window false  //do u want to block the murderhole at generator?
+		trigger uppermaingateoffice_door enabled //door that opens to the wooden rooms above maingate.
+		trigger block_flag_sidewall false        //do u want to block the extra route between sidewall and flag?
+		trigger depot_recep unblock              //blocks the route between the depo reception and depogate
+		trigger depot_basement_block false       //do u want to block access to the depot basement?
+		trigger depot_se_storeroom unblock       //blocks access to the depot southeast storeroom
+		trigger docswindow unblock               //blocks the windows at documents
+		trigger Depot_lift enabled               //elevator at documents room
+	}
+	
+	trigger config_te
+	{
+		wm_announce "^1<<^Bte config loaded^1>>"
+		
+		trigger villa_garage block
+		trigger cheese_door disable_open
+		trigger battery_room block
+		trigger gen_gate disabled
+		trigger block_gen_sidewall_window true
+		trigger uppermaingateoffice_door disabled
+		trigger block_flag_sidewall true
+		trigger depot_recep block
+		trigger depot_basement_block true
+		trigger depot_se_storeroom block
+        trigger docswindow block
+		trigger Depot_lift disabled_up
 	}
 	
 	trigger phase1
 	{
+		// waiting for entities to load.
 		wait 500
+		
+		// load map config //
+		globalaccum 0 trigger_if_equal 0 game_manager config_default
+		globalaccum 0 trigger_if_equal 1 game_manager config_te
+		
 		// wm_announce "Phase 1 enabled"
 		accum 1 trigger_if_equal 0 game_manager generator_active
 		accum 8 trigger_if_equal 0 game_manager alliedcp_active
@@ -90,7 +133,6 @@ game_manager
 		
 		// spawn stuff
 		setautospawn "Generator Spawn" 0
-		
 
 	}
 	
@@ -311,7 +353,8 @@ game_manager
 		accum 8 abort_if_equal 0
 		accum 1 abort_if_equal 0
 		trigger allied_cp_open cp_spawn_enable		
-	}	
+	}
+	
 }
 
 // for blocking the windows in the documents room
@@ -319,13 +362,13 @@ docswindow
 {
 	spawn
 	{
-		trigger self enable
+		wait 500
 	}
-	trigger enable
+	trigger unblock
 	{
 		setstate docswindow invisible
 	}
-	trigger disable
+	trigger block
 	{
 		setstate docswindow default
 	}
@@ -338,7 +381,6 @@ uppermaingateoffice_door
 		accum 0 set	0 //default is closed
 		accum 1 set	1 //default enable
 		wait 500
-		// trigger self disable
 	}
 	trigger open
 	{
@@ -357,16 +399,55 @@ uppermaingateoffice_door
 		stopsound
 		accum 0 set	0
 	}
-	trigger disable
+	trigger disabled
 	{
 		accum 1 set	0
 	}
 	
-	trigger enable
+	trigger enabled
 	{
 		accum 1 set	1
 	}
 }
+/// script movers for blocking the villa garage route from allies spawn.
+villa_garage
+{
+	spawn
+	{
+		wait 500
+	}
+	
+	trigger block
+	{
+		setstate villa_garage default
+	}
+	
+	trigger unblock
+	{
+		setstate villa_garage invisible
+	}
+}
+
+/// script movers for blocking the battery room.
+battery_room
+{
+	spawn
+	{
+		wait 500
+		// trigger self unblock
+	}
+	
+	trigger block
+	{
+		setstate battery_room default
+	}
+	
+	trigger unblock
+	{
+		setstate battery_room invisible
+	}
+}
+
 // for blocking the axis middle spawn to forward bunker archway. 
 middle_flag_door
 {
@@ -395,7 +476,8 @@ block_gen_sidewall_window
 {
 	spawn
 	{
-		trigger self false
+		wait 500
+		// trigger self false
 	}
 	
 	trigger false
@@ -414,7 +496,8 @@ block_flag_sidewall
 {
 	spawn
 	{
-		trigger self false
+		wait 500
+		// trigger self false
 	}
 	
 	trigger false
@@ -1102,35 +1185,98 @@ fallingbeam
 		faceangles 0 0 -31 400
 	}
 }
+
+/// scriptmover to block the basement under the documents room
+depot_basement_block
+{
+	spawn
+	{
+		wait 500
+	}
+	trigger true
+	{
+		setstate depot_basement_block default
+	}
+	
+	trigger false
+	{
+		setstate depot_basement_block invisible
+	}
+}
+
+
+/// scrptmover to block the depo reception to stair route
+depot_recep
+{
+	spawn
+	{
+		wait 500
+		// trigger self unblock
+	}
+	trigger block
+	{
+		setstate depot_recep default
+	}
+	
+	trigger unblock
+	{
+		setstate depot_recep invisible
+	}
+}
+
+
+/// scriptmover to block depot southeast store room 
+depot_se_storeroom
+{
+	spawn
+	{
+		wait 500
+	}
+	trigger block
+	{
+		setstate depot_se_storeroom default
+	}
+	
+	trigger unblock
+	{
+		setstate depot_se_storeroom invisible
+	}
+}
+
 /// Depo yard elevator/lift
 Depot_lift
 {
 	spawn
 	{	
-		wait 2000
-		trigger Depot_lift_up_tst push
+		wait 500
 	}
 	
 	trigger up
 	{
+		accum 0 abort_if_equal 3
 		playsound sound/movers/motors/motor_start_01.wav volume 200
 		playsound sound/movers/motors/motor_loop_01.wav  looping volume 200
 		gotomarker Depot_lift_up_pos 40 wait
 		stopsound
 		playsound sound/movers/motors/motor_end_01.wav volume 200
 		trigger self doors_open
+		wait 2500
+		accum 0 abort_if_equal 3
 		setstate Depot_lift_down_trigger default
 		setstate Depot_lift_up_trigger invisible
 	}
 	
 	trigger down
 	{
+		accum 0 abort_if_equal 3
 		trigger self doors_closed
+		wait 2500
 		playsound sound/movers/motors/motor_start_01.wav volume 200
 		playsound sound/movers/motors/motor_loop_01.wav  looping volume 200
 		gotomarker Depot_lift_down_pos 40 wait
 		stopsound
 		playsound sound/movers/motors/motor_end_01.wav volume 200
+		accum 0 abort_if_equal 3
 		setstate Depot_lift_down_trigger invisible
 		setstate Depot_lift_up_trigger default
 	}
@@ -1148,6 +1294,48 @@ Depot_lift
 		playsound sound/vehicles/misc/radar_end.wav volume 200
 		trigger Depot_lift_door_l close
 		trigger Depot_lift_door_r close
+	}
+	
+	trigger disabled_up
+	{
+		accum 0 set 3
+		gotomarker Depot_lift_up_pos 40 wait
+		trigger self doors_open
+		setstate Depot_lift_down_trigger invisible
+		setstate Depot_lift_up_trigger invisible
+		setstate Depot_lift_up_tst invisible
+		setstate Depot_lift_down_tst invisible
+		setstate depo_lift_switch_a invisible
+		setstate depo_lift_switch_b invisible
+		setstate depo_lift_switch_c invisible
+	}
+
+	trigger disabled_down
+	{
+		accum 0 set 3
+		gotomarker Depot_lift_down_pos 40 wait
+		trigger self doors_closed
+		setstate Depot_lift_down_trigger invisible
+		setstate Depot_lift_up_trigger invisible
+		setstate Depot_lift_up_tst invisible
+		setstate Depot_lift_down_tst invisible
+		setstate depo_lift_switch_a invisible
+		setstate depo_lift_switch_b invisible
+		setstate depo_lift_switch_c invisible
+	}
+	
+	trigger enabled
+	{
+		accum 0 set 0
+		setstate Depot_lift_down_trigger default
+		setstate Depot_lift_up_trigger default
+		setstate Depot_lift_up_tst default
+		setstate Depot_lift_down_tst default
+		setstate depo_lift_switch_a default
+		setstate depo_lift_switch_b default
+		setstate depo_lift_switch_c default
+		wait 3000
+		trigger Depot_lift_up_tst push
 	}
 }
 
@@ -1232,14 +1420,14 @@ depo_lift_switch_a
 	{	
 		faceangles 0 0 0 100
 		faceangles 70 0 0 100
-		playsound sound/movers/switches/switch_02.wav volume 200
+		playsound sound/movers/switches/switch_02.wav volume 100
 	}
 	
 	trigger down
 	{
 		faceangles 0 0 0 100
 		faceangles -70 0 0 100
-		playsound sound/movers/switches/switch_02.wav volume 200
+		playsound sound/movers/switches/switch_02.wav volume 100
 	}
 }
 
@@ -1253,14 +1441,14 @@ depo_lift_switch_b
 	trigger up
 	{	faceangles 0 0 0 100
 		faceangles 70 0 0 100
-		playsound sound/movers/switches/switch_02.wav volume 200
+		playsound sound/movers/switches/switch_02.wav volume 100
 	}
 	
 	trigger down
 	{
 		faceangles 0 0 0 100
 		faceangles -70 0 0 100
-		playsound sound/movers/switches/switch_02.wav volume 200
+		playsound sound/movers/switches/switch_02.wav volume 100
 	}
 }
 
@@ -1274,14 +1462,14 @@ depo_lift_switch_c
 	trigger up
 	{	faceangles 0 0 0 100
 		faceangles 0 0 70 100
-		playsound sound/movers/switches/switch_02.wav volume 200
+		playsound sound/movers/switches/switch_02.wav volume 100
 	}
 	
 	trigger down
 	{
 		faceangles 0 0 0 100
 		faceangles 0 0 -70 100
-		playsound sound/movers/switches/switch_02.wav volume 200
+		playsound sound/movers/switches/switch_02.wav volume 100
 	}
 }
 
@@ -1333,6 +1521,7 @@ switchlever
 {
 	spawn
 	{
+		wait 500
 		trigger self init
 	}
 
@@ -1561,12 +1750,12 @@ gen_gate
 	{
 		accum 0 set 0
 		wait 500
-		// trigger self open
 	}
 	
 	trigger open
 	{
 		accum 0 abort_if_equal 1
+		accum 0 abort_if_equal 3
 		alertentity gen_gate
 		accum 0 set 1
 	}
@@ -1574,7 +1763,20 @@ gen_gate
 	trigger close
 	{
 		accum 0 abort_if_equal 0
+		accum 0 abort_if_equal 3
 		alertentity gen_gate
+		accum 0 set 0
+	}
+	
+	trigger disabled
+	{
+		wait 500
+		accum 0 set 3
+	}
+	
+	trigger enabled
+	{
+		wait 500
 		accum 0 set 0
 	}
 }
@@ -2492,6 +2694,7 @@ cheese_door
 	trigger open
 	{
 		accum 0 abort_if_equal 1
+		accum 0 abort_if_equal 3
 		alertentity cheese_door
 		accum 0 set 1
 	}
@@ -2499,7 +2702,28 @@ cheese_door
 	trigger close
 	{
 		accum 0 abort_if_equal 0
+		accum 0 abort_if_equal 3
 		alertentity cheese_door
+		accum 0 set 0
+	}
+	
+	trigger disable_open
+	{
+		trigger cheese_door open
+		wait 500
+		accum 0 set 3
+	}
+	
+	trigger disable_closed
+	{
+		trigger cheese_door close
+		wait 500
+		accum 0 set 3
+	}
+	
+	trigger enabled
+	{
+		wait 500
 		accum 0 set 0
 	}
 }
@@ -2528,7 +2752,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 0
 		playsound sound/menu/select.wav volume 10
-		playsound sound/music/menu_server.wav looping volume 30
+		playsound sound/music/menu_server.wav looping volume 100
 		wait 500
 		accum 0 set 1
 	}
@@ -2537,7 +2761,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 1
 		playsound sound/menu/select.wav volume 10
-		playsound sound/world/radio_static_01.wav looping volume 30
+		playsound sound/world/radio_static_01.wav looping volume 100
 		wait 500
 		accum 0 set 2
 	}
@@ -2546,7 +2770,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 2
 		playsound sound/menu/select.wav volume 10
-		playsound sound/vo/radar/news_radar.wav looping volume 30
+		playsound sound/vo/radar/news_radar.wav looping volume 100
 		wait 500
 		accum 0 set 3
 	}
@@ -2555,7 +2779,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 3
 		playsound sound/menu/select.wav volume 10
-		playsound sound/world/radio_static_02.wav looping volume 30
+		playsound sound/world/radio_static_02.wav looping volume 100
 		wait 500
 		accum 0 set 4
 	}
@@ -2564,7 +2788,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 4
 		playsound sound/menu/select.wav volume 10
-		playsound sound/vo/battery/news_battery.wav looping volume 30
+		playsound sound/vo/battery/news_battery.wav looping volume 100
 		wait 500
 		accum 0 set 5
 	}
@@ -2573,7 +2797,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 5
 		playsound sound/menu/select.wav volume 10
-		playsound sound/world/radio_static_01.wav looping volume 30
+		playsound sound/world/radio_static_01.wav looping volume 70
 		wait 500
 		accum 0 set 6
 	}
