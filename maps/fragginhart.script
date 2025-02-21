@@ -70,7 +70,7 @@ game_manager
 	
 	trigger config_default
 	{
-		wm_announce "^1<<^Bdefault config loaded^1>>"
+		wm_announce "^1< ^Bdefault config loaded ^1>"
 		
 		trigger villa_garage unblock             //blocks the route between the villa garage and the balcony north corridor
 		trigger cheese_door enabled              //door that opens between north corridor and transmitter road when generator is captured.
@@ -88,7 +88,7 @@ game_manager
 	
 	trigger config_te
 	{
-		wm_announce "^1<<^Bte config loaded^1>>"
+		wm_announce "^1< ^Bte config loaded ^1>"
 		
 		trigger villa_garage block
 		trigger cheese_door disable_open
@@ -532,8 +532,6 @@ middle_transmitter_door
 		accum 0 set	0
 	}
 }
-
-
 
 // ==== Forward Flag ==== //
 
