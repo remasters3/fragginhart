@@ -47,7 +47,6 @@
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 
 ## v5 change log
-https://discord.com/channels/925535947360174140/1243871009895878718/1243871009895878718
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
   - the depo gate now opens from the opposite side.
 - Changed the assualt ramp at docs room.
@@ -55,8 +54,9 @@ https://discord.com/channels/925535947360174140/1243871009895878718/124387100989
   - moved assult ramp to the rear route.
 - Changed documents room, now has a window.
 - Added route at top of main gate to help allies capture flag.
+- Added options to block routes and other configurations via the map script.
+- Fixed Axis vo "objective dropped" audio file.
 
-- Axis vo "objective dropped" audio file is wrong bitrate.
 ## v4.1 change log
 - Fixed "textures/remasters/vswindow1" typo in the shader causing the texture to not be displayed correctly in 2.60b. ( reported by pappywolf ) 
 ## v4 change log
