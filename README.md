@@ -4,7 +4,7 @@
 <br> https://www.etlegacy.com/
 <br> https://et.trackbase.net/map/9158
 - download the current version.
-  - [fragginhart_v4.1.pk3](https://github.com/remasters3/fragginhart/raw/main/fragginhart_v5.pk3 "fragginhart_v5.pk3")
+  - [fragginhart_v5.pk3](https://github.com/remasters3/fragginhart/raw/main/fragginhart_v5.pk3 "fragginhart_v5.pk3")
   - please remove any previous versions and related scripts.
   - Omnibot files by Mateos can be found on the official. [omnibot repo](https://app.assembla.com/spaces/omnibot/subversion/source/HEAD/Enemy-Territory/0.8/et/incomplete_navs/with_script "omnibot repo")
 ## Map Objectives
