@@ -10,3 +10,18 @@ gather-source.ps1
 /gather-source.ps1
 /pk3
 /pk3/*
+
+
+
+
+
+
+"C:\Program Files (x86)\ETLegacy\etl.exe" +password "holdon" +connect "et.hellsbasket.org:27961"+set fs_homepath c:\users\Mario\"
+
+
+"C:\Program Files (x86)\ETLegacy\etl.exe" +fs_homepath "c:\users\Mario\ETLegacy" +password "holdon"
+
+
+"C:\Program Files (x86)\ETLegacy\etl.exe" +fs_homepath "c:\users\Mario\ETlegacy" +password "holdon"
+
+E07BCF6A7A3F6D650B0A3FF7ABC15EF6

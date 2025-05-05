@@ -45,7 +45,10 @@
 [![sample screenshot](/readme/ss/2024-09-21-121739-fragginhart-Small.png)](/readme/ss/2024-09-21-121739-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
-
+## v6 to do
+  - Middle storeroom at sidewall is to dark ( reported by u!ps )
+  - Transmitter room is to hard for axis to defend ( reported by u!ps )
+  - Add time bonus option. (requested by stig)
 ## v5 change log
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
   - the depo gate now opens from the opposite side.
