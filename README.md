@@ -51,9 +51,9 @@
   - Transmitter room door is now wider ( requested by u!ps )
   - Added some cosmetics.
   - ToDo
-	- Add time bonus option. (requested by (HBC)Stig)
+	- Add time bonus option. (requested by (HBC)Stig )
     - redraw the command map
-	- Make voiceover sounds better (requested by (HBC)Futtbucker 
+	- Make voiceover sounds better (requested by (HBC)Futtbucker )
 ## v5 change log
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
   - the depo gate now opens from the opposite side.
