@@ -6,7 +6,7 @@ game_manager
 		wm_axis_respawntime 30
 		wm_allied_respawntime 20
 		wm_number_of_objectives 8
-		wm_set_round_timelimit 30
+		wm_set_round_timelimit 20
 		wm_set_defending_team 0
 		wm_setwinner 0
 		
@@ -70,7 +70,7 @@ game_manager
 	
 	trigger config_default
 	{
-		wm_announce "^1< ^Bdefault config loaded ^1>"
+		// wm_announce "^1< ^Bdefault config loaded ^1>"
 		
 		trigger villa_garage unblock             //blocks the route between the villa garage and the balcony north corridor
 		trigger cheese_door enabled              //door that opens between north corridor and transmitter road when generator is captured.
@@ -88,7 +88,7 @@ game_manager
 	
 	trigger config_te
 	{
-		wm_announce "^1< ^Bte config loaded ^1>"
+		// wm_announce "^1< ^Bte config loaded ^1>"
 		
 		trigger villa_garage block
 		trigger cheese_door disable_open
@@ -1625,6 +1625,7 @@ gen_allies_tst
 	{
 		accum 1 set 1
 		wm_announce "^7Generator powering up in:"
+		trigger powerneedle move
 		wm_announce "^7...^110^7..."
 		wait 1000
 		accum 1 abort_if_equal 0
@@ -1654,6 +1655,8 @@ gen_allies_tst
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^101^7..."
 		wait 1000
+		accum 1 abort_if_equal 0
+		trigger powerneedle idle
 		trigger gen_axis_tst disable
 		trigger gen_sound start
 		trigger gen_sound on
@@ -1663,6 +1666,7 @@ gen_allies_tst
 	trigger stop_count
 	{
 		accum 1 set 0
+		trigger powerneedle reset
 		wm_announce "^7...^1Axis have stopped the countdown!^7..."
 	}
 	
@@ -1705,6 +1709,34 @@ gen_allies_tst
  	}
 
 }
+
+powerneedle
+{
+	spawn
+	{
+		trigger self reset
+	}
+	
+	trigger move
+	{
+		faceangles 0 0 270 10000
+	}
+	
+	trigger reset
+	{
+		faceangles 0 0 89 1
+	}
+	
+	trigger idle
+	{
+		faceangles 0 0 278 500
+		wait 500
+		faceangles 0 0 275 500
+		wait 500
+		trigger self idle
+	}
+}
+
 
 gen_sound
 {

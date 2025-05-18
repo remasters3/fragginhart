@@ -1,3 +1,39 @@
+// generator guage
+textures/remasters/gen/guage01
+{
+	qer_editorimage textures/remasters/gen/01.jpg
+	implicitMap textures/remasters/gen/01.jpg
+}
+
+textures/remasters/gen/guage02
+{
+	qer_editorimage textures/remasters/gen/02.jpg
+	implicitMap textures/remasters/gen/02.jpg
+}
+
+textures/remasters/gen/guage03
+{
+	qer_editorimage textures/remasters/gen/03.jpg
+	implicitMap textures/remasters/gen/03.jpg
+}
+
+textures/remasters/gen/guage04
+{
+	qer_editorimage textures/remasters/gen/04.jpg
+	implicitMap textures/remasters/gen/04.jpg
+}
+
+textures/remasters/gen/guage05
+{
+	qer_editorimage textures/remasters/gen/05.jpg
+	implicitMap textures/remasters/gen/05.jpg
+}
+
+textures/remasters/gen/guage06
+{
+	qer_editorimage textures/remasters/gen/06.jpg
+	implicitMap textures/remasters/gen/06.jpg
+}
 // depo yard //
 textures/remasters/rampa
 {
