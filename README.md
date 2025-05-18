@@ -45,10 +45,14 @@
 [![sample screenshot](/readme/ss/2024-09-21-121739-fragginhart-Small.png)](/readme/ss/2024-09-21-121739-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
-## v6 to do
-  - Middle storeroom at sidewall is to dark ( reported by u!ps )
-  - Transmitter room is to hard for axis to defend ( reported by u!ps )
-  - Add time bonus option. (requested by stig)
+## v6 Change log
+  - Fixed Middle storeroom at sidewall is to dark ( reported by u!ps )
+  - Made the "battery array room" shorter reducing the distance to ladder for allies ( requested by (HBC)Mietas )
+  - Transmitter room door is now wider ( requested by u!ps )
+  - Added some cosmetics.
+  - ToDo
+	- Add time bonus option. (requested by stig)
+    - redraw the command map
 ## v5 change log
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
   - the depo gate now opens from the opposite side.
