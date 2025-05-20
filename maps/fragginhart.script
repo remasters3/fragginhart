@@ -2849,3 +2849,45 @@ axis_spawn_radio_tst
 		trigger axis_spawn_radio toggle
 	}
 }
+
+// mortarspot stuff
+mortarspot_in
+{
+	spawn
+	{
+		wait 500
+		trigger self false
+	}
+	
+	trigger false
+	{
+		setstate mortarspot_in invisible
+	}
+	
+	trigger true
+	{
+		setstate mortarspot_in default
+	}
+}
+
+mortarspot_tst
+{
+	spawn
+	{
+	}
+	
+	trigger fire
+	{
+		trigger mortarspot_tst toggle_n1
+	}
+	
+	trigger toggle_n1
+	{
+		trigger mortarspot_in true
+		wm_announce "^1< ^bRema's hidden mortar nest is occupied^7! ^1>"
+		wait 1
+		wm_announce "^1< ^bFire shall rain from the sky^7! ^1>"
+		trigger mortarspot_in false
+	}
+}
+
