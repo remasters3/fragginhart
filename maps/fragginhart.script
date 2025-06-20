@@ -82,8 +82,9 @@ game_manager
 		trigger depot_recep unblock              //blocks the route between the depo reception and depogate
 		trigger depot_basement_block false       //do u want to block access to the depot basement?
 		trigger depot_se_storeroom unblock       //blocks access to the depot southeast storeroom
-		trigger docswindow unblock               //blocks the windows at documents
-		trigger Depot_lift enabled               //elevator at documents room
+		trigger docswindow unblock               //blocks the windows at documents.
+		trigger Depot_lift enabled               //elevator at documents room.
+		trigger mortarspot_tst false              //Hidden teleport to mortar spot.
 	}
 	
 	trigger config_te
@@ -102,6 +103,7 @@ game_manager
 		trigger depot_se_storeroom block
         trigger docswindow block
 		trigger Depot_lift disabled_up
+		trigger mortarspot_tst false
 	}
 	
 	trigger phase1
@@ -1603,7 +1605,9 @@ gen_allies_tst
 {
 	spawn
 	{
+		accum 0 set 0
 		accum 1 set 0
+		accum 2 set 0
 		trigger self gen_yellow
 	}
 	
@@ -1612,7 +1616,7 @@ gen_allies_tst
 		// trigger gen_sound toggle
 		trigger self hide
 		trigger switchlever on
-		trigger gen_allies_tst start_count
+		trigger gen_allies_tst start_count	
 	}
 	
 	trigger hide
@@ -1621,52 +1625,171 @@ gen_allies_tst
 		setstate gen_button_allies invisible
 	}
 	
+	trigger tick
+	{
+		trigger gen_allies_tst charge
+		wait 2000
+		accum 1 abort_if_equal 0
+		trigger gen_allies_tst count
+		trigger gen_allies_tst tick
+	}
+	
+	trigger count
+	{
+		accum 2 inc 1
+	}
+	
+	trigger charge
+	{
+		
+		accum 2 trigger_if_equal 0 gen_allies_tst precent_000
+		accum 2 abort_if_equal 0
+		accum 2 trigger_if_equal 1 gen_allies_tst precent_010
+		accum 2 abort_if_equal 1
+		accum 2 trigger_if_equal 2 gen_allies_tst precent_020
+		accum 2 abort_if_equal 2
+		accum 2 trigger_if_equal 3 gen_allies_tst precent_030
+		accum 2 abort_if_equal 3
+		accum 2 trigger_if_equal 4 gen_allies_tst precent_040
+		accum 2 abort_if_equal 4
+		accum 2 trigger_if_equal 5 gen_allies_tst precent_050
+		accum 2 abort_if_equal 5
+		accum 2 trigger_if_equal 6 gen_allies_tst precent_060
+		accum 2 abort_if_equal 6
+		accum 2 trigger_if_equal 7 gen_allies_tst precent_070
+		accum 2 abort_if_equal 7
+		accum 2 trigger_if_equal 8 gen_allies_tst precent_080
+		accum 2 abort_if_equal 8
+		accum 2 trigger_if_equal 9 gen_allies_tst precent_090
+		accum 2 abort_if_equal 9
+		accum 2 trigger_if_equal 10 gen_allies_tst precent_100	
+	}
+	
+	trigger precent_000
+	{
+		wm_announce "^100^7"
+	}
+	
+	trigger precent_010
+	{
+		wm_announce "^110^7"
+	}
+	
+	trigger precent_020
+	{
+		wm_announce "^120^7"
+	}
+
+	trigger precent_030
+	{
+		wm_announce "^130^7"
+	}
+	
+	trigger precent_040
+	{
+		wm_announce "^140^7"
+	}
+
+	trigger precent_050
+	{
+		wm_announce "^150^7"
+	}
+
+	trigger precent_060
+	{
+		wm_announce "^160^7"
+	}
+	
+	trigger precent_070
+	{
+		wm_announce "^170^7"
+	}
+
+	trigger precent_080
+	{
+		wm_announce "^180^7"
+	}
+	
+	trigger precent_090
+	{
+		wm_announce "^190^7"
+	}
+
+	trigger precent_100
+	{
+		wm_announce "^1100^7"
+		trigger gen_allies_tst capture
+	}
+	
 	trigger start_count
 	{
 		accum 1 set 1
-		wm_announce "^7Generator powering up in:"
 		trigger powerneedle move
+		trigger gen_allies_tst tick
+	}
+	
+	trigger start_count_og
+	{
+		accum 1 set 1
+		wm_announce "^7Generator powering up in:"
+		
 		wm_announce "^7...^110^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^109^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^108^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^107^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^106^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^105^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^104^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^103^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^102^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
 		wm_announce "^7...^101^7..."
 		wait 1000
+		
 		accum 1 abort_if_equal 0
-		trigger powerneedle idle
 		trigger gen_axis_tst disable
 		trigger gen_sound start
 		trigger gen_sound on
 		trigger gen_allies_tst capture
 	}
 	
-	trigger stop_count
+	trigger stop_count_og
 	{
 		accum 1 set 0
 		trigger powerneedle reset
+		wm_announce "^7...^1Axis have stopped the countdown!^7..."
+	}
+	
+	trigger stop_count
+	{
+		accum 1 set 0
+		trigger powerneedle stopneedle
 		wm_announce "^7...^1Axis have stopped the countdown!^7..."
 	}
 	
@@ -1674,7 +1797,10 @@ gen_allies_tst
 	{
 		trigger game_manager generator_complete
 		trigger game_manager allies_cp_spawn
+		trigger powerneedle idle
 		trigger alarm_box stop
+		trigger radio_speaker enable
+		trigger the_dropzone show
  		// trigger move_Main_Gate alive_action_Main_Gate
 		trigger Main_Gate alive_open_slow
 		trigger game_manager phase2
@@ -1714,29 +1840,56 @@ powerneedle
 {
 	spawn
 	{
-		trigger self reset
+		// trigger self reset
+		accum 0 set 0
+		accum 1 set 0
+		accum 9 set 0
+		faceangles 0 0 89 1
 	}
-	
 	trigger move
 	{
-		faceangles 0 0 270 10000
+		// faceangles 0 0 -89 20000
+		setrotation 0 0 -8
+	}
+	
+	trigger stopneedle
+	{
+		accum 1 set 0
+		stoprotation
+		stopsound
 	}
 	
 	trigger reset
 	{
 		faceangles 0 0 89 1
+		accum 0 set 0
+	}
+	
+	trigger idle_sound
+	{
+		accum 1 abort_if_equal 3
+		playsound sound/world/fan_slow.wav looping volume 200
+		accum 1 set 3
 	}
 	
 	trigger idle
 	{
-		faceangles 0 0 278 500
-		wait 500
-		faceangles 0 0 275 500
-		wait 500
-		trigger self idle
+		
+		// faceangles 0 0 -89 500
+		// wait 500
+		// faceangles 0 0 -85 500
+		//setrotation 0 0 -1
+		// wait 500
+		trigger powerneedle idle_sound
+		setrotation 0 0 2
+		wait 250
+		stoprotation
+		wait 250
+		setrotation 0 0 -2
+		wait 250
+		trigger powerneedle idle
 	}
 }
-
 
 gen_sound
 {
@@ -1764,7 +1917,7 @@ gen_sound
 	trigger idle
 	{
 		stopsound
-		playsound sound/movers/motors/motor_loop_01.wav  looping volume 30
+		playsound sound/movers/motors/motor_loop_01.wav looping volume 30
 	}
 	
 	trigger on
@@ -2219,6 +2372,7 @@ documents
 		trigger self tyellow
 		wm_objective_status 5 1 1
 		wm_objective_status 5 0 2
+		trigger radio_speaker play_allies
 	}
 	trigger dropped
 	{
@@ -2234,6 +2388,7 @@ documents
 		setstate documents_CMM default
 		wm_objective_status 5 1 0
 		wm_objective_status 5 0 0
+		trigger radio_speaker play_axis
 		trigger self tred
 		trigger self red
 		accum 5 abort_if_not_equal 2
@@ -2292,6 +2447,11 @@ documents
 
 the_dropzone
 {
+	spawn
+	{
+		wait 500
+		trigger self hide
+	}
 	death
 	{
 		trigger game_manager capture
@@ -2300,17 +2460,81 @@ the_dropzone
 	trigger show
 	{
 		setstate the_dropzone Default
+		setstate transmitter_off_msg invisible
+		setstate transmitter_off_msg_trigger invisible
 		wait 10
-		alertentity radio_speaker
-
-		// Remove Transmitter message
-		setstate transmitter_message invisible
-		setstate transmitter_message_print invisible
 	}
 
 	trigger hide
 	{
 		setstate the_dropzone invisible
+		setstate transmitter_off_msg default
+		setstate transmitter_off_msg_trigger default
+	}
+}
+
+radio_speaker
+{
+	spawn
+	{
+		wait 500
+		accum 0 set 1
+		accum 1 set 0
+		stopsound
+		// setstate transmitter_off_msg default
+		// setstate transmitter_off_msg_trigger default
+	}
+	
+	trigger mute
+	{
+		stopsound
+		accum 1 set 0
+	}
+	
+	trigger enable
+	{
+		// setstate transmitter_off_msg invisible
+		// setstate transmitter_off_msg_trigger invisible
+		accum 1 set 1
+		accum 0 trigger_if_equal 1 radio_speaker play_axis
+		accum 0 trigger_if_equal 2 radio_speaker play_allies
+	}
+	
+	trigger play
+	{
+		accum 1 abort_if_equal 0
+		accum 0 trigger_if_equal 1 radio_speaker play_axis
+		accum 0 trigger_if_equal 2 radio_speaker play_allies
+	}
+	
+	trigger play_axis
+	{
+		accum 0 set 1
+		stopsound
+		playsound sound/remasters/german-radio1.wav volume 150
+		wait 10000
+		stopsound
+		playsound sound/world/radio_static_01.wav volume 300
+		wait 4000
+		stopsound
+		playsound sound/world/radio_static_02.wav volume 300
+		wait 5000
+		trigger self play
+	}
+	
+	trigger play_allies
+	{
+		accum 0 set 2
+		stopsound
+		playsound sound/remasters/bscdb.wav volume 500
+		wait 5000
+		stopsound
+		playsound sound/world/radio_static_01.wav volume 300
+		wait 4000
+		stopsound
+		playsound sound/world/radio_static_02.wav volume 300
+		wait 5000
+		trigger self play
 	}
 }
 
@@ -2874,10 +3098,12 @@ mortarspot_tst
 {
 	spawn
 	{
+		wait 500
 	}
 	
 	trigger fire
 	{
+		accum 0 abort_if_not_equal 1
 		trigger mortarspot_tst toggle_n1
 	}
 	
@@ -2888,6 +3114,18 @@ mortarspot_tst
 		wait 1
 		wm_announce "^1< ^bFire shall rain from the sky^7! ^1>"
 		trigger mortarspot_in false
+	}
+	
+	trigger false
+	{
+		accum 0 set 0
+		setstate mortarspot_tst invisible
+	}
+	
+	trigger true
+	{
+		accum 0 set 1
+		setstate mortarspot_tst default
 	}
 }
 

@@ -140,6 +140,8 @@ sound\remasters\vo\axis\axis_sw_instruction.wav
 sound\remasters\vo\axis\axis_sw_low.wav
 sound\remasters\vo\axis\axis_sw_raised.wav
 sound\remasters\vo\axis\axis_drop.wav
+sound\remasters\bscdb.wav
+sound\remasters\german-radio1.wav
 gfx\beer\cm_keycard.tga
 models\multiplayer\keycard\keycard_cc.md3
 models\multiplayer\keycard\keycard_cc_red.md3
@@ -175,3 +177,4 @@ textures\remasters\gen\03.jpg
 textures\remasters\gen\04.jpg
 textures\remasters\gen\05.jpg
 textures\remasters\gen\06.jpg
+textures\remasters\mscale.jpg

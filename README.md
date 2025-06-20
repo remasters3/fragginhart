@@ -49,8 +49,11 @@
   - Fixed Middle storeroom at sidewall is to dark ( reported by u!ps )
   - Made the "battery array room" shorter reducing the distance to ladder for allies ( requested by (HBC)Mietas )
   - Transmitter room door is now wider ( requested by u!ps )
+  - Transmitter now plays sounds when generator is powered on.
+  - Allies can no longer activate transmitter with documents unless the generator is powered on.
   - Added some cosmetics.
   - ToDo
+    - Make Generator switch bigger ( requested by fishy )
 	- Add time bonus option. (requested by (HBC)Stig )
     - redraw the command map
 	- Make voiceover sounds better (requested by (HBC)Futtbucker )
