@@ -11,7 +11,7 @@ game_manager
 		wm_setwinner 0
 		
 		// map config // 
-		globalaccum 0 set 0 // 0 = default, 1 = te
+		accum 0 set 0 // 0=config_default, 1=config_te, 2=config_rema, 3=config_uips
 		
 		// Objectives
 		// 1: Generator
@@ -68,9 +68,24 @@ game_manager
 		trigger self phase1
 	}
 	
+	trigger maptime_ph1
+	{
+		wm_set_round_timelimit 10
+	}
+	
+	trigger maptime_ph2
+	{
+		wm_set_round_timelimit 20
+	}
+	
+	trigger maptime_ph3
+	{
+		wm_set_round_timelimit 30
+	}	
+	
 	trigger config_default
 	{
-		// wm_announce "^1< ^Bdefault config loaded ^1>"
+		// wm_announce "^1< ^bdefault config loaded ^1>"
 		
 		trigger villa_garage unblock             //blocks the route between the villa garage and the balcony north corridor
 		trigger cheese_door enabled              //door that opens between north corridor and transmitter road when generator is captured.
@@ -84,12 +99,15 @@ game_manager
 		trigger depot_se_storeroom unblock       //blocks access to the depot southeast storeroom
 		trigger docswindow unblock               //blocks the windows at documents.
 		trigger Depot_lift enabled               //elevator at documents room.
-		trigger mortarspot_tst false              //Hidden teleport to mortar spot.
+		trigger mortarspot_tst false             //Hidden teleport to mortar spot.
+		trigger trans_covdoor false              //Axis team door on roof of transmitter
+		globalaccum 0 set 1                      //Map time bonus: 0="false" 1="true"
+		globalaccum 1 set 2                      //generator charge time: 0="10s time reset". 1="10s", 2="20s", 3="30s". 1-3="time added". 
 	}
 	
 	trigger config_te
 	{
-		// wm_announce "^1< ^Bte config loaded ^1>"
+		// wm_announce "^1< ^bte config loaded ^1>"
 		
 		trigger villa_garage block
 		trigger cheese_door disable_open
@@ -104,6 +122,52 @@ game_manager
         trigger docswindow block
 		trigger Depot_lift disabled_up
 		trigger mortarspot_tst false
+		trigger trans_covdoor true
+		globalaccum 0 set 0
+		globalaccum 1 set 1
+	}
+	
+	trigger config_rema
+	{
+		// wm_announce "^1< ^bhbc config loaded ^1>"
+		
+		trigger villa_garage unblock
+		trigger cheese_door enabled
+		trigger battery_room unblock
+		trigger gen_gate enabled
+		trigger block_gen_sidewall_window false
+		trigger uppermaingateoffice_door enabled
+		trigger block_flag_sidewall false
+		trigger depot_recep block
+		trigger depot_basement_block true
+		trigger depot_se_storeroom block
+		trigger docswindow unblock
+		trigger Depot_lift enabled
+		trigger mortarspot_tst true
+		trigger trans_covdoor false
+		globalaccum 0 set 1
+		globalaccum 1 set 2
+	}
+	trigger config_uips
+	{
+		// wm_announce "^1< ^buips config loaded ^1>"	
+		
+		trigger villa_garage unblock            
+		trigger cheese_door enabled             
+		trigger battery_room unblock            
+		trigger gen_gate enabled                
+		trigger block_gen_sidewall_window false 
+		trigger uppermaingateoffice_door enabled
+		trigger block_flag_sidewall false       
+		trigger depot_recep unblock             
+		trigger depot_basement_block false      
+		trigger depot_se_storeroom block        
+		trigger docswindow unblock              
+		trigger Depot_lift enabled              
+		trigger mortarspot_tst false            
+		trigger trans_covdoor true
+		globalaccum 0 set 0
+		globalaccum 1 set 3
 	}
 	
 	trigger phase1
@@ -112,8 +176,13 @@ game_manager
 		wait 500
 		
 		// load map config //
-		globalaccum 0 trigger_if_equal 0 game_manager config_default
-		globalaccum 0 trigger_if_equal 1 game_manager config_te
+		accum 0 trigger_if_equal 0 game_manager config_default
+		accum 0 trigger_if_equal 1 game_manager config_te
+		accum 0 trigger_if_equal 2 game_manager config_rema
+		accum 0 trigger_if_equal 3 game_manager config_uips
+		
+		// Map time
+		globalaccum 0 trigger_if_equal 1 game_manager maptime_ph1
 		
 		// wm_announce "Phase 1 enabled"
 		accum 1 trigger_if_equal 0 game_manager generator_active
@@ -140,8 +209,9 @@ game_manager
 	
 	trigger phase2
 	{
+		// Map time
+		globalaccum 0 trigger_if_equal 1 game_manager maptime_ph2
 		wait 500
-		// wm_announce "Phase 2 enabled"
 		
 		// clean up from phase1
 		accum 1 trigger_if_equal 1 game_manager generator_complete
@@ -181,7 +251,10 @@ game_manager
 	
 	trigger phase3
 	{
+		// Map Time
+		globalaccum 0 trigger_if_equal 1 game_manager maptime_ph3
 		wait 500
+		
 		// wm_announce "Phase 3 enabled"
 		// clean up from phase 2
 		accum 3 trigger_if_equal 1 game_manager forward_bunker_complete
@@ -1627,8 +1700,43 @@ gen_allies_tst
 	
 	trigger tick
 	{
+		globalaccum 1 trigger_if_equal 0 gen_allies_tst tick_00
+		globalaccum 1 trigger_if_equal 1 gen_allies_tst tick_10
+		globalaccum 1 trigger_if_equal 2 gen_allies_tst tick_20
+		globalaccum 1 trigger_if_equal 3 gen_allies_tst tick_30
+	}
+
+	trigger tick_00
+	{
+		trigger gen_allies_tst charge
+		wait 1000
+		accum 1 abort_if_equal 0
+		trigger gen_allies_tst count
+		trigger gen_allies_tst tick
+	}
+	
+	trigger tick_10
+	{
+		trigger gen_allies_tst charge
+		wait 1000
+		accum 1 abort_if_equal 0
+		trigger gen_allies_tst count
+		trigger gen_allies_tst tick
+	}
+	
+	trigger tick_20
+	{
 		trigger gen_allies_tst charge
 		wait 2000
+		accum 1 abort_if_equal 0
+		trigger gen_allies_tst count
+		trigger gen_allies_tst tick
+	}
+	
+	trigger tick_30
+	{
+		trigger gen_allies_tst charge
+		wait 3000
 		accum 1 abort_if_equal 0
 		trigger gen_allies_tst count
 		trigger gen_allies_tst tick
@@ -1637,6 +1745,11 @@ gen_allies_tst
 	trigger count
 	{
 		accum 2 inc 1
+	}
+	
+	trigger reset_count
+	{
+		accum 2 set 0
 	}
 	
 	trigger charge
@@ -1667,137 +1780,89 @@ gen_allies_tst
 	
 	trigger precent_000
 	{
-		wm_announce "^100^7"
+		wm_announce "^7Power^b:^1=^1=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
 	}
 	
 	trigger precent_010
 	{
-		wm_announce "^110^7"
+		wm_announce "^7Power^b:^2=^1=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
 	}
 	
 	trigger precent_020
 	{
-		wm_announce "^120^7"
+		wm_announce "^7Power^b:^2=^2=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
 	}
 
 	trigger precent_030
 	{
-		wm_announce "^130^7"
+		wm_announce "^7Power^b:^2=^2=^2=^1=^1=^1=^1=^1=^1=^1=^b:"
 	}
 	
 	trigger precent_040
 	{
-		wm_announce "^140^7"
+		wm_announce "^7Power^b:^2=^2=^2=^2=^1=^1=^1=^1=^1=^1=^b:"
 	}
 
 	trigger precent_050
 	{
-		wm_announce "^150^7"
+		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^1=^1=^1=^1=^1=^b:"
 	}
 
 	trigger precent_060
 	{
-		wm_announce "^160^7"
+		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^1=^1=^1=^1=^b:"
 	}
 	
 	trigger precent_070
 	{
-		wm_announce "^170^7"
+		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^1=^1=^1=^b:"
 	}
 
 	trigger precent_080
 	{
-		wm_announce "^180^7"
+		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^2=^1=^1=^b:"
 	}
 	
 	trigger precent_090
 	{
-		wm_announce "^190^7"
+		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^2=^2=^1=^b:"
 	}
 
 	trigger precent_100
 	{
-		wm_announce "^1100^7"
-		trigger gen_allies_tst capture
-	}
-	
-	trigger start_count
-	{
-		accum 1 set 1
-		trigger powerneedle move
-		trigger gen_allies_tst tick
-	}
-	
-	trigger start_count_og
-	{
-		accum 1 set 1
-		wm_announce "^7Generator powering up in:"
-		
-		wm_announce "^7...^110^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^109^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^108^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^107^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^106^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^105^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^104^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^103^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^102^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
-		wm_announce "^7...^101^7..."
-		wait 1000
-		
-		accum 1 abort_if_equal 0
+		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^2=^2=^2=^b:"
 		trigger gen_axis_tst disable
 		trigger gen_sound start
 		trigger gen_sound on
 		trigger gen_allies_tst capture
 	}
 	
-	trigger stop_count_og
+	trigger start_count
 	{
-		accum 1 set 0
-		trigger powerneedle reset
-		wm_announce "^7...^1Axis have stopped the countdown!^7..."
+		accum 1 set 1
+		globalaccum 1 trigger_if_equal 1 powerneedle move
+		globalaccum 1 trigger_if_equal 2 powerneedle move
+		globalaccum 1 trigger_if_equal 3 powerneedle move
+		trigger gen_allies_tst tick
 	}
 	
 	trigger stop_count
 	{
 		accum 1 set 0
+		wm_announce "^7...^1Axis have stopped the Generator!^7..."
+		globalaccum 1 trigger_if_equal 0 gen_allies_tst reset_count
+		globalaccum 1 abort_if_equal 0
 		trigger powerneedle stopneedle
-		wm_announce "^7...^1Axis have stopped the countdown!^7..."
 	}
 	
 	trigger capture
 	{
 		trigger game_manager generator_complete
 		trigger game_manager allies_cp_spawn
-		trigger powerneedle idle
+		globalaccum 1 trigger_if_equal 0 powerneedle move
+		globalaccum 1 trigger_if_equal 1 powerneedle idle
+		globalaccum 1 trigger_if_equal 2 powerneedle idle
+		globalaccum 1 trigger_if_equal 3 powerneedle idle
 		trigger alarm_box stop
 		trigger radio_speaker enable
 		trigger the_dropzone show
@@ -1840,7 +1905,6 @@ powerneedle
 {
 	spawn
 	{
-		// trigger self reset
 		accum 0 set 0
 		accum 1 set 0
 		accum 9 set 0
@@ -1848,15 +1912,39 @@ powerneedle
 	}
 	trigger move
 	{
-		// faceangles 0 0 -89 20000
+		globalaccum 1 trigger_if_equal 0 powerneedle move_00
+		globalaccum 1 trigger_if_equal 1 powerneedle move_10
+		globalaccum 1 trigger_if_equal 2 powerneedle move_20
+		globalaccum 1 trigger_if_equal 3 powerneedle move_30
+	}
+	
+	trigger move_00
+	{
+		setrotation 0 0 -17
+		wait 10000
+		trigger powerneedle idle
+	}
+	
+	trigger move_10
+	{
+		setrotation 0 0 -17
+	}
+	
+	trigger move_20
+	{
 		setrotation 0 0 -8
+	}
+	
+	trigger move_30
+	{
+		setrotation 0 0 -5
 	}
 	
 	trigger stopneedle
 	{
 		accum 1 set 0
-		stoprotation
 		stopsound
+		stoprotation
 	}
 	
 	trigger reset
@@ -1871,15 +1959,15 @@ powerneedle
 		playsound sound/world/fan_slow.wav looping volume 200
 		accum 1 set 3
 	}
-	
 	trigger idle
 	{
-		
-		// faceangles 0 0 -89 500
-		// wait 500
-		// faceangles 0 0 -85 500
-		//setrotation 0 0 -1
-		// wait 500
+		faceangles 0 0 -80 1
+		wait 500
+		trigger powerneedle idle_run
+	}
+	
+	trigger idle_run
+	{
 		trigger powerneedle idle_sound
 		setrotation 0 0 2
 		wait 250
@@ -1887,7 +1975,7 @@ powerneedle
 		wait 250
 		setrotation 0 0 -2
 		wait 250
-		trigger powerneedle idle
+		trigger powerneedle idle_run
 	}
 }
 
@@ -2471,6 +2559,27 @@ the_dropzone
 		setstate transmitter_off_msg default
 		setstate transmitter_off_msg_trigger default
 	}
+}
+trans_covdoor
+{
+	spawn
+	{
+		wait 500
+		accum 0 set 0
+	}
+	
+	trigger true
+	{
+		setstate trans_covdoor default
+		setstate trans_olddoor invisible
+	}
+	
+	trigger false
+	{
+		setstate trans_covdoor invisible
+		setstate trans_olddoor default
+	}
+	
 }
 
 radio_speaker
@@ -3110,9 +3219,9 @@ mortarspot_tst
 	trigger toggle_n1
 	{
 		trigger mortarspot_in true
-		wm_announce "^1< ^bRema's hidden mortar nest is occupied^7! ^1>"
+		// wm_announce "^1< ^bRema's hidden mortar nest is occupied^7! ^1>"
 		wait 1
-		wm_announce "^1< ^bFire shall rain from the sky^7! ^1>"
+		// wm_announce "^1< ^bFire shall rain from the sky^7! ^1>"
 		trigger mortarspot_in false
 	}
 	
