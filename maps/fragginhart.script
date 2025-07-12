@@ -1600,14 +1600,14 @@ switchlever
 
 	trigger init
 	{
-		faceangles 0 0 0 1000
+		faceangles 64 0 0 1000
 
 	}
 
 	trigger off
 	{
 		playsound sound/movers/switches/switch_01.wav volume 100
-		faceangles 0 0 0 500
+		faceangles 64 0 0 500
 		trigger gen_sound stop
 		trigger alarm_box stop
 		wm_teamvoiceannounce 1 "fragginhart_allies_sw_low"
@@ -1618,7 +1618,7 @@ switchlever
 	trigger on
 	{
 		playsound sound/movers/switches/switch_01.wav volume 100
-		faceangles -180 0 0 500
+		faceangles -76 0 0 500
 		trigger gen_sound start
 		trigger gen_sound idle
 		trigger alarm_box alarm_one
