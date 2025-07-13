@@ -15,7 +15,7 @@
    - Capture the forward bunker flag.
 3. Steal the Documents.
    - Build the assualt ramp.
-   - Take the Documents to the Transmitter
+   - Take the Documents to the Transmitter.
 
 ## Command Map Overview
 ![MAP](/readme/map-overview.png)
@@ -47,7 +47,7 @@
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 ## v6 Change log
 - Fixed Middle storeroom at sidewall is to dark ( reported by u!ps )
-- Made the "battery array room" shorter reducing the distance to ladder for allies ( requested by (HBC)Mietas )
+- Made the "battery array room" shorter reducing the distance to ladder for allies ( requested by Mietas )
 - Transmitter
   - room door is now wider. ( requested by u!ps )
   - small room added. ( requested by u!ps )
@@ -57,12 +57,13 @@
 - Generator 
   - switch is now bigger ( requested by fishy )
   - added multiple capture options. ( see mapscript for details )
+  - blocked line of sight at rear stairs.
 - Added time bonus option. ( requested by Stig )
 - Added some cosmetics.
 - ToDo
   - redraw the command map
   - Make voiceover sounds better (requested by (HBC)Futtbucker )
-  - fix model draw issue at depotyard truck
+  - fix model draw issue at depotyard truck.
 ## v5 change log
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
   - the depo gate now opens from the opposite side.

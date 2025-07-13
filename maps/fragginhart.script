@@ -278,7 +278,7 @@ game_manager
 		wm_objective_status 6 1 1
 		wm_objective_status 6 0 2
 		trigger game_manager transmitter_complete
-		wm_announce "Allies have transmitted the Documents!"
+		wm_announce "^4Allies ^2have transmitted the Documents^7!"
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
 		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
@@ -643,7 +643,7 @@ Forwardbunker_flag
 		wm_objective_status 3 1 0
 		wm_objective_status 3 0 0
 
-		wm_announce "Axis reclaim the Forward Bunker!"
+		wm_announce "^1Axis ^2reclaim the Forward Bunker^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 0 "fragginhart_axis_bunker_stop"
@@ -670,7 +670,7 @@ Forwardbunker_flag
 		wm_objective_status 3 1 1
 		wm_objective_status 3 0 2
 
-		wm_announce "Allies capture the Forward Bunker!"
+		wm_announce "^4Allies ^2capture the Forward Bunker^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_captured"
@@ -793,7 +793,7 @@ Sidewall
 		wm_objective_status 2 1 1
 		wm_objective_status 2 0 2
 		trigger game_manager sidewall_complete
-		wm_announce "^1Allies have destroyed the Side Wall!"
+		wm_announce "^4Allies ^2have destroyed the Side Wall^7!"
 		setstate bit_of_sidewall default
 		trigger self blue
 		trigger depot_gate_controls yellow
@@ -1187,8 +1187,8 @@ depot_gate_controls
 		wm_objective_status 4 0 2
 		wm_teamvoiceannounce 1 "fragginhart_allies_gates_destroyed"
 		wm_teamvoiceannounce 0 "fragginhart_axis_gates_destroyed"
-		wm_announce "Allies have damaged the Depot Gate Controls and secured the Forward Bunker!"
-		wm_announce "^7Depot Gate is ^2opening^7!"
+		wm_announce "^4Allies ^2have damaged the Depot Gate Controls and secured the Forward Bunker^7!"
+		// wm_announce "^2Depot Gate is opening^7!"
 		setstate Depot_Gate_deadplate default
 		trigger game_manager depotgatecontrols_complete
 		trigger Forwardbunker_flag disabled
@@ -2307,7 +2307,7 @@ Main_Gate
 
 		stopsound
 
-		wm_announce "Main Gate Controls disabled!"
+		// wm_announce "Main Gate Controls disabled!"
 
 		wait 80
 		
@@ -2402,7 +2402,7 @@ ramp_alliedconstruct_n
 		setstate ramp_alliedconstruct_n_flag invisible
 		setstate bit_of_wall invisible
 
-		wm_announce "Allies have built the Ramp!"
+		wm_announce "^4Allies ^2have built the Ramp^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_removeteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
@@ -2428,7 +2428,7 @@ ramp_alliedconstruct_n
 		// trigger ramp_door enable
 		// trigger axis_doc_door enable
 
-		wm_announce "Axis have destroyed the Ramp!"
+		wm_announce "^1Axis ^2have destroyed the Ramp^7!"
 		trigger game_manager ramp_active
 
 		// *----------------------------------- vo ------------------------------------------*
@@ -2464,7 +2464,7 @@ documents
 	}
 	trigger dropped
 	{
-		wm_announce_icon 5 "Allies have dropped the Documents!"
+		wm_announce_icon 5 "^4Allies ^2have dropped the Documents^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 1 "allies_hq_objective_lost"
@@ -2727,7 +2727,7 @@ allied_cp_open
 	{
 		setstate allies_cp_spawn default
 		setstate cpspawn_wobj default
-		wm_announce "^7Allied Command Post spawn ^1Enabled^7!"
+		wm_announce "^4Allied ^2Command Post spawn Enabled^7!"
 		accum 8 abort_if_equal 1
 		setautospawn "Allies CP Spawn" 1
 	}
@@ -2737,7 +2737,7 @@ allied_cp_open
 		// alertentity cpspawn_wobj
 		setstate allies_cp_spawn invisible
 		setstate cpspawn_wobj invisible
-		wm_announce "^7Allied Command Post spawn ^1Disabled^7!"
+		wm_announce "^4Allied ^2Command Post spawn Disabled^7!"
 	}
 	
 	trigger no_autospawn
@@ -2799,7 +2799,7 @@ allied_cp_open
 		
 		trigger game_manager alliedcp_complete
 		trigger game_manager allies_cp_spawn
-		wm_announce "Allied Command Post constructed. Charge speed increased!"
+		wm_announce "^4Allied ^2Command Post constructed. Charge speed increased^7!"
 
 		// *----------------------------------- vo -----------------------------------------
 		wm_teamvoiceannounce 0 "axis_hq_compost_constructed_allies"
@@ -2829,7 +2829,7 @@ allied_cp_open
 		wm_objective_status 8 0 0
 		
 
-		wm_announce "Axis team has destroyed the Allied Command Post!"
+		wm_announce "^1Axis ^2have destroyed the ^4Allied ^2Command Post^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 1 "allies_hq_compost_construct"
@@ -2919,7 +2919,7 @@ axis_cp_open
 		wm_objective_status 7 1 2
 		wm_objective_status 7 0 1
 
-		wm_announce "Axis Command Post constructed. Charge speed increased!"
+		wm_announce "^1Axis ^2Command Post constructed. Charge speed increased^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 1 "allies_hq_compost_constructed_axis"
@@ -2947,7 +2947,7 @@ axis_cp_open
 		wm_objective_status 7 1 0
 		wm_objective_status 7 0 0
 
-		wm_announce "Allied team has destroyed the Axis Command Post!"
+		wm_announce "^4Allies ^2have destroyed the ^1Axis ^2Command Post^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_addteamvoiceannounce 0 "axis_hq_compost_construct"
@@ -3004,7 +3004,7 @@ alliedconstruct1
 		setstate alliedconstruct1_extra default							// Sandbags
 		setstate alliedconstruct1_mg42 default							// MG42 entity
 
-		wm_announce "Allies have built the MG42 nest!"
+		wm_announce "^4Allies ^2have built the MG42 nest^7!"
 	}
 
 	decayed final
@@ -3016,7 +3016,7 @@ alliedconstruct1
 	{
 		trigger self setup
 
-		wm_announce "Axis have destroyed the MG42 Nest!"
+		wm_announce "^1Axis ^2have destroyed the MG42 Nest^7!"
 	}
 }
 
