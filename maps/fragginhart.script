@@ -85,7 +85,7 @@ game_manager
 	
 	trigger config_default
 	{
-		// wm_announce "^1< ^bdefault config loaded ^1>"
+		// wm_announce "^1< ^bconfig_default loaded ^1>"
 		
 		trigger villa_garage unblock             //blocks the route between the villa garage and the balcony north corridor
 		trigger cheese_door enabled              //door that opens between north corridor and transmitter road when generator is captured.
@@ -107,7 +107,7 @@ game_manager
 	
 	trigger config_te
 	{
-		// wm_announce "^1< ^bte config loaded ^1>"
+		// wm_announce "^1< ^bconfig_te loaded ^1>"
 		
 		trigger villa_garage block
 		trigger cheese_door disable_open
@@ -129,7 +129,7 @@ game_manager
 	
 	trigger config_rema
 	{
-		// wm_announce "^1< ^bhbc config loaded ^1>"
+		// wm_announce "^1< ^bconfig_rema loaded ^1>"
 		
 		trigger villa_garage unblock
 		trigger cheese_door enabled
@@ -150,7 +150,7 @@ game_manager
 	}
 	trigger config_uips
 	{
-		// wm_announce "^1< ^buips config loaded ^1>"	
+		// wm_announce "^1< ^bconfig_uips loaded ^1>"	
 		
 		trigger villa_garage unblock            
 		trigger cheese_door enabled             
@@ -670,7 +670,7 @@ Forwardbunker_flag
 		wm_objective_status 3 1 1
 		wm_objective_status 3 0 2
 
-		wm_announce "^4Allies ^2capture the Forward Bunker^7!"
+		wm_announce "^4Allies ^2captured the Forward Bunker^7!"
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 0 "fragginhart_axis_bunker_captured"
@@ -1187,7 +1187,7 @@ depot_gate_controls
 		wm_objective_status 4 0 2
 		wm_teamvoiceannounce 1 "fragginhart_allies_gates_destroyed"
 		wm_teamvoiceannounce 0 "fragginhart_axis_gates_destroyed"
-		wm_announce "^4Allies ^2have damaged the Depot Gate Controls and secured the Forward Bunker^7!"
+		wm_announce "^4Allies ^2have damaged the Depot Gate Controls^7!"
 		// wm_announce "^2Depot Gate is opening^7!"
 		setstate Depot_Gate_deadplate default
 		trigger game_manager depotgatecontrols_complete
@@ -1652,17 +1652,20 @@ gen_axis_tst
 		trigger self hide
 		trigger switchlever off
 		trigger gen_allies_tst stop_count
+
 	}
 	trigger hide
 	{
 		setstate gen_button_axis invisible
 		setstate gen_button_allies default
+
 	}
 	
 	trigger disable
 	{
 		setstate gen_button_axis invisible
 		setstate gen_button_allies invisible
+
 	}
 	
 	trigger enable
@@ -1689,7 +1692,7 @@ gen_allies_tst
 		// trigger gen_sound toggle
 		trigger self hide
 		trigger switchlever on
-		trigger gen_allies_tst start_count	
+		trigger gen_allies_tst start_count
 	}
 	
 	trigger hide
@@ -1849,7 +1852,7 @@ gen_allies_tst
 	trigger stop_count
 	{
 		accum 1 set 0
-		wm_announce "^7...^1Axis have stopped the Generator!^7..."
+		wm_announce "^1Axis ^2have stopped the Generator!^7..."
 		globalaccum 1 trigger_if_equal 0 gen_allies_tst reset_count
 		globalaccum 1 abort_if_equal 0
 		trigger powerneedle stopneedle
@@ -1875,7 +1878,7 @@ gen_allies_tst
  		wm_teamvoiceannounce 0 "axis_hq_objective_lost"
  		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
 		// *---------------------------------------------------------------------------------*
-		wm_announce "^7Main Gate Controls are ^1enabled^7."
+		// wm_announce "^2Main Gate Controls are ^1enabled^7."
 	}
 	
  	trigger gen_red
@@ -2300,7 +2303,7 @@ Main_Gate
 
 	trigger dead
 	{
-		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+		playsound sound/movers/misc/big_gate1.wav looping volume 1024
 
 		// gotomarker Main_Gate_open_pos 50 wait
 		gotomarker Main_Gate_closed_pos 50 wait
@@ -2327,15 +2330,11 @@ Main_Gate
 		setstate button2_Main_Gate default
 
 		// wm_announce "^7Main Gate is ^2opening^7!"
-
-		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+		playsound sound/movers/misc/big_gate2.wav looping volume 1024
 
 		gotomarker Main_Gate_open_pos 50 wait
 
-		stopsound
-
-		
-		
+		stopsound	
 	}
 	
 	trigger alive_open_slow
@@ -2343,11 +2342,9 @@ Main_Gate
 		setstate button1_Main_Gate invisible
 
 		// wm_announce "^7Main Gate is ^2opening^7!"
-
-		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+		playsound sound/movers/misc/big_gate2.wav looping volume 1024 //move
 
 		gotomarker Main_Gate_open_pos 5 wait
-
 		stopsound
 		trigger maingateswitchdoor open
 		trigger maingateswitch2door open
@@ -2365,14 +2362,10 @@ Main_Gate
 
 		// wm_announce "^7Main Gate is ^1closing^7!"
 
-		playsound sound/movers/misc/garage_door_loop_01.wav looping volume 1024
+		playsound sound/movers/misc/big_gate2.wav looping volume 1024 //move
 
 		gotomarker Main_Gate_closed_pos 50 wait
-
 		stopsound
-
-		
-		
 	}
 
 }
