@@ -60,10 +60,11 @@
   - blocked line of sight at rear stairs.
 - Added time bonus option. ( requested by Stig )
 - Added some cosmetics.
+- Fixed model draw issue at depotyard truck. ( reported by Quantum )
 - ToDo
   - redraw the command map
   - Make voiceover sounds better (requested by (HBC)Futtbucker )
-  - fix model draw issue at depotyard truck.
+  
 ## v5 change log
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
   - the depo gate now opens from the opposite side.
