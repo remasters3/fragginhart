@@ -1,4 +1,16 @@
-// generator guage
+// generator
+textures/remasters/gen/gen_m_01
+{
+	qer_editorimage textures/metal_misc/metal_m04g2-r.jpg
+	implicitMap textures/metal_misc/metal_m04g2-r.jpg
+}
+
+textures/remasters/gen/gen_m_02
+{
+	qer_editorimage textures/metal_misc/metal_m06.jpg
+	implicitMap textures/metal_misc/metal_m06.jpg
+}
+
 textures/remasters/gen/guage01
 {
 	qer_editorimage textures/remasters/gen/01.jpg
@@ -189,7 +201,7 @@ textures/remasters/vsshutter
 textures/remasters/vswindow1
 {
 	qer_editorimage textures/village/villwin_c15.jpg //textures/remasters/villa/window48.jpg
-	implicitMap textures/village/villwin_c15.jpgttt //textures/remasters/villa/window48.jpg
+	implicitMap textures/village/villwin_c15.jpg //textures/remasters/villa/window48.jpg
 }
 
 

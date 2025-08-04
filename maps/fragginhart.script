@@ -75,12 +75,12 @@ game_manager
 	
 	trigger maptime_ph2
 	{
-		wm_set_round_timelimit 20
+		wm_set_round_timelimit 15
 	}
 	
 	trigger maptime_ph3
 	{
-		wm_set_round_timelimit 30
+		wm_set_round_timelimit 20
 	}	
 	
 	trigger config_default
@@ -1658,6 +1658,8 @@ gen_axis_tst
 	{
 		setstate gen_button_axis invisible
 		setstate gen_button_allies default
+		setstate gen_axis_tm invisible
+		setstate gen_allies_tm default
 
 	}
 	
@@ -1665,6 +1667,8 @@ gen_axis_tst
 	{
 		setstate gen_button_axis invisible
 		setstate gen_button_allies invisible
+		setstate gen_axis_tm invisible
+		setstate gen_allies_tm invisible
 
 	}
 	
@@ -1699,6 +1703,8 @@ gen_allies_tst
 	{
 		setstate gen_button_axis default
 		setstate gen_button_allies invisible
+		setstate gen_axis_tm Default
+		setstate gen_allies_tm invisible
 	}
 	
 	trigger tick
@@ -1903,6 +1909,27 @@ gen_allies_tst
  	}
 
 }
+
+gen_axis_tm
+{
+	spawn
+	{
+		accum 0 set 0
+		wait 500
+		setstate gen_axis_tm invisible
+	}
+}
+
+gen_allies_tm
+{
+	spawn
+	{
+		accum 0 set 0
+		wait 500
+		setstate gen_allies_tm default
+	}
+}
+
 
 powerneedle
 {
