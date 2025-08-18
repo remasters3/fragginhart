@@ -3,7 +3,7 @@ game_manager
 	spawn
 	{
 		// Game rules
-		wm_axis_respawntime 30
+		wm_axis_respawntime 20
 		wm_allied_respawntime 20
 		wm_number_of_objectives 8
 		wm_set_round_timelimit 20
@@ -103,6 +103,7 @@ game_manager
 		trigger trans_covdoor false              //Axis team door on roof of transmitter
 		globalaccum 0 set 1                      //Map time bonus: 0="false" 1="true"
 		globalaccum 1 set 2                      //generator charge time: 0="10s time reset". 1="10s", 2="20s", 3="30s". 1-3="time added". 
+		globalaccum 2 set 0                      //generator activation method: 0="player activated", 1="proximity activated"
 	}
 	
 	trigger config_te
@@ -125,6 +126,7 @@ game_manager
 		trigger trans_covdoor true
 		globalaccum 0 set 0
 		globalaccum 1 set 1
+		globalaccum 2 set 0
 	}
 	
 	trigger config_rema
@@ -147,6 +149,7 @@ game_manager
 		trigger trans_covdoor false
 		globalaccum 0 set 1
 		globalaccum 1 set 2
+		globalaccum 2 set 1
 	}
 	trigger config_uips
 	{
@@ -168,6 +171,7 @@ game_manager
 		trigger trans_covdoor true
 		globalaccum 0 set 0
 		globalaccum 1 set 3
+		globalaccum 2 set 0
 	}
 	
 	trigger phase1
@@ -1658,6 +1662,7 @@ gen_axis_tst
 	{
 		setstate gen_button_axis invisible
 		setstate gen_button_allies default
+		globalaccum 2 abort_if_not_equal 1
 		setstate gen_axis_tm invisible
 		setstate gen_allies_tm default
 
@@ -1667,6 +1672,7 @@ gen_axis_tst
 	{
 		setstate gen_button_axis invisible
 		setstate gen_button_allies invisible
+		globalaccum 2 abort_if_not_equal 1
 		setstate gen_axis_tm invisible
 		setstate gen_allies_tm invisible
 
@@ -1703,6 +1709,7 @@ gen_allies_tst
 	{
 		setstate gen_button_axis default
 		setstate gen_button_allies invisible
+		globalaccum 2 abort_if_not_equal 1
 		setstate gen_axis_tm Default
 		setstate gen_allies_tm invisible
 	}
@@ -1790,56 +1797,167 @@ gen_allies_tst
 	trigger precent_000
 	{
 		wm_announce "^7Power^b:^1=^1=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 invisible
+		setstate gen_pb_040 invisible
+		setstate gen_pb_030 invisible
+		setstate gen_pb_020 invisible
+		setstate gen_pb_010 invisible
 	}
 	
 	trigger precent_010
 	{
 		wm_announce "^7Power^b:^2=^1=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 invisible
+		setstate gen_pb_040 invisible
+		setstate gen_pb_030 invisible
+		setstate gen_pb_020 invisible
+		setstate gen_pb_010 default
 	}
 	
 	trigger precent_020
 	{
 		wm_announce "^7Power^b:^2=^2=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 invisible
+		setstate gen_pb_040 invisible
+		setstate gen_pb_030 invisible
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 
 	trigger precent_030
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^1=^1=^1=^1=^1=^1=^1=^b:"
+		wm_announce "^7Power^b:^2=^2=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 invisible
+		setstate gen_pb_040 invisible
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 	
 	trigger precent_040
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^1=^1=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 invisible
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 
 	trigger precent_050
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^1=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 default
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 
 	trigger precent_060
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^1=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 default
+		setstate gen_pb_050 default
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 	
 	trigger precent_070
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^1=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 default
+		setstate gen_pb_060 default
+		setstate gen_pb_050 default
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 
 	trigger precent_080
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^2=^1=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 default
+		setstate gen_pb_070 default
+		setstate gen_pb_060 default
+		setstate gen_pb_050 default
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 	
 	trigger precent_090
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^2=^2=^1=^b:"
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 default
+		setstate gen_pb_080 default
+		setstate gen_pb_070 default
+		setstate gen_pb_060 default
+		setstate gen_pb_050 default
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 	}
 
 	trigger precent_100
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^2=^2=^2=^2=^2=^2=^2=^b:"
+		setstate gen_pb_100 default
+		setstate gen_pb_090 default
+		setstate gen_pb_080 default
+		setstate gen_pb_070 default
+		setstate gen_pb_060 default
+		setstate gen_pb_050 default
+		setstate gen_pb_040 default
+		setstate gen_pb_030 default
+		setstate gen_pb_020 default
+		setstate gen_pb_010 default
 		trigger gen_axis_tst disable
 		trigger gen_sound start
 		trigger gen_sound on
@@ -1927,6 +2045,28 @@ gen_allies_tm
 		accum 0 set 0
 		wait 500
 		setstate gen_allies_tm default
+		wait 2000
+		globalaccum 2 abort_if_equal 1
+		//wm_announce "^1< ^bDEBUG ^7MSG^1>"
+		setstate gen_allies_tm invisible
+	}
+}
+
+gen_pb_100
+{
+	spawn
+	{
+		wait 500
+		setstate gen_pb_100 invisible
+		setstate gen_pb_090 invisible
+		setstate gen_pb_080 invisible
+		setstate gen_pb_070 invisible
+		setstate gen_pb_060 invisible
+		setstate gen_pb_050 invisible
+		setstate gen_pb_040 invisible
+		setstate gen_pb_030 invisible
+		setstate gen_pb_020 invisible
+		setstate gen_pb_010 invisible
 	}
 }
 
