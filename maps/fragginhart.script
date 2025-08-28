@@ -1655,6 +1655,7 @@ gen_axis_tst
 		// trigger gen_sound toggle
 		trigger self hide
 		trigger switchlever off
+		wm_announce "^1Axis ^2have lowered the generator switch^7!"
 		trigger gen_allies_tst stop_count
 
 	}
@@ -1702,6 +1703,7 @@ gen_allies_tst
 		// trigger gen_sound toggle
 		trigger self hide
 		trigger switchlever on
+		wm_announce "^4Allies ^2have raised the generator switch^7!"
 		trigger gen_allies_tst start_count
 	}
 	
@@ -1842,7 +1844,6 @@ gen_allies_tst
 	trigger precent_030
 	{
 		wm_announce "^7Power^b:^2=^2=^2=^1=^1=^1=^1=^1=^1=^1=^b:"
-		wm_announce "^7Power^b:^2=^2=^1=^1=^1=^1=^1=^1=^1=^1=^b:"
 		setstate gen_pb_100 invisible
 		setstate gen_pb_090 invisible
 		setstate gen_pb_080 invisible
@@ -1967,26 +1968,27 @@ gen_allies_tst
 	trigger start_count
 	{
 		accum 1 set 1
-		globalaccum 1 trigger_if_equal 1 powerneedle move
-		globalaccum 1 trigger_if_equal 2 powerneedle move
-		globalaccum 1 trigger_if_equal 3 powerneedle move
+		wm_announce "^4Generator ^2started^7!"
+		// globalaccum 1 trigger_if_equal 1 powerneedle move
+		// globalaccum 1 trigger_if_equal 2 powerneedle move
+		// globalaccum 1 trigger_if_equal 3 powerneedle move
 		trigger gen_allies_tst tick
 	}
 	
 	trigger stop_count
 	{
 		accum 1 set 0
-		wm_announce "^1Axis ^2have stopped the Generator!^7..."
+		wm_announce "^1Generator ^2stopped^7!"
 		globalaccum 1 trigger_if_equal 0 gen_allies_tst reset_count
 		globalaccum 1 abort_if_equal 0
-		trigger powerneedle stopneedle
+		// trigger powerneedle stopneedle
 	}
 	
 	trigger capture
 	{
 		trigger game_manager generator_complete
 		trigger game_manager allies_cp_spawn
-		globalaccum 1 trigger_if_equal 0 powerneedle move
+		globalaccum 1 trigger_if_equal 0 powerneedle idle
 		globalaccum 1 trigger_if_equal 1 powerneedle idle
 		globalaccum 1 trigger_if_equal 2 powerneedle idle
 		globalaccum 1 trigger_if_equal 3 powerneedle idle
@@ -2003,6 +2005,7 @@ gen_allies_tst
  		wm_teamvoiceannounce 1 "allies_hq_objective_secure"
 		// *---------------------------------------------------------------------------------*
 		// wm_announce "^2Main Gate Controls are ^1enabled^7."
+		wm_announce "^4Allies ^2have secured the generator^7!"
 	}
 	
  	trigger gen_red
@@ -2125,20 +2128,22 @@ powerneedle
 	
 	trigger idle_sound
 	{
-		accum 1 abort_if_equal 3
+		//accum 1 abort_if_equal 3
 		playsound sound/world/fan_slow.wav looping volume 200
-		accum 1 set 3
+		//accum 1 set 3
 	}
 	trigger idle
 	{
-		faceangles 0 0 -80 1
-		wait 500
+		trigger powerneedle idle_sound
+		setrotation 0 0 -17
+		wait 10000
+		// faceangles 0 0 -80 1
+		// wait 500
 		trigger powerneedle idle_run
 	}
 	
 	trigger idle_run
 	{
-		trigger powerneedle idle_sound
 		setrotation 0 0 2
 		wait 250
 		stoprotation
@@ -2290,8 +2295,6 @@ maingateswitchdoor
 	trigger open
 	{
 		faceangles 0 70 0 2000
-		// playsound sound/world/icecrack.wav volume 256
-
 	}
 		
 	trigger dead
@@ -2592,11 +2595,11 @@ ramp_alliedconstruct_n
 		trigger game_manager ramp_active
 
 		// *----------------------------------- vo ------------------------------------------*
-		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
-		wm_addteamvoiceannounce 1 "fragginhart_ramp_construct"
-
 		wm_teamvoiceannounce 0 "fragginhart_axis_ramp_destroyed"
 		wm_teamvoiceannounce 1 "fragginhart_allies_ramp_destroyed"
+		
+		wm_addteamvoiceannounce 0 "fragginhart_axis_ramp_stop"
+		wm_addteamvoiceannounce 1 "fragginhart_ramp_construct"
 		// *---------------------------------------------------------------------------------*
 	}
 }
@@ -3379,9 +3382,7 @@ mortarspot_tst
 	trigger toggle_n1
 	{
 		trigger mortarspot_in true
-		// wm_announce "^1< ^bRema's hidden mortar nest is occupied^7! ^1>"
 		wait 1
-		// wm_announce "^1< ^bFire shall rain from the sky^7! ^1>"
 		trigger mortarspot_in false
 	}
 	

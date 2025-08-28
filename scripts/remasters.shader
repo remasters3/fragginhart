@@ -1,4 +1,11 @@
 // generator
+
+textures/remasters/gen/newguage
+{
+	qer_editorimage textures/remasters/gen/newgauge.jpg
+	implicitMap textures/remasters/gen/newgauge.jpg
+}
+
 textures/remasters/gen/gen_m_01
 {
 	qer_editorimage textures/metal_misc/metal_m04g2-r.jpg
