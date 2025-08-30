@@ -4,7 +4,7 @@
 <br> https://www.etlegacy.com/
 <br> https://et.trackbase.net/map/9158
 - download the current version.
-  - [fragginhart_v5.pk3](https://github.com/remasters3/fragginhart/raw/main/fragginhart_v5.pk3 "fragginhart_v5.pk3")
+  - [fragginhart_v6.pk3](https://github.com/remasters3/fragginhart/raw/main/fragginhart_v6.pk3 "fragginhart_v6.pk3")
   - please remove any previous versions and related scripts.
   - Omnibot files by Mateos can be found on the official. [omnibot repo](https://app.assembla.com/spaces/omnibot/subversion/source/HEAD/Enemy-Territory/0.8/et/incomplete_navs/with_script "omnibot repo")
 ## Map Objectives
@@ -45,6 +45,7 @@
 [![sample screenshot](/readme/ss/2024-09-21-121739-fragginhart-Small.png)](/readme/ss/2024-09-21-121739-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
+
 ## v6 Change log
 - Fixed Middle storeroom at sidewall is to dark ( reported by u!ps )
 - Made the "battery array room" shorter reducing the distance to ladder for allies ( requested by Mietas )
@@ -61,9 +62,8 @@
 - Added time bonus option. ( requested by Stig )
 - Added some cosmetics.
 - Fixed model draw issue at depotyard truck. ( reported by Quantum )
-- ToDo
-  - redraw the command map
-  - Make voiceover sounds better (requested by (HBC)Futtbucker )
+- Updated the command map.
+- Moved allied first spawn forward by 768 units.
   
 ## v5 change log
 - Fixed Axis have a direct shot from docs room to allies forward bunker spawn exit. ( reported by <=TM=>imZi )
