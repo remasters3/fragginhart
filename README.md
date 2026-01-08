@@ -46,6 +46,14 @@
 [![sample screenshot](/readme/ss/2024-09-21-121749-fragginhart-Small.png)](/readme/ss/2024-09-21-121749-fragginhart.png)
 [![sample screenshot](/readme/ss/2024-09-21-121815-fragginhart-Small.png)](/readme/ss/2024-09-21-121815-fragginhart.png)
 
+## v7 Change log
+- To do:
+  - Add pad at generator switch to make it more obvious. ( requested by u!ps )
+  - Staris at rear of generator has a bugged texture that slows movment. ( Reported by Mietas )
+  - If Axis re-take the flag Allies will revert to villa spawn even if CP is active. ( fixed on HBC server )
+  - Redo voice over sounds. 
+
+
 ## v6 Change log
 - Fixed Middle storeroom at sidewall is to dark ( reported by u!ps )
 - Made the "battery array room" shorter reducing the distance to ladder for allies ( requested by Mietas )
