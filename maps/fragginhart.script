@@ -3,7 +3,7 @@ game_manager
 	spawn
 	{
 		// Game rules
-		wm_axis_respawntime 20
+		wm_axis_respawntime 30
 		wm_allied_respawntime 20
 		wm_number_of_objectives 8
 		wm_set_round_timelimit 20
@@ -11,7 +11,7 @@ game_manager
 		wm_setwinner 0
 		
 		// map config // 
-		accum 0 set 0 // 0=config_default, 1=config_te, 2=config_rema, 3=config_uips
+		accum 0 set 2 // 0=config_default, 1=config_te, 2=config_rema, 3=config_uips
 		
 		// Objectives
 		// 1: Generator
@@ -632,7 +632,7 @@ Forwardbunker_flag
 		accum 0 set 0													// Axis own the flag
 
 		//setautospawn "Forward bunker" 0						// Disable setautospawn
-		// setautospawn "Villa" 1
+		trigger allied_cp_open spawn_here
 		setstate map_inst_axis default
 		setstate map_inst_allies invisible
 	}
@@ -643,6 +643,7 @@ Forwardbunker_flag
 		// setautospawn "Villa" 1
 		trigger allied_cp_open enable_autospawn
 		alertentity Forwardbunker_wobj									// Switch command map marker
+		trigger allied_cp_open spawn_here
 
 		wm_objective_status 3 1 0
 		wm_objective_status 3 0 0
@@ -1592,7 +1593,50 @@ gen_controls
 		setstate gen_controls_toi invisible
 	}
 }
-
+genpad
+{
+	spawn
+	{
+		
+		accum 1 set	0 //disable=0 enable=1
+		wait 500
+		gotomarker genpadup 80 wait
+		accum 0 set	0
+		
+	}
+	trigger fire
+	{
+		trigger genpad down
+		// accum 0 trigger_if_equal 0 genpad up
+		// accum 0 trigger_if_equal 1 genpad down
+	}
+	
+	trigger up
+	{
+		accum 1 abort_if_equal 0
+		accum 0 abort_if_equal 1
+		gotomarker genpadup 80 wait
+		accum 0 set	1
+	}
+	trigger down
+	{
+		accum 1 abort_if_equal 0
+		accum 0 abort_if_equal 0
+		gotomarker genpaddown 80 wait
+		accum 0 set	0
+		wait 500
+		trigger genpad up
+	}
+	trigger disabled
+	{
+		accum 1 set	0
+	}
+	
+	trigger enabled
+	{
+		accum 1 set	1
+	}
+}
 
 switchlever
 {
@@ -1653,6 +1697,7 @@ gen_axis_tst
 	{
 		
 		// trigger gen_sound toggle
+		trigger genpad fire
 		trigger self hide
 		trigger switchlever off
 		wm_announce "^1Axis ^2have lowered the generator switch^7!"
@@ -1701,6 +1746,7 @@ gen_allies_tst
 	trigger press
 	{
 		// trigger gen_sound toggle
+		trigger genpad fire
 		trigger self hide
 		trigger switchlever on
 		wm_announce "^4Allies ^2have raised the generator switch^7!"
@@ -2873,17 +2919,80 @@ basement_spawn
 
 // ==== Allied Command Post ==== //
 
+tankbay_ammocabinet_clip
+{
+	spawn
+	{
+		accum 0 set 0
+		trigger tankbay_ammocabinet_clip disable
+	}
+	
+	trigger enable 
+	{
+		setstate tankbay_ammotrigger default
+		setstate tankbay_ammocabinet_dmg invisible
+		setstate tankbay_ammocabinet default
+		
+		setstate tankbay_healthtrigger default
+		setstate tankbay_healthcabinet_dmg invisible
+		setstate tankbay_healthcabinet default
+		
+	}
+	
+	trigger disable
+	{
+		setstate tankbay_ammotrigger invisible
+		setstate tankbay_ammocabinet invisible
+		setstate tankbay_ammocabinet_dmg default
+		
+		setstate tankbay_healthtrigger invisible
+		setstate tankbay_healthcabinet invisible
+		setstate tankbay_healthcabinet_dmg default
+	}
+}
+
+bcp_door
+{
+	spawn
+	{
+		accum 0 set 0
+		trigger self open
+	}
+	
+	trigger open
+	{
+		accum 0 abort_if_equal 1
+		alertentity bcp_door
+		accum 0 set 1
+	}
+	
+	trigger close
+	{
+		accum 0 abort_if_equal 0
+		alertentity bcp_door
+		accum 0 set 0
+	}
+}
+
 allied_cp_open
 {
 	spawn
 	{
 		wait 100
 		accum 0 set 0													// 0=CP Closed, 1=CP Damaged
+		accum 2 set 0
 		constructible_class 2											// Dyno+Satchel
 		trigger self disable_cp_features								// Default charge bar times
 		trigger self cp_spawn_disable
 		setstate allied_cp_damaged invisible							// Hide damaged CP clipbrush+model
 		setstate allied_cp_damaged_model invisible
+	}
+	
+	trigger spawn_here
+	{
+		accum 8 abort_if_equal 1
+		accum 2 abort_if_equal 0
+		setautospawn "Allies CP Spawn" 1
 	}
 	
 	trigger cp_spawn_enable
@@ -2916,7 +3025,7 @@ allied_cp_open
 	trigger disable_cp_features
 	{
 		setstate allied_cp_open_model invisible							// Hide Open CP model
-
+		trigger tankbay_ammocabinet_clip disable
 		setchargetimefactor 1 soldier 1
 		setchargetimefactor 1 lieutenant 1
 		setchargetimefactor 1 medic 1
@@ -2931,7 +3040,7 @@ allied_cp_open
 	trigger enable_cp_features
 	{
 		setstate allied_cp_open_model default							// Show open CP model
-
+		trigger tankbay_ammocabinet_clip enable
 		setchargetimefactor 1 soldier 0.75
 		setchargetimefactor 1 lieutenant 0.75
 		setchargetimefactor 1 medic 0.75
@@ -2954,6 +3063,7 @@ allied_cp_open
 	built final
 	{
 		accum 0 set 1													// Only show the damaged CP model
+		accum 2 set 1
 		trigger self enable_cp_features									// Increase charge bar times
 		trigger game_manager alliedcp_complete
 
@@ -2983,6 +3093,7 @@ allied_cp_open
 
 	death
 	{
+		accum 2 set 0
 		trigger self show_damaged_cabinet								// Show damaged CP model
 		trigger self disable_cp_features								// Default charge bar times
 		trigger game_manager alliedcp_active
@@ -3278,7 +3389,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 0
 		playsound sound/menu/select.wav volume 10
-		playsound sound/music/menu_server.wav looping volume 100
+		playsound sound/world/radio_static_01.wav looping volume 300
 		wait 500
 		accum 0 set 1
 	}
@@ -3287,7 +3398,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 1
 		playsound sound/menu/select.wav volume 10
-		playsound sound/world/radio_static_01.wav looping volume 100
+		playsound sound/world/radio_static_02.wav looping volume 300
 		wait 500
 		accum 0 set 2
 	}
@@ -3296,7 +3407,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 2
 		playsound sound/menu/select.wav volume 10
-		playsound sound/vo/radar/news_radar.wav looping volume 100
+		playsound sound/world/radio_allies.wav looping volume 300
 		wait 500
 		accum 0 set 3
 	}
@@ -3305,7 +3416,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 3
 		playsound sound/menu/select.wav volume 10
-		playsound sound/world/radio_static_02.wav looping volume 100
+		playsound sound/world/radio_static_02.wav looping volume 300
 		wait 500
 		accum 0 set 4
 	}
@@ -3314,7 +3425,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 4
 		playsound sound/menu/select.wav volume 10
-		playsound sound/vo/battery/news_battery.wav looping volume 100
+		playsound sound/world/radio_axis.wav looping volume 300
 		wait 500
 		accum 0 set 5
 	}
@@ -3323,7 +3434,7 @@ axis_spawn_radio
 	{
 		accum 0 abort_if_not_equal 5
 		playsound sound/menu/select.wav volume 10
-		playsound sound/world/radio_static_01.wav looping volume 70
+		playsound sound/world/radio_static_01.wav looping volume 300
 		wait 500
 		accum 0 set 6
 	}

@@ -51,7 +51,7 @@
   - Add pad at generator switch to make it more obvious. ( requested by u!ps )
   - Staris at rear of generator has a bugged texture that slows movment. ( Reported by Mietas )
   - If Axis re-take the flag Allies will revert to villa spawn even if CP is active. ( fixed on HBC server )
-  - Redo voice over sounds. 
+  - Redo voice over sounds.
 
 
 ## v6 Change log

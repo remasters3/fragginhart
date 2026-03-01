@@ -1,3 +1,22 @@
+// compass
+
+textures/fragginhart/compass
+{
+	qer_editorimage gfx/2d/compass2.tga
+ 	cull disable
+ 	nomipmaps
+ 	nopicmip
+ 	surfaceparm nomarks
+ 	surfaceparm alphashadow
+ 	surfaceparm pointlight
+ 	surfaceparm trans
+	implicitMask gfx/2d/compass2.tga
+	{
+		map gfx/2d/compass2.tga
+		
+	}
+}
+
 // generator
 
 textures/remasters/gen/newguage
