@@ -1,4 +1,4 @@
-{
+ {
 	map "fragginhart"
 	longname "^1Frag^bginhart ^7v^54.XXX"
 	type "wolfmp wolfsw"
@@ -9,6 +9,6 @@
 	briefing "**Allies must raid Fragginhart Canyon and broadcast the documents back to Allies HQ. **Can the Axis forces hold?"
 	axiswintext "not used"
 	alliedwintext "not used"
-	mapposition_x 485
-	mapposition_y 842
+	mapposition_x 550
+	mapposition_y 820
 }
