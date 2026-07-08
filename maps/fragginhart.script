@@ -1855,6 +1855,18 @@ gen_allies_tst
 		setstate gen_pb_030 invisible
 		setstate gen_pb_020 invisible
 		setstate gen_pb_010 invisible
+		
+		setstate gen_pb_010_off default
+		setstate gen_pb_020_off default
+		setstate gen_pb_030_off default
+		setstate gen_pb_040_off default
+		setstate gen_pb_050_off default
+		setstate gen_pb_060_off default
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 	
 	trigger precent_010
@@ -1870,6 +1882,19 @@ gen_allies_tst
 		setstate gen_pb_030 invisible
 		setstate gen_pb_020 invisible
 		setstate gen_pb_010 default
+		trigger gen_pb_speaker start
+		
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off default
+		setstate gen_pb_030_off default
+		setstate gen_pb_040_off default
+		setstate gen_pb_050_off default
+		setstate gen_pb_060_off default
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		
 	}
 	
 	trigger precent_020
@@ -1885,6 +1910,18 @@ gen_allies_tst
 		setstate gen_pb_030 invisible
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+		
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off default
+		setstate gen_pb_040_off default
+		setstate gen_pb_050_off default
+		setstate gen_pb_060_off default
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 
 	trigger precent_030
@@ -1900,6 +1937,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+		
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off default
+		setstate gen_pb_050_off default
+		setstate gen_pb_060_off default
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 	
 	trigger precent_040
@@ -1915,6 +1964,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off default
+		setstate gen_pb_060_off default
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 
 	trigger precent_050
@@ -1930,6 +1991,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+		
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off invisible
+		setstate gen_pb_060_off default
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 
 	trigger precent_060
@@ -1945,6 +2018,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off invisible
+		setstate gen_pb_060_off invisible
+		setstate gen_pb_070_off default
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 	
 	trigger precent_070
@@ -1960,6 +2045,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off invisible
+		setstate gen_pb_060_off invisible
+		setstate gen_pb_070_off invisible
+		setstate gen_pb_080_off default
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 
 	trigger precent_080
@@ -1975,6 +2072,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+		
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off invisible
+		setstate gen_pb_060_off invisible
+		setstate gen_pb_070_off invisible
+		setstate gen_pb_080_off invisible
+		setstate gen_pb_090_off default
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 	
 	trigger precent_090
@@ -1990,6 +2099,18 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off invisible
+		setstate gen_pb_060_off invisible
+		setstate gen_pb_070_off invisible
+		setstate gen_pb_080_off invisible
+		setstate gen_pb_090_off invisible
+		setstate gen_pb_100_off default
+		trigger gen_pb_speaker start
 	}
 
 	trigger precent_100
@@ -2005,9 +2126,22 @@ gen_allies_tst
 		setstate gen_pb_030 default
 		setstate gen_pb_020 default
 		setstate gen_pb_010 default
+
+		setstate gen_pb_010_off invisible
+		setstate gen_pb_020_off invisible
+		setstate gen_pb_030_off invisible
+		setstate gen_pb_040_off invisible
+		setstate gen_pb_050_off invisible
+		setstate gen_pb_060_off invisible
+		setstate gen_pb_070_off invisible
+		setstate gen_pb_080_off invisible
+		setstate gen_pb_090_off invisible
+		setstate gen_pb_100_off invisible
+		trigger gen_pb_speaker start
 		trigger gen_axis_tst disable
 		trigger gen_sound start
 		trigger gen_sound on
+		trigger gen_pb_speaker idle_run
 		trigger gen_allies_tst capture
 	}
 	
@@ -2077,6 +2211,8 @@ gen_allies_tst
 
 }
 
+
+
 gen_axis_tm
 {
 	spawn
@@ -2100,6 +2236,30 @@ gen_allies_tm
 		setstate gen_allies_tm invisible
 	}
 }
+gen_pb_speaker
+{
+	spawn
+	{
+		trigger self stop
+	}
+	
+	trigger start
+	{
+		stopsound
+		playsound sound/movers/switches/switch_02.wav volume 60
+	}
+	
+	trigger idle_run 
+	{
+		stopsound
+		playsound sound/world/radio_static_01.wav looping volume 300
+	}
+	
+	trigger stop
+	{
+		stopsound
+	}
+}
 
 gen_pb_100
 {
@@ -2116,9 +2276,9 @@ gen_pb_100
 		setstate gen_pb_030 invisible
 		setstate gen_pb_020 invisible
 		setstate gen_pb_010 invisible
+		trigger self stop
 	}
 }
-
 
 powerneedle
 {

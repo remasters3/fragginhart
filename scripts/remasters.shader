@@ -18,6 +18,17 @@ textures/fragginhart/compass
 }
 
 // generator
+textures/remasters/gen/powerlight_on
+{
+	qer_editorimage textures/lights/light_c01.tga
+	implicitMap textures/lights/light_c01.tga
+}
+
+textures/remasters/gen/powerlight_red
+{
+	qer_editorimage textures/lights/light_m25r.tga
+	implicitMap textures/lights/light_m25r.tga
+}
 
 textures/remasters/gen/newguage
 {
